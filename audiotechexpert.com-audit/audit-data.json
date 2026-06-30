@@ -1,0 +1,166 @@
+{
+  "summary": {
+    "health_score": 51,
+    "business_type": "Publisher / Amazon-affiliate review site (headphones & microphones)",
+    "site_url": "https://audiotechexpert.com",
+    "platform": "WordPress + Yoast SEO + AAWP + Elementor (Astra theme) on Hostinger",
+    "scope": "285 posts, 20 pages, 58 categories, 310 tags, 1 author; homepage + ~40 URLs sampled across templates",
+    "top_findings": [
+      "310 indexable tag archives (87% keyword-stuffed, ~1 post each) — severe index bloat / Helpful-Content risk",
+      "No first-hand testing evidence: roundups recycle Amazon listing copy as 'reviews' (E-E-A-T Experience near zero)",
+      "~20 duplicate '-2' posts + 4 competing 'XLR vs USB' URLs (one titled 'for Crime Writers') — cannibalization + AI-content signal",
+      "Empty WebSite.name + no Organization schema + no Review/Product/ItemList on 285 affiliate posts",
+      "Poor performance: hotlinked Unsplash LCP, HTML uncacheable at CDN (AAWP cookie), render-blocking jQuery/fonts"
+    ],
+    "quick_wins": [
+      "Set WordPress Site Title = 'Audio Tech Expert' (fixes empty WebSite.name + dangling ' - ' titles in one change)",
+      "Yoast: noindex tag archives & drop post_tag sitemap (clears ~46% of index bloat in 1 toggle)",
+      "Yoast: enable Organization knowledge-graph with logo",
+      "Redirect /headphone-guides-old/ and consolidate /recording-production/ duplicate pair",
+      "Add HSTS + X-Content-Type-Options + X-Frame-Options + Referrer-Policy via .htaccess; disable wp-json user enumeration & block xmlrpc.php"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 57,
+      "what_works": [
+        "HTTPS sitewide; clean 301s for http→https, www→non-www, trailing-slash; proper 404s",
+        "Self-referential canonicals on posts; valid robots.txt + Yoast sitemap index; HTTP/2+HTTP/3",
+        "Server-rendered (no SPA); correct viewport; generous index,follow,max-image-preview:large"
+      ],
+      "findings": [
+        {"title": "310 tag archives indexed with near-zero content", "severity": "Critical", "description": "post_tag-sitemap has 310 indexable tags (>285 posts); 87% are keyword-stuffed slugs (e.g. tag/acoustic-guitar-microphone-...-shure-sm57-...) rendering only chrome, ~1 post each.", "recommendation": "Yoast → Search Appearance → Taxonomies → Tags → 'Show in search results' = No (noindex + removes from sitemap)."},
+        {"title": "~20 live '-2' duplicate posts, both self-canonical", "severity": "Critical", "description": "WordPress auto-slug collisions (-2…-7) create duplicate posts competing for the same intent; the clean /best-noise-cancelling-headphones/ even 301s to the ugly -2026-2 slug.", "recommendation": "Audit each pair; 301 the weaker to the stronger; ensure survivor self-canonicals; fix internal links."},
+        {"title": "Duplicate /guides/recording-production/ vs /recording-production/", "severity": "High", "description": "Both 200, identical titles/H1, self-canonical, both in sitemap.", "recommendation": "301 /recording-production/ → /guides/recording-production/; remove from sitemap."},
+        {"title": "/headphone-guides-old/ legacy page indexed", "severity": "High", "description": "200, index,follow, in sitemap, H1 'Headphone Guides Old', thin body.", "recommendation": "301 → /headphone-guides/ (or noindex) and remove from sitemap."},
+        {"title": "Missing security headers + stack exposure", "severity": "High", "description": "No HSTS, X-Content-Type-Options, X-Frame-Options, Referrer-Policy; x-powered-by PHP/8.3.30; wp-json/wp/v2/users exposes login slug 'peter_froggatt'; xmlrpc.php reachable (405).", "recommendation": ".htaccess security headers; expose_php Off; disable REST user endpoint; block xmlrpc.php."},
+        {"title": "Render-blocking resources / CWV lab risk", "severity": "Medium", "description": "jQuery+Migrate sync in <head>; 16 blocking CSS; 19 scripts without async/defer; no LCP fetchpriority; 12/15 images without dimensions.", "recommendation": "Defer non-critical JS, enable Elementor/critical-CSS optimization, set image dimensions, fetchpriority on LCP."},
+        {"title": "Homepage has two H1 (one is 'Home')", "severity": "Medium", "description": "Theme entry-title <h1>Home</h1> plus hero <h1>Audio Gear, Tested and Explained</h1>.", "recommendation": "Suppress the templated title H1; keep one descriptive H1."},
+        {"title": "IndexNow not enabled; author archive indexed", "severity": "Medium", "description": "/indexnow 404; /author/peter_froggatt/ indexed (login-slug exposure + thin duplicate listing).", "recommendation": "Enable Yoast IndexNow; noindex author archive and/or change public author slug."},
+        {"title": "x-robots-tag: noindex on non-HTML only", "severity": "Info", "description": "noindex header appears solely on robots.txt/XML/xmlrpc (text-plain/xml), never on HTML pages. Harmless Hostinger behaviour.", "recommendation": "No action."}
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "score": 52,
+      "what_works": [
+        "Two-layer FTC affiliate disclosure (inline + footer)",
+        "Transparent /how-we-choose/ methodology (~964 words); named author; readable FK grade 9–11",
+        "Roundups assign each pick a role and name a real limitation"
+      ],
+      "findings": [
+        {"title": "No hands-on testing evidence in affiliate roundups", "severity": "Critical", "description": "Methodology admits no physical testing; picks justified by Amazon/manufacturer copy (e.g. WH-1000XM6 'based on everything its title tells us'). Google reviews system targets exactly this.", "recommendation": "Add original photos + concrete per-pick impressions to top 5–10 roundups, or reframe as 'curated research roundups'."},
+        {"title": "No author photo; incomplete Person; credential mismatch", "severity": "Critical", "description": "About page has no author photo (alt placeholder 'The person behind the reviews'); posts claim '15 years building signal chains' while About describes a crime novelist.", "recommendation": "Add real author photo + full Person schema (image, sameAs→phillipstrang.com); reconcile audio credentials on About."},
+        {"title": "Stock/AI imagery, no original product photography", "severity": "High", "description": "Homepage hotlinks Unsplash; a review hero filename '48arKdwIqXYlgqCAspDgB.jpg' looks AI-generated; product images are Amazon CDN thumbnails.", "recommendation": "Photograph real units; if AI retained, add IPTC DigitalSourceType; self-host hero."},
+        {"title": "'Reviews' framing vs research-only methodology", "severity": "High", "description": "Brand/URLs say 'reviews'/'best' but no testing occurs — QRG/FTC alignment risk and reviews-system demotion risk.", "recommendation": "Soften to 'guides/recommendations'; add original analysis beyond the Amazon listing per roundup."},
+        {"title": "Thin content / index bloat (310 tags, 58 categories)", "severity": "Medium", "description": "More tag archives than posts; categories average <5 posts.", "recommendation": "Noindex tags; merge/noindex sub-4-post categories."},
+        {"title": "Thin Contact (~88 words) and shallow About (391 words)", "severity": "Medium", "description": "Contact may be a form shortcode stripped from raw HTML — verify; About leads with fiction career, no audio depth.", "recommendation": "Confirm contact form renders + add fallback; expand About to 600–800 words with audio credibility."},
+        {"title": "No external citations / Review-ItemList schema / update dates on explainers", "severity": "Low", "description": "No outbound authority links; AAWP boxes emit no JSON-LD; explainers lack visible 'last updated'.", "recommendation": "Add 1–2 authority links/post; ItemList/Review schema; review-date stamps."}
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "score": 68,
+      "what_works": [
+        "Meta descriptions present and well-sized (133–159 chars) on every page sampled",
+        "Review/guide posts: single H1, descriptive 49–60 char titles, 1,300–1,600 words, self-canonical",
+        "Clean readable slugs; modern robots meta"
+      ],
+      "findings": [
+        {"title": "Empty WP Site Title breaks brand titles", "severity": "High", "description": "Category/landing titles dangle with ' - ' and no brand: 'Guides -' (8 chars), 'Contact -' (9), 'Headphone Comparisons -' (23). Same root cause as empty WebSite.name.", "recommendation": "Set WP Site Title = 'Audio Tech Expert'; define Yoast title templates for pages/archives."},
+        {"title": "Duplicate title + duplicate page (recording-production)", "severity": "High", "description": "/recording-production/ and /guides/recording-production/ share identical title and overlapping content.", "recommendation": "Canonicalize to one URL; 301 the other."},
+        {"title": "Legacy /headphone-guides-old/ indexable", "severity": "Medium", "description": "200, index,follow, duplicates /headphone-guides/.", "recommendation": "301 or noindex; remove from sitemap."},
+        {"title": "Multiple H1 on landing/archive templates", "severity": "Medium", "description": "Homepage, best-headphones, best-microphones, guides, about-us, recording-production each render 2 H1.", "recommendation": "One H1 per template."},
+        {"title": "Thin/auto-generated category titles + missing alt text", "severity": "Low", "description": "Archive titles carry no keyword value; ~3 imgs/page lack alt (theme/affiliate images).", "recommendation": "Write descriptive titles; add alt text."}
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "score": 34,
+      "what_works": [
+        "Yoast emits structurally valid JSON-LD (correct @context/@id/ISO dates) on every page",
+        "Posts carry Article + BreadcrumbList + Person + ImageObject (site-hosted, with dimensions)"
+      ],
+      "findings": [
+        {"title": "WebSite.name (and description) empty sitewide", "severity": "Critical", "description": "name:'' on all pages — no brand label for sitelinks search box / AI attribution.", "recommendation": "Set site name in Yoast/WordPress (5-min fix)."},
+        {"title": "No Organization schema anywhere", "severity": "Critical", "description": "No Organization node (Astra microdata Org has empty name/url). Publisher entity absent for E-E-A-T + AI.", "recommendation": "Add Organization via Yoast knowledge graph with logo + publishingPrinciples → /how-we-choose/."},
+        {"title": "No Review/Product/ItemList on 285 affiliate posts", "severity": "Critical", "description": "AAWP stores ASIN/price but emits no schema; no product rich-result eligibility.", "recommendation": "Add ItemList→Product→Offer (affiliate-tagged) on roundups, auto-built from AAWP via wpseo_schema_graph_pieces."},
+        {"title": "Person schema incomplete; absent on /about-us/", "severity": "Warning", "description": "Person.sameAs only lists own homepage; no worksFor/knowsAbout; About page has no Person.", "recommendation": "Enrich Person (sameAs→phillipstrang.com, worksFor→Organization, knowsAbout, hosted photo)."},
+        {"title": "Misc: keywords string-in-array, missing dateModified, Unsplash ImageObject", "severity": "Warning", "description": "Article.keywords is one comma-joined string; one post missing dateModified; homepage/category primaryImage hotlinks Unsplash.", "recommendation": "Array of keyword strings; ensure dateModified; self-host ImageObject."},
+        {"title": "FAQ sections present but no FAQPage schema", "severity": "Info", "description": "Posts have Q&A blocks; FAQ rich results retired May 2026 (no SERP gain) but markup aids AI citation.", "recommendation": "Optional FAQPage for GEO."}
+      ]
+    },
+    {
+      "name": "Performance (CWV)",
+      "score": 38,
+      "what_works": [
+        "Speculation Rules prefetch present; logo has explicit dimensions; HTTP/2+3",
+        "GTM async; Site Kit & Mailchimp deferred"
+      ],
+      "findings": [
+        {"title": "LCP hero hotlinked from images.unsplash.com (est. 4.5–6s, Poor)", "severity": "Critical", "description": "Third-party LCP image, no fetchpriority/preload, CSS-background hero invisible to preload scanner.", "recommendation": "Self-host + WebP, fetchpriority=high + preload, set width/height."},
+        {"title": "HTML uncacheable at CDN (DYNAMIC, TTFB 387–531ms)", "severity": "High", "description": "AAWP sets aawp-country cookie on every response → Hostinger CDN bypasses cache → full PHP render per visit.", "recommendation": "Strip/ignore the AAWP cookie at CDN/cache layer or set country client-side; target HIT/~50ms."},
+        {"title": "Render-blocking jQuery + 5 Google Fonts (no preconnect)", "severity": "High", "description": "jQuery+Migrate sync in <head>; 5 font CSS across 2 origins; only dns-prefetch for GTM.", "recommendation": "Defer jQuery; self-host/dedupe fonts; add preconnects."},
+        {"title": "CLS: 11 Unsplash images without width/height; images JPEG not WebP", "severity": "High", "description": "No dimensions/aspect-ratio; review images JPEG; below-fold images not lazy-loaded.", "recommendation": "Set dimensions; WebP/AVIF; lazy-load below-fold."},
+        {"title": "13+ synchronous Elementor JS at body end (INP est. 250–350ms)", "severity": "Medium", "description": "Elementor Pro runtime + smartmenus + EAEL compete with interaction handlers.", "recommendation": "Enable Elementor Improved Asset Loading; consider non-Elementor homepage."}
+      ]
+    },
+    {
+      "name": "AI Search Readiness (GEO)",
+      "score": 41,
+      "what_works": [
+        "All AI crawlers allowed (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, Bingbot)",
+        "Strong product-entity anchors (Shure SM7B, Blue Yeti, Neumann TLM 103) and inline specs"
+      ],
+      "findings": [
+        {"title": "Empty WebSite.name blocks AI attribution", "severity": "High", "description": "AI engines pull publisher name from WebSite.name; empty = site can't be named as a source.", "recommendation": "Set site name (single highest-impact GEO fix)."},
+        {"title": "No comparison tables on comparison content", "severity": "High", "description": "Zero <table> on sampled vs/best pages; AI Overviews/Perplexity favour tabular comparisons.", "recommendation": "Add spec/feature comparison tables to all vs/best posts."},
+        {"title": "No llms.txt; no Quick-Answer/TL;DR blocks", "severity": "High", "description": "/llms.txt 404; paragraphs 40–78 words (below citation range); no self-contained answer blocks.", "recommendation": "Publish llms.txt (top 25–30 guides); add 80–150 word answer block under each H1."},
+        {"title": "Weak entity/authority graph", "severity": "Medium", "description": "No Organization/sameAs; no Wikipedia/Wikidata; no YouTube (strongest AI-citation correlation).", "recommendation": "Add Organization+sameAs; build YouTube/entity presence; fix copy-paste intro artifact."}
+      ]
+    },
+    {
+      "name": "Images",
+      "score": 35,
+      "what_works": ["Logo has explicit dimensions; post featured images are self-hosted with caption"],
+      "findings": [
+        {"title": "Hotlinked Unsplash stock as primary/hero imagery", "severity": "High", "description": "Homepage + category primaryImage and 11 homepage imgs hotlink images.unsplash.com (LCP risk, no cache control, ToS risk, not original).", "recommendation": "Self-host original/branded images."},
+        {"title": "No next-gen formats; missing dimensions; thin alt", "severity": "High", "description": "Review images JPEG (no WebP/AVIF); 12/15 homepage imgs lack width/height (CLS); ~3 imgs/page lack alt.", "recommendation": "WebP/AVIF pipeline; explicit dimensions; descriptive alt on product/affiliate images."},
+        {"title": "Likely AI-generated hero images unlabeled", "severity": "Medium", "description": "Hash-like filenames suggest AI generation; no IPTC DigitalSourceType.", "recommendation": "Add IPTC AI labels (scripts/iptc_ai_label.py) or replace with real photos."}
+      ]
+    }
+  ],
+  "supplementary": {
+    "sxo_score": 38,
+    "sxo_summary": "Systematic page-type mismatch: 'how-to-choose' guides aimed at 'best X' listicle SERPs; 4 competing XLR-vs-USB URLs (one 'for Crime Writers'); hub pages are prose directories; zero comparison tables; affiliate CTAs missing on guide/comparison pages."
+  },
+  "action_plan": {
+    "phases": [
+      {"name": "Phase 1: Critical Fixes", "timeframe": "Week 1", "items": [
+        "Set WP Site Title = 'Audio Tech Expert' (fixes empty WebSite.name + dangling category titles).",
+        "Yoast: noindex tag archives + remove post_tag sitemap (clears ~310 thin URLs / 46% of index).",
+        "Add HSTS + X-Content-Type-Options + X-Frame-Options + Referrer-Policy; expose_php Off; disable wp-json user enumeration; block xmlrpc.php.",
+        "Redirect /headphone-guides-old/ → /headphone-guides/; consolidate /recording-production/ pair."
+      ]},
+      {"name": "Phase 2: High-Impact Improvements", "timeframe": "Weeks 2-3", "items": [
+        "Audit & 301 the ~20 '-2' duplicate posts; move best-noise-cancelling page to a clean slug.",
+        "Add Organization schema + enrich Person (sameAs→phillipstrang.com, worksFor, knowsAbout, photo).",
+        "Performance: self-host+WebP all images with dimensions; fix AAWP-cookie CDN caching; defer jQuery; self-host/dedupe fonts; fetchpriority/preload LCP.",
+        "Consolidate XLR-vs-USB to one general-audience canonical; redirect crime-writer + duplicate variants."
+      ]},
+      {"name": "Phase 3: Content & Authority", "timeframe": "Month 2", "items": [
+        "Add first-hand evidence (photos + impressions) to top 10 roundups, or reframe as research roundups; reconcile author credentials + add author photo.",
+        "Convert /best-headphones/ & /best-microphones/ into conversion listicle hubs; add comparison tables + above-the-fold 'Top Picks' + methodology to all roundups.",
+        "Split 'how-to-choose' guides from true 'best X' listicles; add affiliate CTAs to guides/comparisons.",
+        "Add ItemList+Product schema to roundups; publish llms.txt; add Quick-Answer blocks + comparison tables for GEO."
+      ]},
+      {"name": "Phase 4: Monitoring & Iteration", "timeframe": "Ongoing", "items": [
+        "Connect Google Search Console + GA4; re-run this audit with field data (CrUX) and indexation/coverage.",
+        "Capture an SEO drift baseline (scripts/drift_baseline.py) and compare after each deploy.",
+        "Quarterly review-date refresh on explainers; track index count drop after tag noindex; monitor rankings for consolidated URLs."
+      ]}
+    ]
+  },
+  "artifacts": {"findings_dir": "findings/", "screenshots_dir": "screenshots/"}
+}
