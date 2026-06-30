@@ -1,0 +1,42 @@
+# === Audio Tech Expert — security headers & hardening (SEO audit) ===
+# HOW TO ADD:
+#   hPanel > Files > File Manager > public_html > right-click .htaccess > Edit.
+#   1) BACK UP .htaccess first (copy its current contents somewhere safe).
+#   2) Paste this whole block ABOVE the line "# BEGIN WordPress".
+#   3) Save. (Hostinger/LiteSpeed honours these the same as Apache.)
+# Fixes audit items: H-3 (PHP version leak), H-4 (HSTS), H-5 (header set), H-7 (xmlrpc), plus ?author=N enumeration.
+
+<IfModule mod_headers.c>
+    # Force HTTPS for a year. NOTE: only because the whole site is already HTTPS.
+    # If you ever run an http-only subdomain, remove "; includeSubDomains".
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    # Stop advertising the PHP version (H-3)
+    Header always unset X-Powered-By
+    Header unset X-Powered-By
+</IfModule>
+
+# Disable directory browsing
+Options -Indexes
+
+# Block xmlrpc.php — stops pingback DDoS + login brute-force amplification (H-7)
+<Files xmlrpc.php>
+    Require all denied
+</Files>
+
+# Block ?author=N username enumeration (defence in depth with the hardening mu-plugin)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{QUERY_STRING} (^|&)author=\d [NC]
+    RewriteRule ^ - [F]
+</IfModule>
+# === end Audio Tech Expert security block ===
+
+# NOTE: Permissions-Policy is intentionally NOT set here — Hostinger's CDN already
+# sends one; setting another would duplicate the header.
+#
+# After saving, verify at https://securityheaders.com (enter your URL) — you should
+# see HSTS, X-Content-Type-Options, X-Frame-Options and Referrer-Policy all present,
+# and X-Powered-By gone. To confirm xmlrpc is blocked:  curl -I https://audiotechexpert.com/xmlrpc.php  -> 403.

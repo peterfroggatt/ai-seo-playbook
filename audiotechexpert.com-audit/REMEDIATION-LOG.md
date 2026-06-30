@@ -50,9 +50,15 @@ Tell me the intended canonical for each and I'll apply the slug change + redirec
 - **Revert:** delete the mu-plugin file.
 - **Not included (by design):** Product/Offer/ItemList — prices must be pulled live from AAWP, not hardcoded; pending AAWP version confirmation.
 
-## Not applied — outside REST API reach
-These require a Yoast UI toggle, a plugin, or host/.htaccess access (the WP REST API does not expose them):
-- **Review/Product/ItemList schema** — needs a second mu-plugin reading live AAWP product data (confirm AAWP Lite/Pro).
+## 2026-06-30 — Batch 4 (prepared, awaiting manual install)
+
+Files in `snippets/` — install via Hostinger File Manager (no API path exists for these).
+- `security.htaccess.txt` — paste above `# BEGIN WordPress` in `.htaccess`. Adds HSTS + X-Content-Type-Options + X-Frame-Options + Referrer-Policy, removes X-Powered-By, blocks `xmlrpc.php`, blocks `?author=N`. Fixes H-3, H-4, H-5, H-7.
+- `audiotechexpert-hardening.php` → `wp-content/mu-plugins/`. Disables REST user enumeration (H-6), removes WP version + X-Powered-By.
+- `audiotechexpert-roundup-schema.php` → `wp-content/mu-plugins/`. Adds ItemList + Product schema to "best" roundup posts from product H2 headings (role-label prefix stripped). Dry-run verified clean on 3 roundups. **No price** (Offer omitted by design; needs live AAWP data — confirm AAWP Lite/Pro for a price-bearing version). Fixes C-5 (names/structure; price pending).
+
+## Not applied — needs host config or editorial work
+- **Product Offer/price** — pending AAWP version confirmation (live price required for accuracy).
 - **301 redirects** — ~20 `-2` duplicate posts, `/recording-production/` pair, `/headphone-guides-old/` → need Redirection plugin (free) or Yoast Premium. (If Redirection plugin is installed, these can be automated via its REST API.)
 - **Security headers / xmlrpc / expose_php** — Hostinger `.htaccess`/PHP settings.
 - **AAWP-cookie CDN caching** — Hostinger CDN config.
