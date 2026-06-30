@@ -1,0 +1,183 @@
+{
+  "summary": {
+    "health_score": 38,
+    "business_type": "E-commerce (consumer tech / gadgets / electronics retail) — WordPress + WooCommerce + Yoast SEO, Rehub theme + Elementor, Hostinger hcdn",
+    "site": "https://techwhizmart.com",
+    "audit_date": "2026-06-30",
+    "field_data_available": false,
+    "field_data_note": "No Google API (CrUX/PSI/GSC/GA4), no Moz/Bing, no DataForSEO credentials. Performance and AI-visibility findings are lab/heuristic from real fetches; live SERP/field data unavailable.",
+    "pages_discovered": "~9,500-14,500 URLs across 171 child sitemaps (311 live products, 360 trashed products, 147 posts, 34 product categories, 9 categories, ~165 pa_* attribute archives, 12 pages)",
+    "top_findings": [
+      "Every product image uses a broken concatenated URL (wp-content/uploads/https://m.media-amazon.com/...) — images 404 on cold cache and ALL product rich results are disqualified sitewide",
+      "360 of 671 product sitemap URLs (54%) are __trashed slugs returning HTTP 200 with index,follow — massive index bloat and brand-damaging URLs",
+      "Zero trust infrastructure: no About, Contact, Privacy, Returns, or Shipping pages (all 404) — primary E-E-A-T trust failure for a store taking card payments",
+      "Identical boilerplate meta description on 311+ products, the shop page, and homepage ('Discover the latest tech and gadgets at TechWhizMart...')",
+      "Product schema missing brand, gtin/mpn, itemCondition, and Offer-level price — fails Google merchant-listing eligibility"
+    ],
+    "quick_wins": [
+      "Create /llms.txt (currently 404) listing shop, categories, blog, key pages",
+      "Set Elementor homepage hero heading to an H1 tag (homepage currently has zero H1)",
+      "Toggle all pa_* taxonomies to 'No' in Yoast to drop 163 attribute sitemaps in one step",
+      "Fix robots.txt duplicate User-agent:* block and change Sitemap line to https://",
+      "Add one .htaccess block for the 5 missing security headers (HSTS, X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy)",
+      "Empty WooCommerce Trash to remove 360 __trashed products"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 45,
+      "weight": 22,
+      "what_works": [
+        "HTTPS enforced; HTTP/2 active; www -> non-www 301; trailing-slash 301 normalization",
+        "Utility pages (cart/checkout/my-account) correctly serve noindex,follow at the meta level",
+        "Indexable products/categories have correct self-referencing canonicals; ?orderby sort params canonicalize back to /shop/",
+        "404s return correct status; pa_* attribute term archives serve noindex"
+      ],
+      "findings": [
+        {"title": "robots.txt duplicate User-agent:* block nullifies WooCommerce Disallows", "severity": "Critical", "description": "A second 'User-agent: *' group (Yoast block) with an empty 'Disallow:' acts as the most permissive matching rule (RFC 9309), undermining /*?add-to-cart= and private upload-dir blocks. Sitemap directive also declared as http://.", "recommendation": "Consolidate into a single User-agent:* group with all directives; set 'Sitemap: https://techwhizmart.com/sitemap_index.xml'."},
+        {"title": "360 trashed product URLs indexed (HTTP 200, index,follow, self-canonical)", "severity": "Critical", "description": "54% of the product sitemap is __trashed slugs serving 200 with index,follow and self-referencing canonicals — Google is invited to index 360 defunct products. ~870-1,370 wasted crawls/cycle when combined with attribute archives.", "recommendation": "Empty WooCommerce Trash (permanent delete) or 410/redirect + noindex; resubmit product-sitemap.xml in GSC."},
+        {"title": "163 pa_* attribute sitemaps flood the index with ~500-1,000 noindexed URLs", "severity": "High", "description": "95% of 171 child sitemaps are WooCommerce attribute archives (pa_brand=252 URLs, etc.). Pages are noindexed but still submitted, forcing fetch/crawl/discard and suppressing crawl of 311 real products.", "recommendation": "Yoast > Search Appearance > Taxonomies: set every pa_* to 'Show in search results: No' (drops noindex + sitemap together), or use wpseo_sitemap_exclude_taxonomy filter."},
+        {"title": "Five critical security headers missing sitewide", "severity": "High", "description": "HSTS, X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy all absent; only CSP present is 'upgrade-insecure-requests' (not a real policy). X-Powered-By discloses PHP/8.2.30.", "recommendation": "Add a single .htaccess <IfModule mod_headers.c> block setting all five headers + unset X-Powered-By; submit to HSTS preload after 6 weeks."},
+        {"title": "All 171 child sitemaps declared http:// on an https:// site", "severity": "High", "description": "sitemap_index.xml and robots.txt reference http:// child sitemaps, adding a redirect hop per fetch and origin ambiguity in GSC. Indicates WP Site Address was never moved to https.", "recommendation": "Settings > General: set WordPress Address + Site Address to https://; flush Yoast + hcdn cache."},
+        {"title": "Utility/duplicate pages in sitemap; 3 blog index pages", "severity": "High", "description": "cart, checkout, my-account, wishlist, compare-products, sample-page are in page-sitemap despite noindex; plus /our-blog/, /blog/, /blog-posts/ duplicate indexes and a tagline-slug page.", "recommendation": "Exclude each via Yoast per-page 'Show in search results: No'; delete sample-page; consolidate to one blog index with 301s."},
+        {"title": "add-to-cart crawl sets session cookies; blank.gif placeholders in image sitemap", "severity": "Medium", "description": "/?add-to-cart= returns 200 + WooCommerce session cookies (crawlable if C1 unfixed). Homepage sitemap lists 30+ blank.gif placeholders from Rehub lazy-load.", "recommendation": "Fix robots.txt (C1); fix lazy-load so real image src is emitted; both flow into the sitemap automatically."},
+        {"title": "Author + product_tag archives submitted (thin)", "severity": "Low", "description": "author-sitemap exposes the store's own WooCommerce account; 164 post tags for 147 posts (near 1:1) = thin tag archives.", "recommendation": "Yoast: disable Author archives; set Tags taxonomy to No until curated to ~20-40 topics."}
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "score": 28,
+      "weight": 23,
+      "what_works": [
+        "Homepage and product titles are reasonable length and keyword-relevant",
+        "Product pages do carry an H1; blog exists (147 posts) providing some topical surface"
+      ],
+      "findings": [
+        {"title": "Zero trust infrastructure — no About/Contact/Privacy/Returns/Shipping pages", "severity": "Critical", "description": "All return 404; footer is only a copyright line. Highest-weighted QRG Trustworthiness factor fails for a store taking card payments. No author bios, address, or trust badges.", "recommendation": "Create and interlink About, Contact, Privacy Policy, Returns/Refund, and Shipping pages; add to footer nav; add business contact details."},
+        {"title": "Identical boilerplate meta description on 311+ products + shop + home", "severity": "Critical", "description": "Every page returns the same 220-char 'Discover the latest tech and gadgets at TechWhizMart...' string in meta description, og:description, and Yoast WebPage schema description.", "recommendation": "Set a Yoast product meta-description template using %%wc_shortdesc%% / variables; write unique descriptions for top pages and categories."},
+        {"title": "Blog shows AI-content-farm patterns and off-topic, stale content", "severity": "High", "description": "9 of 10 sampled posts are about drone/travel photography (unrelated to the keyboards/audio/gaming catalog); one post repeats 'DJI Mavic 2 Pro' as an H2 ten times; a '2021' phone guide carries a current title but lists iPhone 12/Galaxy S21. No author credentials/bio.", "recommendation": "Audit all 147 posts; redirect/prune off-topic and stale content; rebuild blog around buyer-journey topics matching the real catalog; add a credentialed author bio."},
+        {"title": "~199 category + attribute archives have no descriptive content", "severity": "High", "description": "34 product categories have empty description fields and no meta description; pa_* archives have no H1/description and as few as 2 products.", "recommendation": "Noindex pa_* archives; add 150-250 words of buying-guide copy to each product category description field."},
+        {"title": "Homepage has no H1 and thin above-the-fold copy", "severity": "High", "description": "Elementor renders the hero heading as a styled span; zero <h1> on the homepage, weakening topical anchoring for users, Google, and AI crawlers.", "recommendation": "Set the hero heading widget HTML tag to H1 with a descriptive phrase."}
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "score": 40,
+      "weight": 20,
+      "what_works": [
+        "Self-referencing canonicals on indexable pages; OG tags present; viewport meta correct",
+        "Product titles descriptive; breadcrumb navigation present with BreadcrumbList schema"
+      ],
+      "findings": [
+        {"title": "Homepage missing H1", "severity": "High", "description": "Zero <h1> elements on the homepage (hero is a span/Elementor widget).", "recommendation": "Convert hero heading to H1."},
+        {"title": "Duplicate meta descriptions sitewide", "severity": "High", "description": "Same description string across products/shop/home (see Content C2).", "recommendation": "Templated + unique meta descriptions via Yoast."},
+        {"title": "Category/shop title tags read 'Archives'; /shop/ missing H1", "severity": "Medium", "description": "Category pages use generic 'Archives' titles with no unique intro; /shop/ has no H1.", "recommendation": "Customize Yoast taxonomy title templates; add H1 + intro copy to shop and category pages."},
+        {"title": "Meta description length over the truncation limit", "severity": "Low", "description": "Homepage meta description ~230 chars; truncates in SERPs (~160 char target).", "recommendation": "Trim primary meta descriptions to ~150-160 chars."},
+        {"title": "Thin internal navigation (3 nav items for 10+ categories)", "severity": "Medium", "description": "Main nav exposes only Home, Blog, Drones despite 34 product categories — weak internal linking and discoverability.", "recommendation": "Build a category-driven mega menu / footer category links."}
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "score": 45,
+      "weight": 10,
+      "what_works": [
+        "Product + Offer + UnitPriceSpecification on products; WebSite + SearchAction, Organization, BreadcrumbList, WebPage sitewide",
+        "JSON-LD parses cleanly; no fabricated aggregateRating (correct given zero reviews)"
+      ],
+      "findings": [
+        {"title": "Broken product image URL in schema disqualifies rich results", "severity": "Critical", "description": "Product 'image' is a malformed concatenation: https://techwhizmart.com/wp-content/uploads/https://m.media-amazon.com/images/I/...jpg — not fetchable. A crawlable image is required for Product rich results / merchant listings, disqualifying the entire ~311 catalog.", "recommendation": "wp search-replace 'wp-content/uploads/https://' 'https://' (or host images locally) and verify images resolve."},
+        {"title": "Offer missing direct price, priceCurrency, itemCondition", "severity": "Critical", "description": "Price only appears nested in priceSpecification > UnitPriceSpecification, not as Offer.price; itemCondition absent. Google merchant-listing requires these at the Offer level.", "recommendation": "Add a woocommerce_structured_data_product filter to inject price, priceCurrency, and itemCondition: NewCondition onto the Offer."},
+        {"title": "brand absent; sku is the WP post ID", "severity": "High", "description": "No brand on any Product despite named brands (JBL, GoPro); sku values are WooCommerce post IDs, giving zero product identity.", "recommendation": "Inject brand from pa_brand; populate real SKUs and gtin12/mpn where available."},
+        {"title": "No reviews / no aggregateRating star results", "severity": "High", "description": "All products 0.0/5 with zero reviews; no star snippets available (schema correctly omits ratings).", "recommendation": "Enable WooCommerce reviews + post-purchase review-request emails; ratings will emit automatically once real reviews exist."},
+        {"title": "Organization sameAs has one profile; no contactPoint; blank home image", "severity": "Medium", "description": "sameAs = single Pinterest AU URL; no contactPoint; homepage primaryImageOfPage / og:image resolves to a 1x1 blank.gif placeholder.", "recommendation": "Add all social profiles in Yoast; add contactPoint; set a real 1200x630 homepage/OG image."},
+        {"title": "No FAQPage schema on buying-guide content", "severity": "Medium", "description": "None of the 147 posts carry FAQPage JSON-LD — a primary AI-extraction mechanism.", "recommendation": "Add 3-5 Q&A FAQPage blocks to buying-guide posts."}
+      ]
+    },
+    {
+      "name": "Performance (CWV)",
+      "score": 38,
+      "weight": 10,
+      "what_works": [
+        "HTTP/2 active (HTTP/3 advertised via alt-svc); most images carry width/height; product images use lazy-loading and decoding=async",
+        "Some Google Fonts already self-hosted via Elementor"
+      ],
+      "findings": [
+        {"title": "LCP hero image blocked by lazyload/fetchpriority conflict", "severity": "Critical", "description": "Hero has fetchpriority=high but also class=lazyload with the real URL only in data-src — the browser fetches a 43-byte GIF placeholder first; the real image waits for JS.", "recommendation": "Put the real image URL in src, remove lazyload on the LCP element, add <link rel=preload as=image> in <head>."},
+        {"title": "HTML not CDN-cached; TTFB ~692-876 ms", "severity": "High", "description": "x-hcdn-cache-status: DYNAMIC with cache-control max-age=0 — every HTML hit reaches origin PHP/WooCommerce (cart-fragments).", "recommendation": "Enable LiteSpeed/WP Rocket full-page caching with WooCommerce cart exclusions; target edge TTFB <200 ms."},
+        {"title": "32 render-blocking CSS files + 30 of 43 scripts without defer/async", "severity": "High", "description": "32 synchronous stylesheets in <head>; jQuery + migrate sync in head; ~28 footer scripts undeferred (Elementor, owl.carousel, Rehub, plugins).", "recommendation": "Inline critical CSS + async the rest; defer non-critical JS; deactivate unused plugins (Embed Any Document, Content Views)."},
+        {"title": "Zero WebP/AVIF images sitewide; product images bypass WP processing", "severity": "High", "description": "No WebP/AVIF on either page; product images proxied from Amazon CDN bypass WP image pipeline, preventing conversion/resizing; undersized (500x500, below 800px).", "recommendation": "Enable Imagify/ShortPixel; import and locally store product images at >=800px; serve WebP."},
+        {"title": "Render-blocking external Google Fonts + http font CSS", "severity": "Medium", "description": "External fonts.googleapis.com request plus 3 Elementor font CSS files referenced over http://.", "recommendation": "Self-host the remaining font; add preconnect; regenerate Elementor files so URLs are https."}
+      ]
+    },
+    {
+      "name": "AI Search Readiness",
+      "score": 38,
+      "weight": 10,
+      "what_works": [
+        "robots.txt does not block AI crawlers (GPTBot, PerplexityBot, ClaudeBot, CCBot, Google-Extended all allowed)",
+        "Organization + Product + Breadcrumb schema give some entity grounding"
+      ],
+      "findings": [
+        {"title": "No /llms.txt", "severity": "High", "description": "/llms.txt returns 404 — AI agents cannot discover the content inventory or licensing intent.", "recommendation": "Publish a minimal /llms.txt listing shop, categories, blog, and key buying guides."},
+        {"title": "Incomplete Product schema limits shopping-answer citations", "severity": "High", "description": "Missing brand, aggregateRating, gtin/mpn, additionalProperty specs and a valid image weakens Bing Copilot / Perplexity / AI Overview product citations.", "recommendation": "Complete Product schema (see Schema category)."},
+        {"title": "Weak brand/entity signals (sameAs, no YouTube)", "severity": "High", "description": "Single Pinterest sameAs; no YouTube presence (YouTube correlates strongly with AI citation frequency).", "recommendation": "Expand sameAs (YouTube, LinkedIn, Facebook); build a YouTube channel over time."},
+        {"title": "No FAQ schema; homepage no H1 weakens passage extraction", "severity": "High", "description": "No FAQPage on guides; missing H1 prevents AI crawlers anchoring the entity; stale 2021 content creates recency mismatch.", "recommendation": "Add FAQ schema to guides; fix homepage H1; refresh/redirect stale posts."}
+      ]
+    },
+    {
+      "name": "Images",
+      "score": 25,
+      "weight": 5,
+      "what_works": [
+        "Most images carry explicit width/height (good CLS posture); responsive srcset on hero and product images; lazy-loading present on product gallery"
+      ],
+      "findings": [
+        {"title": "All product images use a broken double-URL pattern", "severity": "Critical", "description": "src/schema image = wp-content/uploads/https://m.media-amazon.com/... — likely 404 on cold cache, breaking product visuals sitewide and disqualifying image/Product rich results. Dependent on Amazon CDN policy.", "recommendation": "Fix the import path (search-replace) and host images locally."},
+        {"title": "Empty alt text on product gallery images", "severity": "High", "description": "8 of 26 product images have alt='' — invisible to screen readers and Google Images.", "recommendation": "Populate descriptive alt text (auto-generate from product title as a baseline)."},
+        {"title": "No WebP/AVIF; undersized product images", "severity": "High", "description": "No next-gen formats; product images 500x500 (below 800px rich-result threshold).", "recommendation": "Convert to WebP; import at >=800px."},
+        {"title": "Desktop logo has empty width/height; blank.gif placeholders indexed", "severity": "Medium", "description": "Logo img width=''/height='' causes CLS; Rehub blank.gif placeholders appear in image sitemap.", "recommendation": "Set logo dimensions; fix lazy-load to emit real src."}
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {"name": "Phase 1: Critical Fixes", "timeframe": "Week 1", "items": [
+        "Fix broken product image URLs sitewide (search-replace 'wp-content/uploads/https://' -> 'https://' or import images locally) and verify they resolve + are >=800px",
+        "Empty WooCommerce Trash to remove 360 __trashed product URLs (or 410/redirect + noindex); resubmit product-sitemap.xml in GSC",
+        "Fix robots.txt: remove duplicate User-agent:* block, consolidate directives, set Sitemap to https://",
+        "Create About, Contact, Privacy Policy, Returns/Refund, and Shipping pages; link in footer",
+        "Replace boilerplate meta descriptions: set a Yoast product template + unique copy for home/shop/top categories",
+        "Add Offer-level price, priceCurrency, itemCondition and brand to Product schema"
+      ]},
+      {"name": "Phase 2: High-Impact Improvements", "timeframe": "Weeks 2-3", "items": [
+        "Drop 163 pa_* attribute sitemaps (Yoast taxonomy 'Show in search results: No')",
+        "Exclude utility/duplicate pages from sitemap; delete sample-page; consolidate 3 blog indexes to one with 301s",
+        "Set WordPress Site Address to https:// so all sitemap <loc> are https; flush caches",
+        "Add the 5 missing security headers via one .htaccess block; unset X-Powered-By",
+        "Set homepage hero heading to H1; add H1 + intro copy to /shop/ and category pages",
+        "Performance: enable full-page caching (TTFB<200ms), fix LCP hero lazyload, defer JS, inline critical CSS, enable WebP",
+        "Populate alt text on product images; populate real SKUs/GTINs"
+      ]},
+      {"name": "Phase 3: Content & Authority", "timeframe": "Month 2", "items": [
+        "Audit all 147 blog posts: prune/redirect off-topic (drone) and stale (2021) content; rebuild around buyer-journey topics matching the catalog",
+        "Add 150-250 words of unique buying-guide copy to each product category",
+        "Add FAQPage schema to buying-guide posts; publish /llms.txt",
+        "Enable WooCommerce reviews + post-purchase review-request emails to unlock star rich results",
+        "Expand Organization sameAs (YouTube, LinkedIn, Facebook) + contactPoint; set a real 1200x630 OG/home image",
+        "Add credentialed author bio(s) for E-E-A-T"
+      ]},
+      {"name": "Phase 4: Monitoring & Iteration", "timeframe": "Ongoing", "items": [
+        "Connect Google Search Console + GA4; monitor index coverage as trashed/attribute URLs drop out",
+        "Capture an SEO drift baseline (/seo drift baseline) and re-run after each deployment",
+        "Track Core Web Vitals via CrUX/PSI once an API key is configured",
+        "Re-run a full audit in 60-90 days to confirm index bloat cleared and rich results validate",
+        "Build reviews, backlinks, and topical blog authority continuously"
+      ]}
+    ]
+  },
+  "artifacts": {
+    "findings_dir": "findings/",
+    "screenshots_dir": "screenshots/"
+  }
+}
