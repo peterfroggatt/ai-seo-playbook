@@ -1,0 +1,112 @@
+{
+  "summary": {
+    "health_score": 66,
+    "business_type": "Publisher / Amazon-affiliate review site (headphones & microphones) — post-remediation re-audit",
+    "top_findings": [
+      "Health score 51 -> 66 after this session's fixes; gains concentrated in Technical, On-Page, Schema, GEO",
+      "Performance unchanged (38): hotlinked Unsplash, no WebP, CDN HTML uncacheable (AAWP cookic) — biggest remaining lever",
+      "Content/E-E-A-T unchanged (54): no first-hand testing evidence or author photo — #1 ranking lever for an affiliate review site",
+      "Comparison spec tables still absent on 'vs' posts (0 <table>) despite strong comparison content",
+      "Minor cleanup open: homepage 2x H1, llms.txt 404, author archive indexed, 3 year-slug duplicates, 42 empty categories"
+    ],
+    "quick_wins": [
+      "Fix AAWP-cookie CDN caching in Hostinger (DYNAMIC->HIT, cut TTFB)",
+      "Add spec comparison tables to 'vs' posts (featured-snippet/AI lever)",
+      "Reduce homepage to a single descriptive H1",
+      "Publish /llms.txt; noindex or enrich the author archive",
+      "Decide canonical for the 3 remaining -2026-2 duplicate slugs"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 82,
+      "what_works": [
+        "Indexable URLs 674 -> 356; indexed tags 310 -> 10; ~20 duplicate posts 301'd + trashed",
+        "Full security header set (HSTS, X-Content-Type-Options, X-Frame-Options, Referrer-Policy)",
+        "X-Powered-By removed; xmlrpc.php 403; REST user + ?author=N enumeration blocked",
+        "Clean canonicalisation, valid sitemaps, server-rendered HTML"
+      ],
+      "findings": [
+        {"title": "Homepage still has two H1 ('Home' + hero)", "severity": "Medium", "description": "Theme/Elementor renders <h1>Home</h1> plus the hero H1.", "recommendation": "Suppress the templated title H1; keep one descriptive H1."},
+        {"title": "Author archive still indexed", "severity": "Low", "description": "/author/peter_froggatt/ returns 200, indexable (enumeration is blocked, but the archive itself remains).", "recommendation": "Noindex the author archive or enrich it for E-E-A-T."},
+        {"title": "Render-blocking JS/CSS + image dimensions (CWV lab)", "severity": "Medium", "description": "Unchanged from baseline; see Performance.", "recommendation": "Defer jQuery, critical CSS, set image dimensions."}
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "score": 54,
+      "what_works": [
+        "Two-layer FTC disclosure; transparent /how-we-choose/; readable; thin tag/duplicate pages now removed"
+      ],
+      "findings": [
+        {"title": "No first-hand testing evidence in affiliate roundups", "severity": "Critical", "description": "Unchanged — roundups still rely on Amazon/manufacturer copy; no original photos/impressions.", "recommendation": "Add hands-on evidence to top 10 roundups or reframe as research roundups."},
+        {"title": "No author photo; credential mismatch", "severity": "High", "description": "Unchanged — About page has no author photo; 'crime novelist' vs '15 years building signal chains'.", "recommendation": "Add real author photo; reconcile audio credentials."}
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "score": 82,
+      "what_works": [
+        "Brand titles fixed across all pages (site title set)",
+        "Duplicate /recording-production/ pair + legacy /headphone-guides-old/ consolidated via 301",
+        "Meta descriptions present and well-sized; review posts well-optimised"
+      ],
+      "findings": [
+        {"title": "Multiple H1 on landing/archive templates", "severity": "Medium", "description": "Homepage + some landing templates still emit 2 H1.", "recommendation": "One H1 per template."},
+        {"title": "Thin category titles + image alt", "severity": "Low", "description": "Archive titles now carry the brand but remain generic; some images lack alt.", "recommendation": "Descriptive category titles; add alt text."}
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "score": 86,
+      "what_works": [
+        "WebSite.name set; Organization node (logo + publishingPrinciples); publisher linked",
+        "Person enriched (sameAs -> phillipstrang.com, worksFor, knowsAbout)",
+        "ItemList + Product + Offer with live prices on roundups (price == on-page value)"
+      ],
+      "findings": [
+        {"title": "Minor residual schema items", "severity": "Low", "description": "Article.keywords is a comma-joined string; one post missing dateModified; homepage ImageObject still hotlinks Unsplash.", "recommendation": "Array keywords; ensure dateModified; self-host homepage image."},
+        {"title": "No FAQPage on Q&A sections", "severity": "Info", "description": "FAQ rich result retired May 2026; markup still aids AI citation.", "recommendation": "Optional FAQPage for GEO."}
+      ]
+    },
+    {
+      "name": "Performance (CWV)",
+      "score": 38,
+      "what_works": ["Speculation-Rules prefetch present; logo dimensioned"],
+      "findings": [
+        {"title": "HTML uncacheable at CDN (DYNAMIC)", "severity": "High", "description": "AAWP aawp-country cookie still forces DYNAMIC; ~400ms TTFB.", "recommendation": "Strip/ignore the cookie at the CDN/cache layer (Hostinger)."},
+        {"title": "Hotlinked Unsplash LCP + no WebP + missing dimensions", "severity": "High", "description": "14 Unsplash hotlinks, 0 WebP, 13 imgs without width/height.", "recommendation": "Self-host + WebP, set dimensions, fetchpriority/preload LCP."}
+      ]
+    },
+    {
+      "name": "AI Search Readiness (GEO)",
+      "score": 56,
+      "what_works": [
+        "Brand now nameable by AI (WebSite.name + Organization); product structured data added",
+        "All AI crawlers allowed; strong product-entity anchors"
+      ],
+      "findings": [
+        {"title": "No comparison tables", "severity": "High", "description": "0 <table> on 'vs'/'best' pages; AI Overviews/Perplexity favour tabular comparisons.", "recommendation": "Add spec comparison tables to vs posts."},
+        {"title": "No llms.txt; no Quick-Answer blocks", "severity": "Medium", "description": "/llms.txt still 404; paragraphs short, no TL;DR blocks.", "recommendation": "Publish llms.txt; add 80-150 word answer blocks under H1."}
+      ]
+    },
+    {
+      "name": "Images",
+      "score": 36,
+      "what_works": ["Logo dimensioned; post featured images self-hosted"],
+      "findings": [
+        {"title": "Hotlinked stock, no WebP, missing dimensions", "severity": "High", "description": "Unchanged from baseline.", "recommendation": "Self-host originals, WebP/AVIF, explicit dimensions, alt text."}
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {"name": "Phase 1: Critical Fixes", "timeframe": "Done this session", "items": ["Site title/schema, tag bloat, duplicate redirects, security headers, Organization/Person/ItemList schema — all applied & verified."]},
+      {"name": "Phase 2: Performance (host)", "timeframe": "Week 1", "items": ["Fix AAWP-cookie CDN caching (Hostinger).", "Self-host + WebP images, set dimensions, fetchpriority/preload LCP."]},
+      {"name": "Phase 3: Editorial E-E-A-T", "timeframe": "Weeks 2-4", "items": ["First-hand testing evidence + author photo on top 10 roundups.", "Spec comparison tables on 'vs' posts."]},
+      {"name": "Phase 4: Cleanup & Measure", "timeframe": "Ongoing", "items": ["Single homepage H1; llms.txt; author archive; 3 year-slug duplicates; 42 empty categories.", "Track GSC Pages report for indexation/redirect uptake over 2-4 weeks."]}
+    ]
+  },
+  "artifacts": {"findings_dir": "../findings/", "screenshots_dir": "../screenshots/"}
+}
