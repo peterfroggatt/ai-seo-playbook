@@ -59,6 +59,15 @@ Files in `snippets/` (installed via Hostinger File Manager — no API path exist
 - `audiotechexpert-hardening.php` → `wp-content/mu-plugins/`. Disables REST user enumeration (H-6), removes WP version + X-Powered-By.
 - `audiotechexpert-roundup-schema.php` → `wp-content/mu-plugins/`. **v2 (AAWP Pro):** full ItemList + Product + **Offer with live price** on "best" roundups, read from AAWP's rendered `data-aawp-product-*` + `.aawp-product__price--current` (schema price == on-page price). Dedupes by ASIN, 6h cache, rebuilds on save. **Verified live:** e.g. best-noise-cancelling roundup → Sony WH-1000XM6 $458, Bose QC Ultra $379, etc., each with sku + image. Fully fixes C-5.
 
+## 2026-07-01 — Batch 5 (performance: page caching)
+
+### ✅ 5. LiteSpeed Cache enabled + AAWP-country vary (reversible)
+- Activated **LiteSpeed Cache** plugin (full-page server cache) + installed `audiotechexpert-lscache-vary.php` mu-plugin registering `aawp-country` as a `litespeed_vary_cookies` entry (cache a separate copy per geotargeting country).
+- **Verified live:** `x-litespeed-cache: hit` with `x-hcdn-upstream-rt` **~0.036–0.100s** on cache hits (was 0.8–3.0s full PHP render). Major TTFB/LCP win.
+- **Open / unverifiable from here:** per-country vary correctness — AAWP geotargets by server IP, not the injectable cookie, and all probes originate from one US IP, so foreign-visitor output can't be simulated. Confirm via VPN test or by checking whether AAWP has non-US stores/tags configured (if US-only, nothing to vary → safe).
+- **Next perf step:** LiteSpeed Cache → Image Optimization → enable WebP (addresses the images half of the Performance score).
+- **Revert:** deactivate LiteSpeed Cache / remove the vary mu-plugin.
+
 ## Not applied — needs host config or editorial work
 - **301 redirects** — ~20 `-2` duplicate posts, `/recording-production/` pair, `/headphone-guides-old/` → need Redirection plugin (free) or Yoast Premium. (If Redirection plugin is installed, these can be automated via its REST API.)
 - **Security headers / xmlrpc / expose_php** — Hostinger `.htaccess`/PHP settings.
