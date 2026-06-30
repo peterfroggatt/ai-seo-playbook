@@ -1,0 +1,171 @@
+{
+  "summary": {
+    "health_score": 33,
+    "business_type": "E-commerce — consumer tech/gadget store (WooCommerce, dropship/affiliate model)",
+    "domain": "techwhizmart.com",
+    "audit_date": "2026-06-30",
+    "field_data_available": false,
+    "top_findings": [
+      "Product images are broken site-wide (malformed concatenated URLs 301 then 404) — products show no image and are disqualified from image/merchant rich results",
+      "360 of 671 product URLs (53%) are live, indexable, self-canonical '__trashed'-slug pages with full Product schema = massive index bloat and quality dilution",
+      "Blog is 147 off-topic, mass-generated drone-travel-photography posts on a gadget store; product copy is machine-spun ('JBL cost 4 moveable... energy financial institution') = severe E-E-A-T and topical-coherence failure",
+      "No page caching (TTFB ~400ms) + 27-30 render-blocking scripts + LCP gated behind a 1x1 GIF JS placeholder = Poor estimated LCP (4-6s mobile)",
+      "Five security headers missing (HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy); sitemap index served over http://; homepage has no H1"
+    ],
+    "quick_wins": [
+      "Set WordPress Site/Home URL to https and flush Yoast sitemap cache (fixes http:// sitemap protocol mismatch)",
+      "Delete the default /sample-page/ and noindex cart/account/wishlist/compare utility pages",
+      "Add a single <h1> to the homepage via an Elementor Heading widget",
+      "Add the five missing security response headers in .htaccess / Hostinger header panel",
+      "Create /llms.txt declaring the store's identity and product categories",
+      "Collapse the two duplicate 'User-agent: *' blocks in robots.txt into one"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 38,
+      "what_works": [
+        "http->https and www->non-www are clean single-hop 301s",
+        "Viewport meta correct, no user-scalable restriction",
+        "URL structure clean (/product/, /product-category/)",
+        "Valid HTTPS/TLS"
+      ],
+      "findings": [
+        {"title": "360 '__trashed' product pages indexed and self-canonicalized", "severity": "Critical", "description": "360/671 product sitemap entries are live (HTTP 200), self-canonical, index,follow pages carrying full Product schema. Index bloat and quality dilution at scale.", "recommendation": "Decide per URL: clean+301 the live products with ugly slugs; for genuinely discontinued items return 410 + noindex and remove from sitemap via Yoast filter."},
+        {"title": "robots.txt has two conflicting 'User-agent: *' blocks; Sitemap line uses http://", "severity": "Critical", "description": "A WooCommerce block and a Yoast block both declare User-agent: *. The Yoast block's empty Disallow: shadows the WooCommerce ?add-to-cart= blocks. Sitemap directive uses http not https.", "recommendation": "Merge into one User-agent: * block, keep the add-to-cart disallows, set Sitemap to https://."},
+        {"title": "Sitemap index serves all child <loc> entries over http://", "severity": "Critical", "description": "sitemap_index.xml references 163+ child sitemaps via http://, forcing a 301 per fetch and wasting crawl budget; inconsistent with the https canonical site.", "recommendation": "Set WP Site/Home URL to https, flush Yoast sitemap cache, verify with curl -sI."},
+        {"title": "Five security headers absent", "severity": "High", "description": "No HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, or Permissions-Policy on any response. Only CSP upgrade-insecure-requests present.", "recommendation": "Add all five headers in .htaccess or Hostinger's header panel."},
+        {"title": "Homepage has zero H1 elements", "severity": "High", "description": "No <h1> anywhere in the rendered homepage; Elementor/Rehub hero uses non-semantic containers.", "recommendation": "Add one H1 Heading widget for the primary headline."},
+        {"title": "Tag/attribute archive bloat & IndexNow absent", "severity": "Medium", "description": "164 post tags and many pa_* product-attribute archives are indexable; IndexNow not implemented.", "recommendation": "noindex thin tag/attribute archives; enable IndexNow for faster (re)indexing of fixes."}
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "score": 18,
+      "what_works": [
+        "Amazon Associates affiliate disclosure exists (on a hidden About page)",
+        "Within-post lexical diversity is adequate (cleaned-text scorer 87/100); the problem is structural, not per-token"
+      ],
+      "findings": [
+        {"title": "147 off-topic, mass-generated blog posts", "severity": "Critical", "description": "Almost the entire blog is drone travel photography on a general gadget store, with near-duplicate synonym titles ('Soaring High...', 'Wanderlust Above...'). Topical coherence 10/100, AI/mass-generation signal scored 5/100. Most posts show ~5 views in source.", "recommendation": "Stop publishing off-topic drone content. Pivot to product-adjacent buying guides (audio gear, gaming peripherals, laptop comparisons) or noindex/prune the drone corpus."},
+        {"title": "Product descriptions are machine-spun/scraped", "severity": "Critical", "description": "JBL Charge 4 copy reads 'the JBL cost 4 moveable Bluetooth speaker with a built-in energy financial institution to cost your units' — spun text no user or AI engine would trust or cite.", "recommendation": "Rewrite product descriptions as original, specific copy with specs, use cases, and comparisons."},
+        {"title": "E-E-A-T near-zero", "severity": "Critical", "description": "No author bylines/Person, no real About/Contact/team, no credentials or external mentions. The only About is an unlisted 219-word boilerplate page.", "recommendation": "Add real About + Contact + policies, author bios, and visible affiliate disclosure on every page with affiliate links (FTC/Amazon TOS)."},
+        {"title": "Affiliate disclosure not shown where links appear", "severity": "High", "description": "Disclosure lives only on a hidden About page, not on product pages/posts that contain affiliate links.", "recommendation": "Surface a visible disclosure on every monetized page."}
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "score": 48,
+      "what_works": [
+        "Descriptive, brand-suffixed title tags",
+        "Meta descriptions present (Yoast)",
+        "Correct self-referencing HTTPS canonicals",
+        "Breadcrumbs present site-wide"
+      ],
+      "findings": [
+        {"title": "Homepage missing H1", "severity": "Critical", "description": "No H1 on the homepage (also logged under Technical).", "recommendation": "Add a single descriptive H1."},
+        {"title": "360 ugly '__trashed' product slugs", "severity": "High", "description": "Live, buyable products with corrupted slugs hurt relevance, CTR and shareability.", "recommendation": "Rename to clean keyword slugs and 301 the old URLs; de-duplicate."},
+        {"title": "Incoherent internal-linking architecture", "severity": "High", "description": "Off-topic blog silo with no links into the catalog; empty homepage product modules pass little equity to PLPs/PDPs.", "recommendation": "Rebuild internal links from content to relevant categories/products; fix homepage modules."},
+        {"title": "Unlinked/missing trust pages + default sample-page", "severity": "Medium", "description": "About is unlisted boilerplate; no contact in nav; /sample-page/ still live and in sitemap.", "recommendation": "Publish and link real About/Contact; delete sample-page; noindex utility pages."}
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "score": 34,
+      "what_works": [
+        "Valid WebSite + SearchAction (sitelinks search box eligible)",
+        "Organization, BreadcrumbList, WebPage present (Yoast graph)",
+        "Product/Offer present with sku, seller, priceValidUntil, availability",
+        "Blog posts carry Article + Person + Breadcrumb"
+      ],
+      "findings": [
+        {"title": "Product image field unusable (broken URL)", "severity": "Critical", "description": "Product schema 'image' points at the malformed 404 URL, disqualifying image rich results / merchant listings.", "recommendation": "Re-host images locally and correct the schema image URL."},
+        {"title": "Trashed-slug products still emit valid InStock Product schema", "severity": "Critical", "description": "Abandoned-looking '__trashed' URLs advertise InStock Offers to Google.", "recommendation": "410 + noindex truly discontinued products; clean up the rest."},
+        {"title": "No merchant shippingDetails or hasMerchantReturnPolicy", "severity": "Critical", "description": "Both required for Google merchant listing eligibility; absent on all products.", "recommendation": "Add OfferShippingDetails and MerchantReturnPolicy via Yoast WooCommerce SEO or a filter."},
+        {"title": "No aggregateRating / review on any product", "severity": "High", "description": "WooCommerce reviews enabled but ratings not surfaced in schema; highest-impact missing rich result (SERP stars). Also missing brand, itemCondition, gtin/mpn.", "recommendation": "Add AggregateRating/Review when reviews exist; add brand, itemCondition (NewCondition), and gtin/mpn."},
+        {"title": "Root-level Offer.price / FAQPage opportunities", "severity": "Medium", "description": "Price is expressed via priceSpecification/UnitPriceSpecification; ensure a root-level Offer.price/priceCurrency too. No FAQPage anywhere.", "recommendation": "Add root Offer.price; add FAQPage on key product/category pages."}
+      ]
+    },
+    {
+      "name": "Performance (Core Web Vitals)",
+      "score": 40,
+      "what_works": [
+        "HTTP/2 + HTTP/3 (QUIC) advertised",
+        "Self-hosted fonts (no third-party font latency)",
+        "Some AVIF imagery used"
+      ],
+      "findings": [
+        {"title": "27-30 render-blocking scripts on every page", "severity": "Critical", "description": "jQuery + 3 Elementor bundles + 15+ Rehub scripts + WooCommerce attribution load before first paint; only 13/43 deferred. Primary LCP killer.", "recommendation": "Defer all non-jQuery scripts; use Elementor performance settings; remove unused Rehub modules."},
+        {"title": "No edge/page caching — every request hits origin PHP", "severity": "Critical", "description": "cache-control public max-age=0 and x-hcdn-cache-status: DYNAMIC; TTFB 374-410ms cold-PHP floor.", "recommendation": "Install LiteSpeed Cache (Hostinger-native, free); target TTFB <100ms."},
+        {"title": "No LCP image preload; 104KB PNG logo", "severity": "High", "description": "No preload for any LCP candidate; LCP gated behind a 1x1 GIF JS placeholder; homepage banner image 404s.", "recommendation": "Convert logo to WebP/SVG, preload the real LCP image with fetchpriority=high, remove the GIF gate."},
+        {"title": "No font-display:swap; 107KB Roboto CSS", "severity": "High", "description": "Self-hosted @font-face blocks lack font-display:swap (FOIT), delaying text render.", "recommendation": "Add font-display:swap; subset to used weights."},
+        {"title": "Blog images: 36/43 not lazy-loaded; one AVIF repeated 8x", "severity": "High", "description": "Eager-loaded below-fold images; duplicate requests; one image missing dimensions (CLS).", "recommendation": "Enable lazy-load, deduplicate, add width/height."}
+      ]
+    },
+    {
+      "name": "AI Search Readiness (GEO)",
+      "score": 28,
+      "what_works": [
+        "All AI crawlers allowed (GPTBot/ClaudeBot/PerplexityBot/CCBot/Google-Extended)",
+        "Organization + WebSite schema present as an entity base"
+      ],
+      "findings": [
+        {"title": "No llms.txt", "severity": "Critical", "description": "No machine-readable identity declaration; given topical incoherence, AI crawlers cannot determine what the store sells.", "recommendation": "Create /llms.txt with store identity, categories, and key URLs (highest-ROI GEO action)."},
+        {"title": "Off-topic blog poisons entity identity", "severity": "Critical", "description": "AI systems associate the brand with drone photography, not electronics retail.", "recommendation": "Pivot blog to product-adjacent topics or noindex the drone corpus."},
+        {"title": "Product content is uncitable", "severity": "High", "description": "Spun copy, no FAQ, no question headings, no 134-167 word answer passages, no comparison content. Citability 22/100.", "recommendation": "Add original spec tables, FAQ blocks, 'who should buy', and 'X vs Y' comparisons."},
+        {"title": "Near-zero brand/entity off-site signals", "severity": "High", "description": "sameAs contains a single (Australian Pinterest) URL; no YouTube/Facebook/Instagram/X/LinkedIn/Wikipedia; primaryImage is a blank GIF.", "recommendation": "Build and link real social/brand profiles; populate sameAs; set a real org logo/image."}
+      ]
+    },
+    {
+      "name": "Images",
+      "score": 22,
+      "what_works": [
+        "WebP/AVIF used for some theme/blog imagery",
+        "Homepage decorative images carry alt text"
+      ],
+      "findings": [
+        {"title": "Product images broken site-wide (404)", "severity": "Critical", "description": "Malformed URLs prepend WP uploads to a full Amazon URL; 301 then 404. Products show broken images; schema image unusable.", "recommendation": "Re-import images locally (wp media import) and re-attach; correct stored URLs."},
+        {"title": "Homepage primary/OG image is a blank 1x1 GIF", "severity": "High", "description": "Social/AI previews and ImageObject schema carry no real image.", "recommendation": "Set a real 1200x630 OG image and a real primary image."},
+        {"title": "104KB PNG logo, no modern format/preload", "severity": "High", "description": "LCP candidate logo heavy and unoptimized.", "recommendation": "Export optimized SVG/WebP; preload."},
+        {"title": "Lazy-loading absent; duplicate image; missing dimensions", "severity": "High", "description": "36/43 blog images eager-loaded; one AVIF referenced 8x; CLS from missing width/height.", "recommendation": "Enable lazy-load, deduplicate, add intrinsic dimensions."}
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {"name": "Phase 1: Critical Fixes", "timeframe": "Week 1", "items": [
+        "Fix product image URLs site-wide (re-import to local media; correct schema image)",
+        "Resolve the 360 '__trashed' product URLs: clean slug + 301 for live items, 410 + noindex + sitemap removal for discontinued",
+        "Set WP Site/Home URL to https and flush Yoast sitemap cache (fix http:// sitemap + protocol redirects)",
+        "Add the five missing security headers",
+        "Add a homepage H1; delete /sample-page/; collapse duplicate robots.txt UA blocks"
+      ]},
+      {"name": "Phase 2: High-Impact Improvements", "timeframe": "Weeks 2-3", "items": [
+        "Install LiteSpeed Cache; defer non-jQuery scripts; add font-display:swap; preload LCP image; remove GIF LCP gate",
+        "Add merchant schema (shippingDetails, hasMerchantReturnPolicy), root Offer.price, brand, itemCondition, gtin/mpn, and AggregateRating where reviews exist",
+        "Rewrite top product descriptions as original copy; surface visible affiliate disclosure on monetized pages",
+        "Fix homepage product modules ('No products for this criteria'); add internal links from content to categories/products",
+        "Enable lazy-load, deduplicate images, add image dimensions; set real OG/primary images"
+      ]},
+      {"name": "Phase 3: Content & Authority", "timeframe": "Month 2", "items": [
+        "Decide blog strategy: prune/noindex off-topic drone corpus; build product-adjacent buying guides and X-vs-Y comparisons",
+        "Publish real About/Contact/policy pages with author bios (E-E-A-T); link from nav/footer",
+        "Create /llms.txt; build and link real social/brand profiles; populate sameAs",
+        "Add FAQ blocks and spec tables to top products/categories for citability",
+        "noindex thin tag/attribute archives; enable IndexNow"
+      ]},
+      {"name": "Phase 4: Monitoring & Iteration", "timeframe": "Ongoing", "items": [
+        "Verify fixes in Google Search Console (indexation, rich results, CWV field data)",
+        "Capture an SEO drift baseline (/seo drift baseline) and re-audit monthly",
+        "Track product image 404 regressions; monitor crawl stats for index bloat",
+        "Run PageSpeed Insights to validate the lab CWV estimates with field data"
+      ]}
+    ]
+  },
+  "artifacts": {
+    "findings_dir": "findings/",
+    "screenshots_dir": "screenshots/",
+    "notes": "No Google API / CrUX field data available (lab estimates only). No Moz/Bing backlink API; Common Crawl shows domain not yet in web-graph (too new/small). Playwright screenshots unavailable in this environment (browser CA trust)."
+  }
+}
