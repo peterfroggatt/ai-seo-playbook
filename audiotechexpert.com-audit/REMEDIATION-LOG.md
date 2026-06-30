@@ -38,9 +38,21 @@ The loop-detector skipped these because the base slug itself already redirects (
 - `/rode-wireless-go-ii-vs-dji-mic-2/` ("Mic 2" may be a real product name — verify before touching).
 Tell me the intended canonical for each and I'll apply the slug change + redirect.
 
+## 2026-06-30 — Batch 3 (mu-plugin, schema)
+
+### ✅ 4. Organization + Person schema (reversible)
+- Installed `wp-content/mu-plugins/audiotechexpert-schema.php` (source: `snippets/audiotechexpert-schema.php`), hooking Yoast's `wpseo_schema_graph`.
+- **Verified live** on homepage + post pages:
+  - **Organization** node added (name "Audio Tech Expert", auto-detected logo, `publishingPrinciples` → /how-we-choose/).
+  - **WebSite/Article `publisher`** → `#organization`.
+  - **Person** (Phillip Strang) enriched: `sameAs` now includes `https://phillipstrang.com`, `worksFor` → Organization, `knowsAbout` populated.
+- **Fixes audit items:** Schema C-3 (no Organization), W-3 (Person.sameAs self-only), W-4 (Person not linked to publisher).
+- **Revert:** delete the mu-plugin file.
+- **Not included (by design):** Product/Offer/ItemList — prices must be pulled live from AAWP, not hardcoded; pending AAWP version confirmation.
+
 ## Not applied — outside REST API reach
 These require a Yoast UI toggle, a plugin, or host/.htaccess access (the WP REST API does not expose them):
-- **Organization schema** — Yoast → Settings → Site representation (Organization + logo).
+- **Review/Product/ItemList schema** — needs a second mu-plugin reading live AAWP product data (confirm AAWP Lite/Pro).
 - **301 redirects** — ~20 `-2` duplicate posts, `/recording-production/` pair, `/headphone-guides-old/` → need Redirection plugin (free) or Yoast Premium. (If Redirection plugin is installed, these can be automated via its REST API.)
 - **Security headers / xmlrpc / expose_php** — Hostinger `.htaccess`/PHP settings.
 - **AAWP-cookie CDN caching** — Hostinger CDN config.
