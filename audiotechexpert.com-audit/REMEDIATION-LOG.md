@@ -20,6 +20,24 @@ Live changes applied via the WordPress REST API (authenticated as `peter_froggat
 - **Restore record:** `data/deleted-tags-manifest.json` (all 544 deleted names/slugs/ids). Tags can be recreated from it if ever needed.
 - **Fixes audit items:** Technical C-2 / Sitemap CRITICAL / Content (tag index bloat).
 
+## 2026-06-30 — Batch 2 (automated, via Redirection plugin)
+
+### ✅ 3. Duplicate URLs consolidated (reversible)
+- **20 × 301 redirects created** via Redirection plugin REST API (`redirection/v1/redirect`), all verified (source 301 → target, target 200, no loops):
+  - 18 WordPress `-2`/`-7` auto-slug duplicate posts → their clean originals.
+  - `/recording-production/` → `/guides/recording-production/`.
+  - `/headphone-guides-old/` → `/headphone-guides/`.
+- **20 duplicate source posts/pages moved to Trash** (reversible) so they leave the post-sitemap; redirects persist independently of the trashed posts. `post-sitemap.xml`: 285 → 268.
+- **Restore record:** `data/trashed-duplicates-manifest.json` (type/id/slug of each). Restore = un-trash in WP admin.
+- **Fixes audit items:** Technical C-1 / Sitemap HIGH / On-Page / SXO (duplicate `-2` cannibalization, recording-production pair, headphone-guides-old).
+
+### ⚠️ 3 skipped — need manual decision (year-slug ambiguity)
+The loop-detector skipped these because the base slug itself already redirects (auto-redirecting them would risk a chain/loop). Each needs you to pick the canonical URL:
+- `/best-noise-cancelling-headphones-2026-2/` — this `-2026-2` slug is the **live** page (the clean `/best-noise-cancelling-headphones/` already 301s to it). Recommend renaming it to a clean slug.
+- `/best-in-ear-monitors-earbuds-2026-2/`
+- `/rode-wireless-go-ii-vs-dji-mic-2/` ("Mic 2" may be a real product name — verify before touching).
+Tell me the intended canonical for each and I'll apply the slug change + redirect.
+
 ## Not applied — outside REST API reach
 These require a Yoast UI toggle, a plugin, or host/.htaccess access (the WP REST API does not expose them):
 - **Organization schema** — Yoast → Settings → Site representation (Organization + logo).
