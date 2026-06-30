@@ -1,0 +1,29 @@
+1. FIND:    https://images.unsplash.com/photo-1558379850-bc8e1b6c0d97?w=1400&h=600&fit=crop&crop=center
+   REPLACE: https://audiotechexpert.com/wp-content/uploads/2026/07/photo-1558379850-bc8e1b6c0d97.jpg   <-- NOT UPLOADED YET (download+upload this one)
+
+2. FIND:    https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=800&h=600&fit=crop
+   REPLACE: https://audiotechexpert.com/wp-content/uploads/2026/07/photo-1590602847861-f357a9332bbc.jpg
+
+3. FIND:    https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&h=500&fit=crop
+   REPLACE: https://audiotechexpert.com/wp-content/uploads/2026/07/photo-1505740420928-5e560c06d30e.jpg
+
+4. FIND:    https://images.unsplash.com/photo-1545454675-3531b543be5d?w=800&h=500&fit=crop
+   REPLACE: https://audiotechexpert.com/wp-content/uploads/2026/07/photo-1545454675-3531b543be5d.jpg
+
+5. FIND:    https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=600&h=400&fit=crop
+   REPLACE: https://audiotechexpert.com/wp-content/uploads/2026/07/photo-1598488035139-bdbb2231ce04.jpg
+
+6. FIND:    https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=600&h=400&fit=crop
+   REPLACE: https://audiotechexpert.com/wp-content/uploads/2026/07/photo-1546435770-a3e426bf472b.jpg
+
+7. FIND:    https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=600&h=400&fit=crop
+   REPLACE: https://audiotechexpert.com/wp-content/uploads/2026/07/photo-1590602847861-f357a9332bbc.jpg
+
+8. FIND:    https://images.unsplash.com/photo-1564424224827-cd24b8915874?w=600&h=400&fit=crop
+   REPLACE: https://audiotechexpert.com/wp-content/uploads/2026/07/photo-1564424224827-cd24b8915874.jpg
+
+9. FIND:    https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&h=400&fit=crop
+   REPLACE: https://audiotechexpert.com/wp-content/uploads/2026/07/photo-1583394838336-acd977736f90.jpg
+
+10. FIND:    https://images.unsplash.com/photo-1524678606370-a47ad25cb82a?w=600&h=400&fit=crop
+   REPLACE: https://audiotechexpert.com/wp-content/uploads/2026/07/photo-1524678606370-a47ad25cb82a.jpg
