@@ -1,27 +1,36 @@
 <?php
 /**
- * Plugin Name: Audio Tech Expert — Roundup ItemList Schema
- * Description: Adds ItemList + Product schema to "best of" roundup posts, built from the product H2 headings on the page. Fixes audit item C-5 (no ItemList on roundups).
- * Version:     1.0.0
+ * Plugin Name: Audio Tech Expert — Roundup ItemList + Product Schema (AAWP Pro)
+ * Description: Adds ItemList + Product + Offer schema to "best of" roundup posts, reading product name / price / image / affiliate URL directly from AAWP Pro's rendered output (so the schema price always matches what the visitor sees). Fixes audit item C-5.
+ * Version:     2.0.0
  * Author:      SEO audit remediation
  *
- * INSTALL: drop into  wp-content/mu-plugins/  (auto-activates). Remove the file to revert.
+ * Requires: AAWP Pro (uses the data-aawp-product-* attributes + .aawp-product__price--current
+ *           markup it renders). Requires Yoast SEO (wpseo_schema_graph filter).
  *
- * SCOPE / LIMITS — read this:
- *  - Runs only on single posts whose slug contains "best" (your roundups). Tune
- *    the match below if some roundups use a different slug pattern (e.g. "top-").
- *  - Builds the list from the post's <h2> product headings, skipping non-product
- *    sections (How to choose / FAQ / Verdict / etc.). It is a heuristic — ALWAYS
- *    verify a couple of posts in Google's Rich Results Test after installing, and
- *    add any stray heading words to the $skip pattern.
- *  - PRICE IS INTENTIONALLY OMITTED. Google requires Offer/price to be live-accurate;
- *    AAWP prices change independently. A price-bearing version must read AAWP's cached
- *    product data (needs your AAWP version: Lite vs Pro) — ask for that as a follow-up.
+ * INSTALL: place in wp-content/mu-plugins/ (overwrites the earlier names-only v1 of the
+ *          same filename — keep only ONE copy). Remove the file to revert.
+ *
+ * PRICE ACCURACY: the Offer price is parsed from AAWP's own .aawp-product__price--current
+ * value, i.e. the exact figure shown on the page. Result is cached in post meta for 6h and
+ * rebuilt on save, so it tracks AAWP's own price-refresh cycle. Verify a couple of posts in
+ * Google's Rich Results Test after installing.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+const ATE_ITEMLIST_META = '_ate_itemlist_cache';
+const ATE_ITEMLIST_TTL  = 6 * HOUR_IN_SECONDS;
+
+/* Rebuild cache when a post is saved. */
+add_action(
+	'save_post_post',
+	function ( $post_id ) {
+		delete_post_meta( $post_id, ATE_ITEMLIST_META );
+	}
+);
 
 add_filter(
 	'wpseo_schema_graph',
@@ -34,23 +43,39 @@ add_filter(
 			return $graph; // roundups only
 		}
 
-		$names = ate_roundup_product_names( $post->post_content );
-		if ( count( $names ) < 2 ) {
-			return $graph; // not enough product picks found -> emit nothing (safe)
+		$products = ate_roundup_products( $post );
+		if ( count( $products ) < 2 ) {
+			return $graph;
 		}
 
 		$permalink = get_permalink( $post );
 		$elements  = array();
-		foreach ( array_slice( $names, 0, 15 ) as $i => $name ) {
+		$pos       = 1;
+		foreach ( $products as $p ) {
+			$product = array(
+				'@type' => 'Product',
+				'name'  => $p['name'],
+			);
+			if ( ! empty( $p['image'] ) ) {
+				$product['image'] = $p['image'];
+			}
+			if ( ! empty( $p['asin'] ) ) {
+				$product['sku'] = $p['asin'];
+			}
+			if ( ! empty( $p['price'] ) && ! empty( $p['currency'] ) ) {
+				$product['offers'] = array(
+					'@type'         => 'Offer',
+					'price'         => $p['price'],
+					'priceCurrency' => $p['currency'],
+					'availability'  => 'https://schema.org/InStock',
+					'url'           => $p['url'],
+				);
+			}
 			$elements[] = array(
 				'@type'    => 'ListItem',
-				'position' => $i + 1,
-				'name'     => $name,
-				'item'     => array(
-					'@type' => 'Product',
-					'name'  => $name,
-					'url'   => $permalink,
-				),
+				'position' => $pos++,
+				'name'     => $p['name'],
+				'item'     => $product,
 			);
 		}
 
@@ -69,33 +94,93 @@ add_filter(
 );
 
 /**
- * Extract likely product names from a roundup's <h2> headings.
- * Returns a de-duplicated, order-preserving list of strings.
+ * Return de-duplicated product data for a roundup post, cached in post meta.
+ * Each item: array(asin, name, price, currency, image, url).
  */
-function ate_roundup_product_names( $content ) {
-	$names = array();
-	if ( ! preg_match_all( '/<h2[^>]*>(.*?)<\/h2>/is', (string) $content, $m ) ) {
-		return $names;
+function ate_roundup_products( $post ) {
+	$cache = get_post_meta( $post->ID, ATE_ITEMLIST_META, true );
+	if ( is_array( $cache ) && isset( $cache['t'], $cache['items'] ) && ( time() - (int) $cache['t'] ) < ATE_ITEMLIST_TTL ) {
+		return $cache['items'];
 	}
-	// Headings that are sections, not products.
-	$skip = '/\b(how to|how we|why|what|faq|frequently asked|buying|guide|conclusion|verdict|final word|final thoughts|table of|comparison|compared|about|methodology|tips|things to|consider|takeaway|summary|recommend|overview|introduction|which|should you)\b/i';
-	foreach ( $m[1] as $h ) {
-		$name = trim( wp_strip_all_tags( html_entity_decode( $h, ENT_QUOTES ) ) );
-		if ( '' === $name || mb_strlen( $name ) > 110 ) {
-			continue;
-		}
-		if ( preg_match( $skip, $name ) ) {
-			continue;
-		}
-		// Strip a leading role label like "Best overall:" / "Best for gaming:" so
-		// the schema carries the clean product name, not the editorial label.
-		$name = trim( preg_replace( '/^\s*best\b[^:]{0,60}:\s*/i', '', $name ) );
-		if ( '' === $name ) {
-			continue;
-		}
-		if ( ! in_array( $name, $names, true ) ) {
-			$names[] = $name;
-		}
+
+	$items    = array();
+	$rendered = do_blocks( do_shortcode( $post->post_content ) );
+	if ( strpos( $rendered, 'aawp-product' ) === false ) {
+		update_post_meta( $post->ID, ATE_ITEMLIST_META, array( 't' => time(), 'items' => $items ) );
+		return $items;
 	}
-	return $names;
+
+	$dom = new DOMDocument();
+	libxml_use_internal_errors( true );
+	$dom->loadHTML( '<?xml encoding="utf-8"?>' . $rendered );
+	libxml_clear_errors();
+	$xp = new DOMXPath( $dom );
+
+	$nodes = $xp->query( "//*[contains(concat(' ', normalize-space(@class), ' '), ' aawp-product ')]" );
+	$seen  = array();
+	foreach ( $nodes as $node ) {
+		$asin = $node->getAttribute( 'data-aawp-product-asin' );
+		if ( ! $asin || isset( $seen[ $asin ] ) ) {
+			continue;
+		}
+		$name = trim( (string) $node->getAttribute( 'data-aawp-product-title' ) );
+
+		// Current price (skip strikethrough / "old" price by targeting --current only).
+		$price_raw = '';
+		$pnodes    = $xp->query( ".//*[contains(concat(' ', normalize-space(@class), ' '), ' aawp-product__price--current ')]", $node );
+		if ( $pnodes->length ) {
+			$price_raw = trim( $pnodes->item( 0 )->textContent );
+		}
+		list( $price, $currency ) = ate_parse_price( $price_raw );
+
+		// First Amazon affiliate link in the box.
+		$url = '';
+		foreach ( $xp->query( './/a[@href]', $node ) as $a ) {
+			$href = $a->getAttribute( 'href' );
+			if ( false !== strpos( $href, 'amazon' ) || false !== strpos( $href, 'amzn' ) ) {
+				$url = $href;
+				break;
+			}
+		}
+
+		// First Amazon product image in the box.
+		$image = '';
+		foreach ( $xp->query( './/img', $node ) as $im ) {
+			$src = $im->getAttribute( 'src' );
+			if ( ! $src ) {
+				$src = $im->getAttribute( 'data-src' );
+			}
+			if ( $src && false !== strpos( $src, 'media-amazon' ) ) {
+				$image = $src;
+				break;
+			}
+		}
+
+		if ( '' === $name || '' === $url ) {
+			continue;
+		}
+		$seen[ $asin ] = true;
+		$items[]       = array(
+			'asin'     => $asin,
+			'name'     => $name,
+			'price'    => $price,
+			'currency' => $currency,
+			'image'    => $image,
+			'url'      => $url,
+		);
+	}
+
+	update_post_meta( $post->ID, ATE_ITEMLIST_META, array( 't' => time(), 'items' => $items ) );
+	return $items;
+}
+
+/** Parse "$67.99" / "£1,299.00" -> array('67.99','USD'). Returns array('','') on failure. */
+function ate_parse_price( $raw ) {
+	if ( ! $raw || ! preg_match( '/([$£€])\s?([0-9][0-9,]*(?:\.[0-9]{1,2})?)/u', $raw, $m ) ) {
+		return array( '', '' );
+	}
+	$map      = array( '$' => 'USD', '£' => 'GBP', '€' => 'EUR' );
+	$currency = isset( $map[ $m[1] ] ) ? $map[ $m[1] ] : '';
+	$price    = str_replace( ',', '', $m[2] );
+	return array( $price, $currency );
 }
