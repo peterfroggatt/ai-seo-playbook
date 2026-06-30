@@ -1,0 +1,17 @@
+{
+  "url": "https://techwhizmart.com",
+  "status_code": null,
+  "content": null,
+  "raw_content": null,
+  "is_spa": null,
+  "extracted_text": null,
+  "publication_date": null,
+  "accessibility_tree": null,
+  "headers": {},
+  "redirect_chain": [],
+  "console_errors": [],
+  "render_engine": null,
+  "render_ms": null,
+  "mode_used": null,
+  "error": "raw fetch failed: HTTPSConnectionPool(host='techwhizmart.com', port=443): Max retries exceeded with url: / (Caused by ProxyError('Unable to connect to proxy', NameResolutionError(\"HTTPSConnection(host='127.0.0.1', port=38499): Failed to resolve '127.0.0.1' ([Errno -4] url_safety: refused to resolve '127.0.0.1' to non-public IP 127.0.0.1)\")))"
+}
