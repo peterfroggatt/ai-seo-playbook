@@ -1,0 +1,175 @@
+{
+  "summary": {
+    "health_score": 65,
+    "business_type": "Author / Publisher (crime & thriller fiction)",
+    "domain": "phillipstrang.com",
+    "platform": "WordPress + Yoast SEO, Cloudflare CDN, PHP 8.2",
+    "pages_in_sitemaps": 1765,
+    "data_limitations": [
+      "No Google API key: CrUX field Core Web Vitals, GSC indexation, and GA4 traffic not available",
+      "No Moz/Bing/DataForSEO: backlink and live SERP data not available (Common Crawl tier only)",
+      "Headless browser egress blocked in audit sandbox: no live screenshots; mobile assessed from rendered HTML"
+    ],
+    "top_findings": [
+      "Index bloat: lead-gen, thank-you, and legacy/duplicate pages are all index,follow",
+      "Book pages have no Book/Product schema (biggest structured-data miss for a book seller)",
+      "Most AI crawlers (GPTBot, Google-Extended, Bytespider, Amazonbot, Apple, Meta) are blocked",
+      "Yoast title template broken on many pages (titles end in ' -' with empty brand)",
+      "Missing H1 on programmatic posts and the blog index; large volume of thin templated listicles"
+    ],
+    "quick_wins": [
+      "Fix /reading-guides/ canonical (points to a __trashed redirecting URL)",
+      "Set WordPress Site Address to https:// so sitemaps stop emitting http:// URLs",
+      "noindex lead-gen/thank-you/old pages and drop them from the sitemap",
+      "Repair the Yoast title template so titles end with '— Phillip Strang'",
+      "Add llms.txt; decide AI-crawler citation policy"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 72,
+      "weight": 0.22,
+      "what_works": [
+        "HTTPS enforced; http->https, www->non-www, /index.php all 301 to canonical host",
+        "Strong security headers: HSTS, CSP, X-Content-Type-Options, X-Frame-Options",
+        "Valid robots.txt and Yoast XML sitemap index (1765 URLs)",
+        "Cloudflare CDN + WordPress caching plugin active"
+      ],
+      "findings": [
+        {"title": "Index bloat: low-value pages indexable", "severity": "High", "description": "All sampled pages are index,follow including /free-book/, /thank-you/, /welcome-aboard/, /join-my-arc-team/, /du-thank-you-*/ and -old variants (all 200).", "recommendation": "Set noindex,follow on funnel/utility pages and remove them from the XML sitemap."},
+        {"title": "Duplicate / legacy pages live and indexable", "severity": "High", "description": "/about/ vs /about-2/ (13 words), /complete-book-list/ vs /book-list-old/ vs /my-books/, /di-tremayne-series/ vs /di-tremayne-series-2/, /phillip-strang-crime-fiction-author-old/.", "recommendation": "301 each duplicate to its canonical winner and delete the orphan."},
+        {"title": "Canonical points to a __trashed redirecting URL", "severity": "Medium", "description": "/reading-guides/ canonical = https://phillipstrang.com/series__trashed/reading-guides/ which 301-redirects (WordPress trashed-slug artifact).", "recommendation": "Set the canonical to the live self URL https://phillipstrang.com/reading-guides/."},
+        {"title": "Sitemap and robots reference http:// URLs", "severity": "Medium", "description": "sitemap_index.xml and child sitemaps emit <loc>http://...; robots Sitemap directive is http://. Site serves https.", "recommendation": "Set WordPress Address/Site Address to https:// so Yoast emits https URLs."},
+        {"title": "Crawl scale vs content value", "severity": "Low", "description": "1,643 posts dominated by templated listicles strain crawl budget and quality signals.", "recommendation": "Prune/consolidate thin templated posts (see Content)."}
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "score": 62,
+      "weight": 0.23,
+      "what_works": [
+        "First-party author E-E-A-T; 814-word /about/ with real bio and Person schema",
+        "Useful, well-structured 'books in order' reading-order pages with covers + buy links",
+        "Hand-written, compelling meta descriptions on money pages"
+      ],
+      "findings": [
+        {"title": "Programmatic listicle content at scale (thin-content risk)", "severity": "High", "description": "~1,643 templated 'best X novels' / 'best Y authors set in Z' posts; depth ranges from 3,885 words down to ~477 for a 4-item topic.", "recommendation": "Audit posts by depth/engagement; consolidate or noindex+improve the thinnest 20-30%; ensure each targets a distinct query."},
+        {"title": "Thin/empty pages indexed", "severity": "High", "description": "/about-2/ = 13 words (empty duplicate); /dci-isaac-cook-series/ = 132 words with auto meta; /my-books/ = 164 words.", "recommendation": "Expand, merge, or noindex thin pages."},
+        {"title": "Auto-generated meta descriptions on series/category pages", "severity": "Medium", "description": "/dci-isaac-cook-series/ description is a body-derived mid-sentence snippet.", "recommendation": "Write unique meta descriptions for all series and category pages."},
+        {"title": "Competitor-author pages need original value + back-links", "severity": "Medium", "description": "Pages targeting Rankin/Cleeves/etc. capture intent but must add curation and link back to Strang's series to convert borrowed traffic.", "recommendation": "Add original notes and internal links from each to relevant Strang series."}
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "score": 66,
+      "weight": 0.20,
+      "what_works": [
+        "Canonical tags + breadcrumbs sitewide",
+        "Strong homepage internal linking (~37 internal links)",
+        "Open Graph + Twitter Card on homepage",
+        "Descriptive keyword-aligned titles on key pages"
+      ],
+      "findings": [
+        {"title": "Yoast title template broken (empty brand suffix)", "severity": "High", "description": "Titles render as 'About -', 'Free Book -', '...in 2025 -', 'DCI Isaac Cook Series -' with a dangling separator and no site name.", "recommendation": "Fix Yoast Search Appearance templates so titles end consistently with '— Phillip Strang'."},
+        {"title": "Missing H1 on programmatic posts and blog index", "severity": "High", "description": "/best-selling-hard-boiled-mystery-novels-in-2025/ (3,885 words) and /blog/ have 0 H1; /best-cozy.../ has 1.", "recommendation": "Ensure exactly one descriptive H1 per page; fix the post/archive templates."},
+        {"title": "Missing/auto meta descriptions", "severity": "Medium", "description": "/about-2/ has no meta description; series pages use auto snippets.", "recommendation": "Add unique meta descriptions; resolve /about-2/ duplicate."},
+        {"title": "Inconsistent brand suffix and separator", "severity": "Medium", "description": "Mix of '- Phillip Strang', '— Phillip Strang', and none.", "recommendation": "Standardize separator + brand string sitewide."},
+        {"title": "Multiple H1s on some pages; missing og:description", "severity": "Low", "description": "Homepage 3 H1s, series page 2 H1s; homepage OG lacks a description tag.", "recommendation": "Tighten to one H1 per page; add og:description/twitter:description."}
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "score": 60,
+      "weight": 0.10,
+      "what_works": [
+        "Valid Yoast JSON-LD graph sitewide (3/3 blocks parse)",
+        "Consistent Person/Organization/WebSite+SearchAction entity",
+        "Article schema on blog posts; BreadcrumbList everywhere"
+      ],
+      "findings": [
+        {"title": "Book pages have no Book/Product schema", "severity": "High", "description": "/cook/murder-house-phillip-strang/ emits only generic WebPage graph; no Book, Product, offers, author, or aggregateRating.", "recommendation": "Add Book schema (author, isbn, bookFormat, inLanguage, workExample) and Offer/Product where price shown."},
+        {"title": "List pages lack ItemList", "severity": "Medium", "description": "'Books in order' / complete-book-list pages have no ItemList/ListItem markup for the books.", "recommendation": "Add ItemList with each item a Book for carousel eligibility and machine readability."},
+        {"title": "No Review/AggregateRating", "severity": "Medium", "description": "No rating schema anywhere.", "recommendation": "Add AggregateRating/Review on book pages only where ratings are genuinely shown on-page."},
+        {"title": "No FAQPage on guide content", "severity": "Low", "description": "Reading-order pages answer discrete questions without FAQ markup.", "recommendation": "Add small FAQPage blocks to aid AI extraction."}
+      ]
+    },
+    {
+      "name": "Performance (CWV)",
+      "score": 70,
+      "weight": 0.10,
+      "what_works": [
+        "Cloudflare CDN + WordPress caching plugin",
+        "Moderate homepage payload (~87KB HTML, 14 scripts)"
+      ],
+      "findings": [
+        {"title": "Field CWV not measured (no API key)", "severity": "Info", "description": "No CrUX/PageSpeed data available; score is a low-confidence estimate.", "recommendation": "Configure Google PageSpeed/CrUX API key and re-run scripts/pagespeed_check.py."},
+        {"title": "Image-heavy list templates risk LCP/CLS", "severity": "Medium", "description": "Series and 'books in order' pages load 19-31 cover images.", "recommendation": "Serve WebP/AVIF with explicit width/height and lazy-loading below the fold."},
+        {"title": "Page-builder CSS/JS bloat", "severity": "Low", "description": "11 inline style blocks suggest page-builder output that inflates CSS/DOM.", "recommendation": "Audit render-blocking CSS/JS; defer non-critical scripts."}
+      ]
+    },
+    {
+      "name": "AI Search Readiness",
+      "score": 48,
+      "weight": 0.10,
+      "what_works": [
+        "AI-friendly content structure (clear headings, ordered lists, dated framing)",
+        "Strong author-entity signals via Person/Organization schema",
+        "Googlebot (and thus AI Overviews) still allowed"
+      ],
+      "findings": [
+        {"title": "Most AI crawlers blocked in robots.txt", "severity": "High", "description": "GPTBot, Google-Extended, Bytespider, Amazonbot, Applebot-Extended, meta-externalagent all Disallow: /; Content-Signal ai-train=no.", "recommendation": "Set a deliberate policy: blocking training is fine, but consider allowing GPTBot/PerplexityBot so the brand can be CITED in AI answers (citation drives book discovery)."},
+        {"title": "No llms.txt", "severity": "Medium", "description": "/llms.txt and /ai.txt 404.", "recommendation": "Add llms.txt curating canonical high-value pages (complete book list, series hubs, about, free book)."},
+        {"title": "Strong citability untapped", "severity": "Medium", "description": "List content is ideal for AI citation but crawlers are blocked, so the value is unrealized off-Google.", "recommendation": "After setting access policy, keep the existing extractable format."}
+      ]
+    },
+    {
+      "name": "Images",
+      "score": 75,
+      "weight": 0.05,
+      "what_works": [
+        "~94% alt-text coverage on sampled image-heavy page",
+        "og:image present with dimensions"
+      ],
+      "findings": [
+        {"title": "Confirm modern formats and explicit sizing", "severity": "Medium", "description": "Cover-heavy templates need WebP/AVIF, srcset, and width/height; file weights not measurable live.", "recommendation": "Run an image-weight pass and convert/resize covers."},
+        {"title": "A few missing alts; verify lazy-loading", "severity": "Low", "description": "2/31 images on the Rebus page lack alt; confirm loading=lazy below the fold.", "recommendation": "Sweep templates for descriptive alt and lazy-loading."}
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {"name": "Phase 1: Critical Fixes", "timeframe": "Week 1", "items": [
+        "Fix /reading-guides/ canonical (remove __trashed target)",
+        "Set WordPress Site Address to https:// so sitemaps emit https URLs",
+        "noindex lead-gen/thank-you/welcome/ARC pages and remove from sitemap",
+        "Resolve duplicate pages: 301 about-2, book-list-old, di-tremayne-series-2, *-old to canonical winners",
+        "Repair Yoast title template (eliminate dangling ' -'; end titles with '— Phillip Strang')",
+        "Add a single descriptive H1 to post/archive templates (fix 0-H1 pages)"
+      ]},
+      {"name": "Phase 2: High-Impact Improvements", "timeframe": "Weeks 2-3", "items": [
+        "Add Book schema to all book pages; ItemList to 'books in order' pages",
+        "Decide AI-crawler citation policy; align robots.txt; add llms.txt",
+        "Write unique meta descriptions for series/category pages",
+        "Expand thin pages (/dci-isaac-cook-series/, /my-books/) or merge",
+        "Configure Google PageSpeed/CrUX API key and measure real CWV"
+      ]},
+      {"name": "Phase 3: Content & Authority", "timeframe": "Month 2", "items": [
+        "Audit 1,643 programmatic posts by depth; consolidate/noindex thinnest 20-30%",
+        "Strengthen competitor-author pages with original curation + internal links to Strang series",
+        "Convert cover images to WebP/AVIF with explicit dimensions + lazy-load",
+        "Add AggregateRating/Review and FAQPage where genuinely supported",
+        "Backlink profile review (configure Moz/Bing API for full data)"
+      ]},
+      {"name": "Phase 4: Monitoring & Iteration", "timeframe": "Ongoing", "items": [
+        "Set up Search Console + GA4; track indexation after pruning",
+        "Capture an SEO drift baseline (scripts/drift_baseline.py) for change monitoring",
+        "Re-audit quarterly; monitor AI-Overview/ChatGPT citations after policy change"
+      ]}
+    ]
+  },
+  "artifacts": {
+    "findings_dir": "findings/",
+    "screenshots_dir": "screenshots/"
+  }
+}
