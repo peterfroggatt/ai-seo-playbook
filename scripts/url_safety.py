@@ -73,6 +73,7 @@ in SECURITY.md.
 from __future__ import annotations
 
 import ipaddress
+import os
 import re
 import socket
 import threading
@@ -200,6 +201,50 @@ def is_safe_ip(ip_str: str) -> bool:
         or ip.is_multicast
         or ip.is_unspecified
     )
+
+
+def _configured_proxy_hosts() -> frozenset[str]:
+    """Return the set of hostnames used by an explicitly-configured outbound
+    HTTP(S) proxy, but only when that proxy is itself a loopback/private
+    endpoint.
+
+    In sandboxed execution environments (e.g. Claude Code on the web), all
+    outbound HTTPS is tunnelled through a local policy-enforcing proxy
+    reachable at a loopback address such as ``http://127.0.0.1:38579``. The
+    proxy — not this module — is the authoritative egress-policy enforcer in
+    that topology. The DNS-pinning guard below would otherwise refuse to even
+    open the socket to the proxy (its address is loopback and so fails
+    ``is_safe_ip``), breaking every fetch.
+
+    To stay safe, we only ever exempt a proxy host that resolves to a
+    loopback or private address — i.e. a genuinely local proxy. A proxy
+    pointed at a public host is left to the normal validation path. Target
+    and redirect hostnames are unaffected: they continue to be fully
+    validated, and the egress proxy enforces policy on them regardless.
+    """
+    hosts: set[str] = set()
+    for var in ("HTTPS_PROXY", "https_proxy", "ALL_PROXY", "all_proxy"):
+        value = os.environ.get(var)
+        if not value:
+            continue
+        # urlparse needs a scheme; proxy values usually have one, but be lenient.
+        candidate = value if "://" in value else f"http://{value}"
+        host = urlparse(candidate).hostname
+        if not host:
+            continue
+        host = host.lower()
+        try:
+            ip = ipaddress.ip_address(host)
+        except ValueError:
+            # Non-literal proxy host (rare). Resolve to confirm it is local.
+            try:
+                resolved = socket.gethostbyname(host)
+                ip = ipaddress.ip_address(resolved)
+            except (OSError, ValueError):
+                continue
+        if ip.is_loopback or ip.is_private:
+            hosts.add(host)
+    return frozenset(hosts)
 
 
 def normalize_hostname(hostname: str) -> str:
@@ -378,6 +423,7 @@ def _pin_dns(hostname: str, pinned_ip: str, port: int) -> Iterator[None]:
 
     original_getaddrinfo = socket.getaddrinfo
     target = hostname.lower()
+    proxy_hosts = _configured_proxy_hosts()
 
     def patched(host, requested_port, *args, **kwargs):
         # Branch 1: the originally-pinned host returns the validated IP
@@ -397,6 +443,14 @@ def _pin_dns(hostname: str, pinned_ip: str, port: int) -> Iterator[None]:
                 f"url_safety: address family {family} refused for pinned "
                 f"IPv4 host {host}",
             )
+
+        # Branch 1b: connections to an explicitly-configured local egress
+        # proxy are permitted to resolve to their loopback/private address.
+        # Without this, the socket to the proxy itself could never be opened
+        # in a proxied sandbox. Only the exact configured proxy host is
+        # exempt; the proxy enforces egress policy on the real target.
+        if host and host.lower() in proxy_hosts:
+            return original_getaddrinfo(host, requested_port, *args, **kwargs)
 
         # Branch 2: every OTHER hostname (redirect target, embedded
         # subresource, library bookkeeping) gets resolved by the real
