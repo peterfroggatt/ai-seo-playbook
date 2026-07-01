@@ -1,0 +1,58 @@
+{
+  "summary": {
+    "health_score": 74,
+    "business_type": "Publisher / Amazon-affiliate review site (headphones & microphones) — re-audit #5 (E-E-A-T credential integrity)",
+    "top_findings": [
+      "Health 51 -> 66 -> 70 -> 71 -> 72 -> 74; this round = removed fabricated 'fifteen years' professional-experience claims from 88 posts",
+      "Content 56 -> 63 (+7): sitewide fabrication (worst QRG trust signal) removed from ~1/3 of the index; replaced with honest 'obsessively buying, using and comparing' voice",
+      "Verified: 'fifteen years' now in 0 of 270 posts (was 88); no residual author over-claims",
+      "Author photo still NOT in schema — plugin v1.2 not yet installed (biggest remaining quick win)",
+      "Path to 80 now runs through ADDING proof: author photo in schema + first-hand testing evidence + llms.txt"
+    ],
+    "quick_wins": [
+      "Install schema plugin v1.2 (overwrite in mu-plugins, keep ONE copy) -> real author photo in Person.image + bylines",
+      "Add first-hand testing notes to top 10-15 roundups/reviews (Content 63 -> ~72)",
+      "Publish /llms.txt (still 404)",
+      "Image width/height (CLS); homepage hero 'Tested' wording; single H1; author-archive noindex"
+    ]
+  },
+  "verification": {
+    "posts_total": 270,
+    "posts_with_fifteen_years": 0,
+    "posts_with_fifteen_years_before": 88,
+    "posts_with_honest_obsessively_voice": 87,
+    "residual_author_overclaims": 0,
+    "residual_overclaim_false_positives": ["ath-m50x-vs-ath-m70x (reader)", "choose-studio-headphones (profession)"],
+    "posts_with_comparison_tables": 15,
+    "posts_with_quick_answer": 15,
+    "security": {"hsts": true, "x_content_type_options": "nosniff", "x_frame_options": "SAMEORIGIN", "referrer_policy": "strict-origin-when-cross-origin", "x_powered_by": "removed", "xmlrpc": 403, "author_scan": 403, "rest_users": 404},
+    "cache": {"litespeed": "active", "content_encoding": "br"},
+    "schema_home_types": ["BreadcrumbList", "ImageObject", "Organization", "WebPage", "WebSite"],
+    "author_photo_in_schema": false,
+    "llms_txt_status": 404,
+    "robots_blocks_ai_crawlers": false,
+    "post_sitemap_locs": 270,
+    "tag_sitemap_locs": 11
+  },
+  "categories": [
+    {"name": "Technical SEO", "score": 82, "delta": 0, "what_works": ["Security header set + hardening verified holding; index bloat cleared; duplicates redirected"], "findings": [{"title": "Homepage two H1 + author archive indexed", "severity": "Medium", "description": "Unchanged.", "recommendation": "Single H1; noindex/enrich author archive."}, {"title": "Render-blocking jQuery/fonts (CWV lab)", "severity": "Medium", "description": "Unchanged; Elementor-sensitive.", "recommendation": "Defer jQuery, self-host fonts, critical CSS."}]},
+    {"name": "Content Quality", "score": 63, "delta": 7, "what_works": ["Fabricated 'fifteen years' professional-experience claims removed from all 88 posts (verified 0/270 remain); honest hobbyist voice; FTC disclosure; 15 vs posts with tables + quick-answer"], "findings": [{"title": "No first-hand testing evidence yet", "severity": "High", "description": "Trust liability (fabrication) is now REMOVED; positive proof (hands-on notes, measurements) still to be added.", "recommendation": "Add specific first-hand testing observations to top roundups/reviews."}, {"title": "Author photo not yet surfaced in schema", "severity": "Medium", "description": "Plugin v1.2 (real photo -> Person.image + bylines) uploaded but not yet installed live.", "recommendation": "Install v1.2 mu-plugin; keep one copy."}]},
+    {"name": "On-Page SEO", "score": 82, "delta": 0, "what_works": ["Brand titles fixed, duplicates consolidated, good meta descriptions"], "findings": [{"title": "Multiple H1 on templates; some thin category titles/alt", "severity": "Low", "description": "Unchanged.", "recommendation": "One H1 per template; descriptive titles; alt text."}]},
+    {"name": "Schema / Structured Data", "score": 86, "delta": 0, "what_works": ["Organization + WebSite + WebPage + BreadcrumbList on home; Organization publisher on posts; ItemList+Product+Offer with live prices on roundups"], "findings": [{"title": "Author image not yet in Person node", "severity": "Medium", "description": "Awaiting v1.2 install; would add author photo to schema.", "recommendation": "Install v1.2 mu-plugin."}]},
+    {"name": "Performance (CWV)", "score": 63, "delta": 0, "what_works": ["LiteSpeed page cache active; Brotli serving; homepage LCP self-hosted WebP; geotargeting preserved via cache vary"], "findings": [{"title": "Render-blocking jQuery + Google Fonts", "severity": "High", "description": "Unchanged.", "recommendation": "Defer jQuery, self-host/dedupe fonts, preconnect."}, {"title": "Images lack width/height (CLS)", "severity": "Medium", "description": "Unchanged.", "recommendation": "Add explicit width/height."}]},
+    {"name": "AI Search Readiness (GEO)", "score": 62, "delta": 0, "what_works": ["Organization brand identity; product structured data; 15 vs posts with tables + direct-answer blocks; all AI crawlers allowed"], "findings": [{"title": "llms.txt + rollout", "severity": "Medium", "description": "/llms.txt still 404; tables/answers on 15 vs posts only.", "recommendation": "Publish llms.txt; extend tables/answers to remaining vs + 'best' posts."}]},
+    {"name": "Images", "score": 72, "delta": 0, "what_works": ["Landing + category pages self-hosted WebP; OG/schema images on-domain"], "findings": [{"title": "Missing image width/height (CLS)", "severity": "Medium", "description": "Unchanged.", "recommendation": "Add width/height attributes."}, {"title": "Some AI-generated review heroes", "severity": "Low", "description": "Unchanged.", "recommendation": "Label via IPTC or replace with original photos."}]}
+  ],
+  "action_plan": {
+    "phases": [
+      {"name": "Phase 1: Done (this engagement)", "timeframe": "Complete", "items": ["Site identity/schema, tag bloat, duplicates+redirects, security hardening, Organization/Person/ItemList schema, LiteSpeed caching, image WebP self-hosting, 15 comparison tables, and removal of fabricated credential claims from 88 posts — applied & verified."]},
+      {"name": "Phase 2: Surface author identity + finish perf", "timeframe": "Week 1", "items": ["Install schema plugin v1.2 (author photo in schema + bylines).", "Image width/height (CLS).", "Carefully defer jQuery / self-host fonts (Elementor-sensitive)."]},
+      {"name": "Phase 3: Add first-hand E-E-A-T proof", "timeframe": "Weeks 2-4", "items": ["First-hand testing notes on top roundups/reviews.", "Extend tables/quick-answers to remaining vs + 'best' posts."]},
+      {"name": "Phase 4: Cleanup & Measure", "timeframe": "Ongoing", "items": ["llms.txt; single homepage H1; homepage hero wording; author archive; 3 year-slug duplicates; 42 empty categories.", "Track GSC Pages + Performance over 2-4 weeks."]}
+    ]
+  },
+  "supplementary": {
+    "sxo_score": 52,
+    "sxo_summary": "Unchanged this round. 15 vs posts carry comparison tables + quick-answer blocks; extend to all vs posts and 'best' roundups."
+  }
+}
