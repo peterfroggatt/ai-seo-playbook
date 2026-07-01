@@ -87,6 +87,7 @@ Files in `snippets/` (installed via Hostinger File Manager — no API path exist
   - `/he400se-vs-hd-560s/` (id 4859) — also fixed a missing HD 560S affiliate link (post had no box for it; used ASIN B08J9MVB6W + site tag).
   - `/akg-k361-vs-k371/` (id 4891); `/dt-990-pro-vs-akg-k712-pro/` (id 4849).
   - Cross-brand tables omit the sensitivity row (brands publish different units → not comparable); "Our pick" on each flagged for owner's editorial confirmation.
+- Added 2 more tables (responsive CSS): `/ath-m40x-vs-sony-mdr-7506/` (id 4845), `/sony-wh-1000xm5-vs-xm6/` (id 4683). 6 vs posts now have tables. FLAGGED: `/bw-px7-s3-vs-sony-xm6/` — URL slug says S3 but title/content/affiliate box are Px7 **S2**; awaiting owner decision before adding a table.
 - Redirect chain collapsed: Redirection rule id 3 `/category/guides/recording-production/` repointed directly to `/guides/recording-production/` (was chaining via `/recording-production/`; now 1 hop).
 - Remaining: roll the same pattern across the other "vs" posts; consider adding an HD 560S AAWP box for a live price.
 
