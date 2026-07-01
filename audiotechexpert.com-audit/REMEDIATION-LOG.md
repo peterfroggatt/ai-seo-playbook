@@ -78,6 +78,13 @@ Files in `snippets/` (installed via Hostinger File Manager — no API path exist
 - **Verified:** 16 pages (landing pages + `/category/` archives) → **0 Unsplash references** (content + `<head>` OG/schema); replacements serving WebP.
 - **Incident (resolved):** the first upload left a duplicate copy of the mu-plugin in `mu-plugins/` (browser `(1)` suffix), causing a "Cannot redeclare function" fatal → site-wide HTTP 500. Fixed by deleting the duplicate; plugin hardened with a double-load `define()` guard (v1.1.1) so a stray duplicate can no longer fatal the site. Lesson: keep exactly one copy of any mu-plugin.
 
+## 2026-07-01 — Batch 8 (content: comparison tables)
+
+### ✅ 8. First comparison table added (worked example)
+- Inserted a quick-answer paragraph + real `<table>` comparison (ATH-M50x vs ATH-M70x) into post id 4883 (`/ath-m50x-vs-ath-m70x/`) via REST — verified rendering live (14 rows, live prices $159/$329, verified AT specs, attributed affiliate CTAs, no wpautop mangling). WordPress revision created (revertible).
+- Addresses SXO/GEO "0 tables on vs posts" for this post; template + filled example in `snippets/`.
+- Remaining: roll the same pattern across the other "vs" posts.
+
 ## Not applied — needs host config or editorial work
 - **301 redirects** — ~20 `-2` duplicate posts, `/recording-production/` pair, `/headphone-guides-old/` → need Redirection plugin (free) or Yoast Premium. (If Redirection plugin is installed, these can be automated via its REST API.)
 - **Security headers / xmlrpc / expose_php** — Hostinger `.htaccess`/PHP settings.
