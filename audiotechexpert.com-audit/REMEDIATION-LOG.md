@@ -102,6 +102,20 @@ Files in `snippets/` (installed via Hostinger File Manager — no API path exist
 - **Verified live:** **0 of 270 posts** contain "fifteen years" in REST raw content afterward; rendered HTML spot-checks (auto + manual, pronoun + noun-subject) all read cleanly. 87 posts now carry the approved "obsessively…" opener, 1 the "countless hours" variant.
 - **Fixes audit items:** Content / E-E-A-T (fabricated first-hand experience — the dominant remaining lever toward the 80 target). Editorial change; no plugin.
 
+## 2026-07-01 — Batch 10 (content: measurement-backed reviews + "tested" overclaim sweep)
+
+### ✅ 10a. Worked example — measurement-backed roundup review (honest E-E-A-T)
+- **`/best-noise-cancelling-earbuds-2026/` (id 4828), "Best overall: Sony WF-1000XM6":** replaced the generic spec-sheet paraphrase with a substantive, **independently-verified** write-up in the author's voice — **~88% average ANC reduction** and **9 h 41 min** single-charge battery (both from independent lab measurement; verified via SoundGuys), the actual engineering reason (QN3e chip + extra feed-forward mic), and honest trade-offs. **No fabricated personal testing** — citations phrased as "independent lab testing measured…" (unnamed, per owner preference).
+- **Verified live:** 88% / 9 h 41 min / QN3e all render on-page.
+- **This is the template** for upgrading thin roundup blurbs. Rollout note: each product's numbers must be verified against a real source before publishing — this is verify-then-write, not blind mass-injection (injecting unverified specs would recreate the fabrication risk Batch 9 removed).
+
+### ✅ 10b. Removed "Tested" overclaims from roundups (title + body)
+- Roundups titled "…Tested and Ranked" / "Tried, Tested and Ranked" claimed hands-on testing of brand-new 2026 flagships that was not performed — the same trust liability as the "fifteen years" claims.
+- **4 titles** softened to "**Compared and Ranked**" (the NC-earbuds roundup in 10a + `best-budget-wireless-earbuds-2026`, `best-bone-conduction-headphones-2026`, `best-headphones-for-running-gym-2026`).
+- **6 bodies** fixed: five "We have tested and ranked…" → "We have **compared** and ranked…"; one "after testing dozens of wireless headphones across studio and consumer environments" → "after years of buying, using and comparing wireless headphones" (approved voice).
+- **Verified live:** 0 posts retain "tested" in title; 0 retain first-person test claims (`we tested / we have tested / after testing dozens / in our tests / hands-on tested`) in body.
+- **Fixes audit items:** Content / E-E-A-T (fabricated testing claims). Editorial; reversible via WP revisions.
+
 ## Not applied — needs host config or editorial work
 - **301 redirects** — ~20 `-2` duplicate posts, `/recording-production/` pair, `/headphone-guides-old/` → need Redirection plugin (free) or Yoast Premium. (If Redirection plugin is installed, these can be automated via its REST API.)
 - **Security headers / xmlrpc / expose_php** — Hostinger `.htaccess`/PHP settings.
