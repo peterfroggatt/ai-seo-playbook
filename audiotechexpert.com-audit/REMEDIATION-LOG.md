@@ -83,7 +83,12 @@ Files in `snippets/` (installed via Hostinger File Manager — no API path exist
 ### ✅ 8. First comparison table added (worked example)
 - Inserted a quick-answer paragraph + real `<table>` comparison (ATH-M50x vs ATH-M70x) into post id 4883 (`/ath-m50x-vs-ath-m70x/`) via REST — verified rendering live (14 rows, live prices $159/$329, verified AT specs, attributed affiliate CTAs, no wpautop mangling). WordPress revision created (revertible).
 - Addresses SXO/GEO "0 tables on vs posts" for this post; template + filled example in `snippets/`.
-- Remaining: roll the same pattern across the other "vs" posts.
+- Added the same pattern to 3 more vs posts (verified live, 13 rows each, working CTAs):
+  - `/he400se-vs-hd-560s/` (id 4859) — also fixed a missing HD 560S affiliate link (post had no box for it; used ASIN B08J9MVB6W + site tag).
+  - `/akg-k361-vs-k371/` (id 4891); `/dt-990-pro-vs-akg-k712-pro/` (id 4849).
+  - Cross-brand tables omit the sensitivity row (brands publish different units → not comparable); "Our pick" on each flagged for owner's editorial confirmation.
+- Redirect chain collapsed: Redirection rule id 3 `/category/guides/recording-production/` repointed directly to `/guides/recording-production/` (was chaining via `/recording-production/`; now 1 hop).
+- Remaining: roll the same pattern across the other "vs" posts; consider adding an HD 560S AAWP box for a live price.
 
 ## Not applied — needs host config or editorial work
 - **301 redirects** — ~20 `-2` duplicate posts, `/recording-production/` pair, `/headphone-guides-old/` → need Redirection plugin (free) or Yoast Premium. (If Redirection plugin is installed, these can be automated via its REST API.)
