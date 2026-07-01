@@ -148,6 +148,16 @@ Files in `snippets/` (installed via Hostinger File Manager — no API path exist
 - Reordered the top comparison box to put the JBL first. **Verified live:** H2 order now leads with JBL; generic no longer at #1.
 - Note: two other slots on this page (home/office, sports) are also generic but already hedge with "claimed" — left as-is.
 
+### ✅ 12d. Five more money-page roundups measurement-backed (live)
+All lead with real, branded products; top-pick opener rewritten with verified figures. Headphones cited as "independent testing/measurements" (unnamed); microphones use published specs + established reputation (mics aren't ANC-measured, so no lab-test phrasing). All figures verified via SoundGuys/RTINGS/manufacturer + reviewer corroboration; verified live on-page.
+- **`/best-headphones-under-300-2026/` — Nothing Headphone (1):** 40 mm KEF-tuned drivers; ANC ~85% avg cut (15–25 dB low-freq); ~43 h measured ANC battery (past 35 h rating), 80 h off.
+- **`/best-gaming-headphones-2026/` — Sony INZONE H9 II:** 30 mm carbon WH-1000XM6 driver, FNATIC-tuned; ~260 g (≈57 g lighter than H9); ANC ~80% avg; up to 30 h battery.
+- **`/best-headphones-commuting-2026/` — Soundcore Space One Pro:** FlexiCurve ~270° fold; measured ~288 g; Adaptive ANC ~84% avg; 40 h ANC / 60 h off, 5-min → ~5 h charge.
+- **`/best-condenser-microphones-2026/` — Blue Yeti:** three 14 mm capsules → four patterns (cardioid/bi/omni/stereo); 48 kHz/16-bit; 20 Hz–20 kHz; plug-and-play.
+- **`/best-dynamic-microphones-2026/` — Shure SM58-LC:** cardioid dynamic; tailored 50 Hz–15 kHz (bass roll-off + presence peak); spherical pop filter; pneumatic shock-mount.
+
+**Measurement-backed roundup progress: 8 of 75** (under-100 promoted+backed, under-200, under-300, gaming, commuting, condenser, dynamic, + the earlier NC-earbuds Sony blurb).
+
 ## Not applied — needs host config or editorial work
 - **301 redirects** — ~20 `-2` duplicate posts, `/recording-production/` pair, `/headphone-guides-old/` → need Redirection plugin (free) or Yoast Premium. (If Redirection plugin is installed, these can be automated via its REST API.)
 - **Security headers / xmlrpc / expose_php** — Hostinger `.htaccess`/PHP settings.
