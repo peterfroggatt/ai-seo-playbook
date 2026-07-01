@@ -169,6 +169,17 @@ Same method (verified figures; headphones cited as independent testing, audiophi
 
 **Measurement-backed roundup progress: 14 of 75.**
 
+## 2026-07-01 — Batch 13 (performance pass)
+
+### ✅ 13. Performance: CLS fixed + render-blocking reduced (live)
+- Measured first (no blind toggles): CSS/fonts already optimised (0 render-blocking stylesheets, 0 Google-Fonts links — LiteSpeed inlines CSS). Real issues were (a) render-blocking jQuery + Migrate, (b) AAWP product images loading cross-origin from `m.media-amazon.com` with no preconnect and no width/height (CLS).
+- **`audiotechexpert-performance.php` mu-plugin (installed, verified live):** preconnect + dns-prefetch to `m.media-amazon.com`; drops the unused jQuery Migrate shim; marks content images `decoding="async"`. Verified: Amazon preconnect present on home + posts; `jquery-migrate` no longer loaded.
+- **LiteSpeed toggles (owner-applied, verified live):** Load JS Deferred; Lazy Load Images; **Add Missing Sizes**; Responsive Placeholder.
+  - **CLS win verified:** images missing width/height went **13/13 (home) and 7/11 (post) → 0/0**. Below-fold Amazon images now lazy-load with SVG placeholders.
+  - Head render-blocking scripts reduced 2 → 1 (jQuery Migrate gone). jQuery **core** remains render-blocking by design (LiteSpeed excludes it from defer to protect Elementor — safe call).
+- **Open / watch:** the above-the-fold featured image is currently lazy-loaded; if it is the LCP element this can delay LCP. Fix path: VPI (viewport images) once generated, or add the hero to Lazy Load Excludes. Confirm via GSC/CrUX LCP field data over 2–4 weeks.
+- **Reversible:** delete the mu-plugin / toggle LiteSpeed settings back.
+
 ## Not applied — needs host config or editorial work
 - **301 redirects** — ~20 `-2` duplicate posts, `/recording-production/` pair, `/headphone-guides-old/` → need Redirection plugin (free) or Yoast Premium. (If Redirection plugin is installed, these can be automated via its REST API.)
 - **Security headers / xmlrpc / expose_php** — Hostinger `.htaccess`/PHP settings.
