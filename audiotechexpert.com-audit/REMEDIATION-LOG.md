@@ -65,8 +65,13 @@ Files in `snippets/` (installed via Hostinger File Manager — no API path exist
 - Activated **LiteSpeed Cache** plugin (full-page server cache) + installed `audiotechexpert-lscache-vary.php` mu-plugin registering `aawp-country` as a `litespeed_vary_cookies` entry (cache a separate copy per geotargeting country).
 - **Verified live:** `x-litespeed-cache: hit` with `x-hcdn-upstream-rt` **~0.036–0.100s** on cache hits (was 0.8–3.0s full PHP render). Major TTFB/LCP win.
 - **Open / unverifiable from here:** per-country vary correctness — AAWP geotargets by server IP, not the injectable cookie, and all probes originate from one US IP, so foreign-visitor output can't be simulated. Confirm via VPN test or by checking whether AAWP has non-US stores/tags configured (if US-only, nothing to vary → safe).
-- **Next perf step:** LiteSpeed Cache → Image Optimization → enable WebP (addresses the images half of the Performance score).
 - **Revert:** deactivate LiteSpeed Cache / remove the vary mu-plugin.
+
+### ✅ 6. Images: WebP + homepage Unsplash self-hosted (verified)
+- LiteSpeed Image Optimization → WebP replacement ON (serves WebP with original fallback; verified `content-type: image/webp` on self-hosted images).
+- Homepage: all 12 hotlinked `images.unsplash.com` images (incl. the CSS hero, which was a dead 404) replaced with self-hosted Media Library copies — **verified 0 Unsplash references remain; 16 self-hosted images all 200 + WebP; schema primaryImageOfPage now on-domain**.
+- Removed the broken `.ate-hero::before` background (was requesting a since-deleted Unsplash photo → 404 on every load).
+- **Remaining perf items:** explicit width/height on images (CLS); render-blocking jQuery/fonts/CSS (Elementor-sensitive — do last); category-page ImageObject may still hotlink Unsplash (check).
 
 ## Not applied — needs host config or editorial work
 - **301 redirects** — ~20 `-2` duplicate posts, `/recording-production/` pair, `/headphone-guides-old/` → need Redirection plugin (free) or Yoast Premium. (If Redirection plugin is installed, these can be automated via its REST API.)
