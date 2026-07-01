@@ -158,6 +158,17 @@ All lead with real, branded products; top-pick opener rewritten with verified fi
 
 **Measurement-backed roundup progress: 8 of 75** (under-100 promoted+backed, under-200, under-300, gaming, commuting, condenser, dynamic, + the earlier NC-earbuds Sony blurb).
 
+### ✅ 12e. Six more money-page roundups measurement-backed (live)
+Same method (verified figures; headphones cited as independent testing, audiophile open-backs + mics use published specs). Verified live on-page.
+- **`/best-headphones-under-50-2026/` — Sony WH-CH520:** ~147 g; 55 h measured battery (past 50 h rating); BT 5.2 + Multipoint/Fast Pair.
+- **`/best-audiophile-headphones-under-500-2026/` — Sennheiser HD 650:** open-back, 300 Ω, 42 mm transducer, <0.05% distortion; benchmark midrange; needs an amp.
+- **`/best-microphones-for-streaming-2026/` — Blue Yeti:** three 14 mm capsules → four patterns; 48 kHz/16-bit; 20 Hz–20 kHz; headphone monitoring.
+- **`/best-headphones-for-music-2026/` — Sennheiser HD 600:** open-back, 300 Ω, 16 Hz–30 kHz (±1 dB), 0.1% THD, 97 dB; reference tuning.
+- **`/best-in-ear-monitors-earbuds-2026-2/` — Sony WF-1000XM6:** ANC ~88% avg; QN3e chip + extra mic; ~9 h 41 min measured battery; ~24 h with case.
+- **`/best-noise-cancelling-headphones-2026-2/` — Sony WH-1000XM6:** ~254 g; QN3 processor + larger mic array vs XM5; ~31 h ANC / 40 h off.
+
+**Measurement-backed roundup progress: 14 of 75.**
+
 ## Not applied — needs host config or editorial work
 - **301 redirects** — ~20 `-2` duplicate posts, `/recording-production/` pair, `/headphone-guides-old/` → need Redirection plugin (free) or Yoast Premium. (If Redirection plugin is installed, these can be automated via its REST API.)
 - **Security headers / xmlrpc / expose_php** — Hostinger `.htaccess`/PHP settings.
