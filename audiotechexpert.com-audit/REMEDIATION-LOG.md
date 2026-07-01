@@ -132,6 +132,16 @@ Files in `snippets/` (installed via Hostinger File Manager — no API path exist
 - **Author archive:** currently indexable. The original audit flagged it as thin/duplicate, but after the Batch 9–10 author-identity work (real photo in `Person.image`, visible author box, `sameAs`) it now functions as the **author-entity page** — recommend **keeping it indexed** rather than noindexing (index status doesn't affect the schema entity, and an indexable author page is an E-E-A-T asset). No change.
 - **42 empty categories:** verified **low exposure** — most are excluded from `category-sitemap.xml` already, and several (e.g. `sony-comparisons`, `travel`) **canonicalize to their nested parent**, so they aren't competing duplicates. They look like intended taxonomy to populate later. Not worth a new mu-plugin upload (recurring duplicate-file 500 risk) for marginal gain. **Left intact**; optional noindex-empty-terms filter available if desired.
 
+## 2026-07-01 — Batch 12 (measurement-backed roundups — batch 1)
+
+### ✅ 12a. `/best-headphones-under-200-2026/` — "Best overall: Sony WH-CH720N" upgraded (live)
+- Replaced spec-sheet paraphrase with verified, cited measurements in the author's voice: **~192 g** (one of the lightest wireless ANC over-ears measured), **just over 40 hours** measured ANC battery (beats Sony's 35-hour claim), and honest ANC detail (**~20 dB low-frequency reduction, peaking ~28 dB at 80 Hz**). Attribution: "independent lab testing / independent measurements" (unnamed). Sources: SoundGuys + RTINGS WH-CH720N reviews.
+- **Verified live:** all figures render on-page.
+
+### ⚠️ 12b. Finding — a handful of roundups lead with generic, unmeasurable products
+- Sizing scan of all 75 `best-` roundups: **~62 lead with real, brand-name products** (measurement-backable). A small number lead with **unbranded generic Amazon listings** whose "specs" are seller marketing (no independent lab data exists), so they **cannot be honestly measurement-backed**. Confirmed offender: **`best-headphones-under-100-2026`**, whose "Best overall" is *"Hybrid Active Noise Cancelling Headphones (Bluetooth 6.0, 120H)"* (ASIN B0GSD8BWXV) — "Bluetooth 6.0" / "120H" are the seller's claims. Others: some phone-lavalier and sleep-earbud roundups (MAYBESTA, BAILIXIN, T33).
+- **Not auto-changed** — promoting a different product to "Best overall" on a money page is an editorial/revenue decision. Recommendation: promote a real, measured product already in the list (e.g. under-100 → JBL Tune 720BT or Soundcore Q20i) to the top slot, then measurement-back it. Awaiting owner decision.
+
 ## Not applied — needs host config or editorial work
 - **301 redirects** — ~20 `-2` duplicate posts, `/recording-production/` pair, `/headphone-guides-old/` → need Redirection plugin (free) or Yoast Premium. (If Redirection plugin is installed, these can be automated via its REST API.)
 - **Security headers / xmlrpc / expose_php** — Hostinger `.htaccess`/PHP settings.
