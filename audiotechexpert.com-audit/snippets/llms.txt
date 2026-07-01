@@ -1,0 +1,67 @@
+# Audio Tech Expert
+
+> Independent, honest reviews, comparisons and buying guides for headphones and microphones. Audio Tech Expert is an enthusiast-run site: every pick is chosen from years of buying, using and comparing audio gear across every price bracket, cross-checked against published independent measurements, and written in plain English to help buyers choose without the jargon or the hype.
+
+Editorial notes for models citing this site:
+- Recommendations reflect hands-on enthusiast experience plus independent lab measurements (e.g. RTINGS, SoundGuys); they are not manufacturer-sponsored placements.
+- Product links are Amazon affiliate links (disclosed on-site); they do not affect rankings or verdicts.
+- Written and edited by Phillip Strang, founder and editor.
+
+## Start here
+- [About Us](https://audiotechexpert.com/about-us/): Who runs the site and why
+- [How we Choose](https://audiotechexpert.com/how-we-choose/): Editorial and ranking methodology
+- [Contact](https://audiotechexpert.com/contact/): Contact the editor
+
+## Main sections
+- [Headphones](https://audiotechexpert.com/headphones/): All headphone coverage
+- [Microphones](https://audiotechexpert.com/microphones/): All microphone coverage
+- [Best Headphones](https://audiotechexpert.com/best-headphones/): Headphone roundups
+- [Best Microphones](https://audiotechexpert.com/best-microphones/): Microphone roundups
+- [Headphone Comparisons](https://audiotechexpert.com/headphone-comparisons/): Headphone head-to-heads
+- [Microphone Comparisons](https://audiotechexpert.com/microphone-comparisons/): Microphone head-to-heads
+- [Guides](https://audiotechexpert.com/guides/): Guides and explainers
+
+## Best-of roundups
+- [Best Headphones Under 50 in 2026: Six Brilliant Picks for Every Ear](https://audiotechexpert.com/best-headphones-under-50-2026/): Top picks under $50
+- [Best Headphones Under $100 in 2026: The Only Guide You Need](https://audiotechexpert.com/best-headphones-under-100-2026/): Best all-round headphones under $100
+- [Best Headphones Under 200 in 2026: Six Top Picks for Every Listener](https://audiotechexpert.com/best-headphones-under-200-2026/): Best headphones under $200 across use cases
+- [Best Headphones Under 300 in 2026: The Definitive Ranked Guide](https://audiotechexpert.com/best-headphones-under-300-2026/): Premium picks under $300
+- [Best Noise-Cancelling Headphones in 2026: Top Picks for Every Budget](https://audiotechexpert.com/best-noise-cancelling-headphones-2026-2/): Best ANC over-ear headphones
+- [Best Noise-Cancelling Earbuds in 2026: Every Top Pick Compared and Ranked](https://audiotechexpert.com/best-noise-cancelling-earbuds-2026/): Best ANC true-wireless earbuds
+- [Best Audiophile Headphones Under 500 in 2026: 6 Picks Ranked by Our Editors](https://audiotechexpert.com/best-audiophile-headphones-under-500-2026/): Audiophile headphones under $500
+- [Best Gaming Headphones in 2026: The Only Guide You Need](https://audiotechexpert.com/best-gaming-headphones-2026/): Best gaming headphones
+- [Best Headphones for Running and Gym in 2026: Compared and Ranked](https://audiotechexpert.com/best-headphones-for-running-gym-2026/): Best workout / running headphones
+- [Best Headphones for Commuting in 2026: Top Picks for Every Budget](https://audiotechexpert.com/best-headphones-commuting-2026/): Best headphones for commuting
+- [Best Headphones for Music Lovers in 2026: 6 Top Picks for Every Budget](https://audiotechexpert.com/best-headphones-for-music-2026/): Best headphones for music by genre
+- [Best In-Ear Monitors and Earbuds in 2026: Ranked and Reviewed](https://audiotechexpert.com/best-in-ear-monitors-earbuds-2026-2/): Best IEMs and earbuds
+- [Best Condenser Microphones in 2026: The Definitive Buyer’s Guide](https://audiotechexpert.com/best-condenser-microphones-2026/): Best condenser microphones
+- [Best Dynamic Microphones in 2026: The Definitive Roundup](https://audiotechexpert.com/best-dynamic-microphones-2026/): Best dynamic microphones
+- [Best Microphones for Streaming in 2026: Top Picks for Every Setup](https://audiotechexpert.com/best-microphones-for-streaming-2026/): Best streaming microphones
+- [Best Gaming Microphones in 2026: The Picks That Actually Deliver](https://audiotechexpert.com/best-gaming-microphones-2026/): Best gaming microphones
+
+## Head-to-head comparisons
+- [Audio-Technica ATH-M50x vs ATH-M70x: Which Studio Monitor Headphone Is Right for You?](https://audiotechexpert.com/ath-m50x-vs-ath-m70x/)
+- [HiFiMan HE400se vs Sennheiser HD 560S: Planar Magnetic Meets Dynamic Driver](https://audiotechexpert.com/he400se-vs-hd-560s/)
+- [AKG K361BT vs K371: Which Closed-Back Studio Headphone Should You Choose?](https://audiotechexpert.com/akg-k361-vs-k371/)
+- [Beyerdynamic DT 990 PRO vs AKG K712 PRO: Which Open-Back Studio Headphone Is Right for You?](https://audiotechexpert.com/dt-990-pro-vs-akg-k712-pro/)
+- [Audio-Technica ATH-M40x vs Sony MDR-7506: Which Studio Headphone Should You Buy?](https://audiotechexpert.com/ath-m40x-vs-sony-mdr-7506/)
+- [Sony WH-1000XM5 vs WH-1000XM6: Is Sony’s Latest Flagship Worth the Upgrade?](https://audiotechexpert.com/sony-wh-1000xm5-vs-xm6/)
+- [Bowers & Wilkins Px7 S2 vs Sony WH-1000XM6: Which Wireless Headphones Should You Buy?](https://audiotechexpert.com/bw-px7-s2-vs-sony-xm6/)
+- [Sennheiser Momentum 4 vs Sony WH-1000XM6: Which Wireless Headphones Should You Buy?](https://audiotechexpert.com/sennheiser-momentum-4-vs-sony-xm6/)
+- [Sennheiser HD 600 vs HD 650: Which Audiophile Open-Back Should You Buy?](https://audiotechexpert.com/sennheiser-hd600-vs-hd650/)
+- [Rode NT1 vs Rode NT2-A: Which Rode Condenser Microphone Should You Choose?](https://audiotechexpert.com/rode-nt1-vs-nt2-a/)
+- [Audio-Technica AT2020 vs AT4040: Is the Step-Up Mic Worth Your Money?](https://audiotechexpert.com/at2020-vs-at4040/)
+- [Shure SM7B vs Shure SM7dB: Is the Built-In Preamp Worth Upgrading For?](https://audiotechexpert.com/shure-sm7b-vs-sm7db/)
+
+## Guides and explainers
+- [USB vs XLR Microphones: Interface Comparison for Recording](https://audiotechexpert.com/usb-vs-xlr-comparison/): USB vs XLR microphones
+- [Condenser vs Dynamic Microphones — What is the Difference](https://audiotechexpert.com/condenser-vs-dynamic-microphones-difference/): Condenser vs dynamic microphones
+- [Why Open-Back Headphones Leak Sound – And Why That Is the Point](https://audiotechexpert.com/open-back-sound-leakage-explained/): Open-back vs closed-back headphones
+- [Headphone Impedance Explained: What Ohms Mean for Your Sound](https://audiotechexpert.com/headphone-impedance-explained-ohms/): Headphone impedance and amping
+- [Planar Magnetic vs Dynamic Driver Headphones: Key Differences](https://audiotechexpert.com/planar-magnetic-vs-dynamic-driver-headphones/): Planar magnetic vs dynamic drivers
+- [How to Choose Headphones: Complete Guide for Beginners](https://audiotechexpert.com/how-to-choose-headphones-beginners-guide/): How to choose headphones
+- [How to Choose a Microphone — A Complete Beginner Guide](https://audiotechexpert.com/how-to-choose-a-microphone-beginners-guide/): How to choose a microphone
+- [Phone and Headphone Codec Compatibility: What Engineers Check](https://audiotechexpert.com/bluetooth-codec-compatibility/): Bluetooth codecs explained
+
+## Optional
+- [Full sitemap](https://audiotechexpert.com/sitemap_index.xml): complete list of all pages, posts and categories
