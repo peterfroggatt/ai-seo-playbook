@@ -116,6 +116,22 @@ Files in `snippets/` (installed via Hostinger File Manager — no API path exist
 - **Verified live:** 0 posts retain "tested" in title; 0 retain first-person test claims (`we tested / we have tested / after testing dozens / in our tests / hands-on tested`) in body.
 - **Fixes audit items:** Content / E-E-A-T (fabricated testing claims). Editorial; reversible via WP revisions.
 
+## 2026-07-01 — Batch 11 (cleanup: homepage + investigated the rest)
+
+### ✅ 11a. Homepage second H1 removed (live)
+- The homepage rendered **two H1s**: the Astra theme page-title banner ("Home") + the hero ("Audio Gear, …"). Set the front page's Astra meta `site-post-title = disabled` via REST.
+- **Verified live:** H1 count 2 → **1** (only the hero remains). Fixes the audit's "homepage two H1" item. Reversible (clear the meta).
+
+### ✅ 11b. Homepage hero "Tested" → honest wording (data layer done; needs a 1-click Elementor flush to display)
+- Hero H1 was **"Audio Gear, Tested and Explained"** — a testing claim on the site's most visible banner, contradicting the Batch 9/10 integrity work. Edited the Elementor HTML-widget text inside `_elementor_data` (single occurrence) via REST: **"Tested and Explained" → "Compared and Explained."**
+- **Verified at source:** `_elementor_data` now contains the new phrase, old phrase gone; JSON still valid; page loads 200.
+- **Display pending:** Elementor serves pre-rendered HTML from its **Element Caching** (stored outside postmeta), which a REST write cannot flush. LiteSpeed purges fine on save (the H1 change above rendered immediately). **Owner action (5s):** Elementor → Tools → **Regenerate CSS & Data** (or open Home in Elementor and click **Update**, or turn off the Element Caching experiment). Text will then show live.
+
+### Investigated — deliberately NOT changed (risk/reward)
+- **3 "legacy" slugs:** `rode-wireless-go-ii-vs-dji-mic-2` is **correct** — "DJI Mic 2" is a real product, not a WP duplicate suffix (left as-is). The two `-2026-2` slugs (`best-noise-cancelling-headphones-2026-2` id 4443, `best-in-ear-monitors-earbuds-2026-2` id 4476) are **top money pages**; the clean `-2026`/base slugs already 301 *into* them via redirect rules that aren't cleanly enumerable through the Redirection API — renaming risks a redirect loop on a revenue page for a purely cosmetic gain. **Left as-is** (they serve 200 correctly). Safe manual procedure available on request.
+- **Author archive:** currently indexable. The original audit flagged it as thin/duplicate, but after the Batch 9–10 author-identity work (real photo in `Person.image`, visible author box, `sameAs`) it now functions as the **author-entity page** — recommend **keeping it indexed** rather than noindexing (index status doesn't affect the schema entity, and an indexable author page is an E-E-A-T asset). No change.
+- **42 empty categories:** verified **low exposure** — most are excluded from `category-sitemap.xml` already, and several (e.g. `sony-comparisons`, `travel`) **canonicalize to their nested parent**, so they aren't competing duplicates. They look like intended taxonomy to populate later. Not worth a new mu-plugin upload (recurring duplicate-file 500 risk) for marginal gain. **Left intact**; optional noindex-empty-terms filter available if desired.
+
 ## Not applied — needs host config or editorial work
 - **301 redirects** — ~20 `-2` duplicate posts, `/recording-production/` pair, `/headphone-guides-old/` → need Redirection plugin (free) or Yoast Premium. (If Redirection plugin is installed, these can be automated via its REST API.)
 - **Security headers / xmlrpc / expose_php** — Hostinger `.htaccess`/PHP settings.
