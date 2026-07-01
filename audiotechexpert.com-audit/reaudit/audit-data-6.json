@@ -1,0 +1,58 @@
+{
+  "summary": {
+    "health_score": 75,
+    "business_type": "Publisher / Amazon-affiliate review site (headphones & microphones) — re-audit #6 (author identity + honesty + GEO)",
+    "top_findings": [
+      "Health 51 -> 66 -> 70 -> 71 -> 72 -> 74 -> 75; this round = visible author box, author photo in schema, honest homepage, tested-overclaim sweep, first measurement blurb, live /llms.txt",
+      "Content 63 -> 66: author identity now reader-facing + all testing overclaims removed (0 in titles, 0 first-person in bodies)",
+      "GEO 62 -> 67: /llms.txt live (200, text/plain, 47 curated links); homepage honest; AI crawlers allowed",
+      "On-Page 82 -> 84: homepage single H1 (was 2) + hero 'Compared and Explained' (was 'Tested')",
+      "Remaining lever to 80: measurement-backed roundup depth — only 1 of 75 roundups upgraded so far"
+    ],
+    "quick_wins": [
+      "Roll measurement-backed template across top money-page roundups (verify-then-write)",
+      "Performance: image width/height (CLS) + defer jQuery / self-host fonts",
+      "Extend comparison tables / quick-answers to remaining vs posts + roundups"
+    ]
+  },
+  "verification": {
+    "home_status": 200,
+    "home_h1_count": 1,
+    "home_hero": "Audio Gear, Compared and Explained",
+    "home_hero_tested_removed": true,
+    "llms_txt": {"status": 200, "content_type": "text/plain", "bytes": 7403, "valid_markdown": true, "links": 47},
+    "author_box_visible": true,
+    "author_box_instances_per_post": 1,
+    "author_photo_in_schema": true,
+    "posts_total": 270,
+    "posts_with_fifteen_years": 0,
+    "posts_with_obsessively_voice": 87,
+    "tested_in_titles": 0,
+    "first_person_test_claims_in_body": 0,
+    "posts_with_comparison_tables": 15,
+    "measurement_backed_roundups": 1,
+    "security": {"hsts": true, "x_content_type_options": true, "x_frame_options": true, "referrer_policy": true, "x_powered_by": "removed", "xmlrpc": 403, "author_scan": 403, "rest_users": 404},
+    "cache": "litespeed active / brotli"
+  },
+  "categories": [
+    {"name": "Technical SEO", "score": 82, "delta": 0, "what_works": ["Security header set + hardening verified holding; index bloat cleared; duplicates redirected"], "findings": [{"title": "Render-blocking jQuery/fonts (CWV lab)", "severity": "Medium", "description": "Unchanged; Elementor-sensitive.", "recommendation": "Defer jQuery, self-host fonts, critical CSS."}]},
+    {"name": "Content Quality", "score": 66, "delta": 3, "what_works": ["Visible author box on all posts (real photo + honest bio); 0 fabricated credentials; 0 testing overclaims; honest 'obsessively' voice on 87 posts; 15 comparison tables; first measurement-backed roundup blurb"], "findings": [{"title": "Roundup depth still thin", "severity": "High", "description": "Only 1 of 75 roundups has measurement-backed substance; the rest are spec-sheet paraphrase.", "recommendation": "Roll the verified measurement template across top money-page roundups (verify-then-write)."}]},
+    {"name": "On-Page SEO", "score": 84, "delta": 2, "what_works": ["Homepage single H1 + honest hero ('Compared and Explained'); brand titles; duplicates consolidated"], "findings": [{"title": "Minor thin category titles/alt", "severity": "Low", "description": "Unchanged.", "recommendation": "Descriptive titles; alt text."}]},
+    {"name": "Schema / Structured Data", "score": 87, "delta": 1, "what_works": ["Organization + Person (real photo in Person.image, live) + WebSite + ItemList/Product/Offer with live prices"], "findings": [{"title": "Minor residual", "severity": "Low", "description": "Article.keywords string-in-array; occasional dateModified.", "recommendation": "Array keywords; ensure dateModified."}]},
+    {"name": "Performance (CWV)", "score": 63, "delta": 0, "what_works": ["LiteSpeed page cache + Brotli; homepage LCP self-hosted WebP; geotargeting preserved via cache vary"], "findings": [{"title": "Render-blocking jQuery + Google Fonts", "severity": "High", "description": "Unchanged.", "recommendation": "Defer jQuery, self-host/dedupe fonts, preconnect."}, {"title": "Images lack width/height (CLS)", "severity": "Medium", "description": "Unchanged.", "recommendation": "Add explicit width/height."}]},
+    {"name": "AI Search Readiness (GEO)", "score": 67, "delta": 5, "what_works": ["/llms.txt live (200, text/plain, 47 curated links, author-entity + affiliate-disclosure notes); Organization identity; 15 comparison tables + direct-answer blocks; all AI crawlers allowed"], "findings": [{"title": "Quick-answers on non-vs posts", "severity": "Medium", "description": "Quick-answer blocks on vs posts only.", "recommendation": "Add quick-answer blocks to top guides + roundups."}]},
+    {"name": "Images", "score": 72, "delta": 0, "what_works": ["Landing + category pages self-hosted WebP; OG/schema images on-domain"], "findings": [{"title": "Missing image width/height (CLS)", "severity": "Medium", "description": "Unchanged.", "recommendation": "Add width/height attributes."}]}
+  ],
+  "action_plan": {
+    "phases": [
+      {"name": "Phase 1: Done", "timeframe": "Complete", "items": ["Identity/schema, tag bloat, duplicates+redirects, security hardening, Organization/Person/ItemList schema, LiteSpeed caching, image WebP, 15 comparison tables, 88-post credential fix, visible author box, honest homepage, tested-overclaim sweep, /llms.txt — applied & verified."]},
+      {"name": "Phase 2: Measurement-backed roundups", "timeframe": "Ongoing, batched", "items": ["Roll the verified measurement template across top money-page roundups (under-100/200/300, gaming, commuting, condenser/dynamic mics). Verify each number before publishing."]},
+      {"name": "Phase 3: Performance", "timeframe": "Week 1-2", "items": ["Image width/height (CLS); defer jQuery / self-host fonts (Elementor-sensitive)."]},
+      {"name": "Phase 4: Extend structure", "timeframe": "Ongoing", "items": ["Comparison tables / quick-answers on remaining vs posts + roundups.", "Track GSC Pages + Performance over 2-4 weeks."]}
+    ]
+  },
+  "supplementary": {
+    "sxo_score": 54,
+    "sxo_summary": "Author identity + honest homepage improve trust/experience signals; measurement depth on roundups is the next SXO lever."
+  }
+}
