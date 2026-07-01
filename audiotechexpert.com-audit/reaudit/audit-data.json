@@ -1,20 +1,19 @@
 {
   "summary": {
-    "health_score": 71,
-    "business_type": "Publisher / Amazon-affiliate review site (headphones & microphones) \u2014 re-audit #3 (site-wide images)",
+    "health_score": 72,
+    "business_type": "Publisher / Amazon-affiliate review site (headphones & microphones) \u2014 re-audit #4 (comparison tables)",
     "top_findings": [
-      "Health 51 -> 66 -> 70 -> 71; this round = site-wide image self-hosting (Images 58->72, Performance 60->63)",
-      "All landing + category pages now 0 Unsplash (content + Yoast OG/schema), serving WebP; no third-party image dependency",
-      "Performance still capped by render-blocking jQuery/fonts + missing image width/height (CLS)",
-      "Content/E-E-A-T still 54 \u2014 the #1 remaining lever (first-hand testing evidence, author photo)",
-      "Comparison spec tables still to add on 'vs' posts"
+      "Health 51 -> 66 -> 70 -> 71 -> 72; this round = 15 comparison tables + quick-answer blocks on vs posts",
+      "GEO 56 -> 62: real <table> + direct-answer format is what AI Overviews/featured snippets extract for 'X vs Y'",
+      "Content 56 & SXO ~52: vs posts materially stronger (structure, verdict, affiliate path)",
+      "E-E-A-T evidence gap (no first-hand testing, no author photo) UNCHANGED \u2014 now THE remaining lever (Content 23% weight)",
+      "Performance still capped by render-blocking jQuery/fonts + CLS image dimensions"
     ],
     "quick_wins": [
-      "Repeat self-host + WebP on category-page images (still hotlink Unsplash)",
-      "Add width/height to images (CLS)",
-      "Add spec comparison tables to 'vs' posts",
-      "Single homepage H1; publish /llms.txt; noindex author archive",
-      "Resolve the 3 -2026-2 duplicate slugs"
+      "Add first-hand testing evidence + author photo to top roundups (biggest lever)",
+      "Roll quick-answer + tables to remaining vs posts and 'best' roundups",
+      "Add image width/height (CLS); publish /llms.txt",
+      "Single homepage H1; noindex author archive; resolve 3 -2026-2 slugs"
     ]
   },
   "categories": [
@@ -41,9 +40,9 @@
     },
     {
       "name": "Content Quality",
-      "score": 54,
+      "score": 56,
       "what_works": [
-        "FTC disclosure, transparent methodology, readable; thin/dupe pages removed"
+        "FTC disclosure, transparent methodology; 15 vs posts now have comparison tables + quick-answer blocks"
       ],
       "findings": [
         {
@@ -107,16 +106,16 @@
     },
     {
       "name": "AI Search Readiness (GEO)",
-      "score": 56,
+      "score": 62,
       "what_works": [
-        "Brand nameable (WebSite.name + Organization); product structured data; all AI crawlers allowed"
+        "Brand nameable (Organization); product structured data; 15 vs posts now have comparison tables + direct-answer blocks; all AI crawlers allowed"
       ],
       "findings": [
         {
-          "title": "No comparison tables; no llms.txt",
-          "severity": "High",
-          "description": "0 <table> on vs/best pages; /llms.txt 404.",
-          "recommendation": "Add spec tables to vs posts; publish llms.txt; Quick-Answer blocks."
+          "title": "Roll out tables/answers + llms.txt",
+          "severity": "Medium",
+          "description": "Tables/quick-answers on 15 vs posts; remaining vs + 'best' posts and /llms.txt still to do.",
+          "recommendation": "Extend the pattern; publish llms.txt."
         }
       ]
     },
@@ -181,5 +180,9 @@
   "artifacts": {
     "findings_dir": "../findings/",
     "screenshots_dir": "../screenshots/"
+  },
+  "supplementary": {
+    "sxo_score": 52,
+    "sxo_summary": "15 vs posts now carry real comparison tables + quick-answer blocks (was 0). Remaining: extend to all vs posts and 'best' roundups; page-type alignment on 'best' hubs."
   }
 }
