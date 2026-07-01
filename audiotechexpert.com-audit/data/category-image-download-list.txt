@@ -1,0 +1,34 @@
+CATEGORY / LANDING PAGE IMAGES — download + upload these 10 (all verified live, HTTP 200)
+Save each with the filename shown (photo-<id>.jpg), then upload to your Media Library.
+WordPress will place them in /wp-content/uploads/2026/07/ automatically (current month).
+
+ 1. https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600&h=400&fit=crop
+    save as: photo-1484704849700-f032a568e944.jpg        (used on 3 pages)
+ 2. https://images.unsplash.com/photo-1520446266423-6daca23fe8c7?w=600&h=400&fit=crop
+    save as: photo-1520446266423-6daca23fe8c7.jpg        (used on 2 pages)
+ 3. https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=600&h=400&fit=crop
+    save as: photo-1508700115892-45ecd05ae2ad.jpg        (used on 2 pages)
+ 4. https://images.unsplash.com/photo-1574717025058-2f8737d2e2b7?w=600&h=400&fit=crop
+    save as: photo-1574717025058-2f8737d2e2b7.jpg        (used on 2 pages)
+ 5. https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=600&h=400&fit=crop
+    save as: photo-1572569511254-d8f925fe2cbb.jpg        (used on 2 pages)
+ 6. https://images.unsplash.com/photo-1558756520-22cfe5d382ca?w=1400&h=500&fit=crop
+    save as: photo-1558756520-22cfe5d382ca.jpg           (used on 1 page — a wide category hero)
+ 7. https://images.unsplash.com/photo-1577174881658-0f30ed549adc?w=600&h=400&fit=crop
+    save as: photo-1577174881658-0f30ed549adc.jpg        (used on 1 page)
+ 8. https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&h=400&fit=crop
+    save as: photo-1590658268037-6bf12165a8df.jpg        (used on 1 page)
+ 9. https://images.unsplash.com/photo-1487215078519-e21cc028cb29?w=600&h=400&fit=crop
+    save as: photo-1487215078519-e21cc028cb29.jpg        (used on 1 page)
+10. https://images.unsplash.com/photo-1559523161-0fc0d8b38a7a?w=600&h=400&fit=crop
+    save as: photo-1559523161-0fc0d8b38a7a.jpg           (used on 1 page)
+
+ALREADY IN YOUR LIBRARY (from the homepage batch — no download needed, the rewrite plugin reuses them):
+   photo-1505740420928-5e560c06d30e   (8 pages)
+   photo-1598488035139-bdbb2231ce04   (7 pages)
+   photo-1590602847861-f357a9332bbc   (5 pages)
+   photo-1583394838336-acd977736f90   (2 pages)
+   photo-1546435770-a3e426bf472b      (2 pages)
+
+NEXT: install audiotechexpert-unsplash-rewrite.php (mu-plugin). It auto-swaps every one of these
+to its self-hosted copy across all pages — no page editing. Then LiteSpeed Purge All.
