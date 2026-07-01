@@ -1,0 +1,44 @@
+{
+  "summary": {
+    "health_score": 76,
+    "business_type": "Publisher / Amazon-affiliate review site (headphones & microphones) — re-audit #7 (measurement-backed money pages)",
+    "top_findings": [
+      "Health 51 -> ... -> 75 -> 76; this round = 14 top money-page roundups upgraded to verified, cited substance",
+      "Content 66 -> 69: real depth/evidence on the highest-intent commercial pages (first round where content depth, not just hygiene, improved)",
+      "Integrity: under-100 no longer leads with a generic no-name (JBL Tune 720BT promoted; generic claims relabelled as unverified)",
+      "GEO 67 -> 68: hard-number comparison openers are AI-Overview / featured-snippet extractable",
+      "Path to 80: finish long-tail roundups (~61) + a Performance pass"
+    ],
+    "quick_wins": [
+      "Continue measurement/spec-backed pattern across remaining ~61 niche roundups (batch-able)",
+      "Performance: image width/height (CLS) + defer jQuery / self-host fonts",
+      "Extend comparison tables / quick-answers to remaining vs posts + roundups"
+    ]
+  },
+  "verification": {
+    "posts_total": 270,
+    "roundups_total": 75,
+    "measurement_backed_roundups": 14,
+    "roundups_with_generic_top_pick": 1,
+    "posts_with_fifteen_years": 0,
+    "tested_in_titles": 0,
+    "first_person_test_claims": 0,
+    "posts_with_obsessively_voice": 87,
+    "posts_with_comparison_tables": 15,
+    "home_h1_count": 1,
+    "home_hero": "Compared and Explained",
+    "llms_txt_status": 200,
+    "author_box_present": true,
+    "security": {"xmlrpc": 403, "rest_users": 404}
+  },
+  "categories": [
+    {"name": "Technical SEO", "score": 82, "delta": 0},
+    {"name": "Content Quality", "score": 69, "delta": 3, "what_works": ["14 top money-page roundups now measurement/spec-backed with verified figures; under-100 generic top pick replaced with real product; 0 fabricated credentials; 0 testing overclaims; visible author box; 15 comparison tables"], "findings": [{"title": "Long-tail roundups still thin", "severity": "Medium", "description": "~61 niche roundups not yet measurement-backed; 1 still leads with a generic product.", "recommendation": "Continue the verified pattern batch by batch."}]},
+    {"name": "On-Page SEO", "score": 84, "delta": 0},
+    {"name": "Schema / Structured Data", "score": 87, "delta": 0},
+    {"name": "Performance (CWV)", "score": 63, "delta": 0, "findings": [{"title": "Render-blocking jQuery + fonts; CLS", "severity": "High", "description": "Largest untouched lever.", "recommendation": "Image width/height; defer jQuery; self-host fonts."}]},
+    {"name": "AI Search Readiness (GEO)", "score": 68, "delta": 1, "what_works": ["Hard-number comparison openers on 14 money pages; /llms.txt live; 15 tables; AI crawlers allowed"]},
+    {"name": "Images", "score": 72, "delta": 0}
+  ],
+  "supplementary": {"sxo_score": 56, "sxo_summary": "Money pages now carry verified substance; long-tail depth + performance are the next SXO levers."}
+}
