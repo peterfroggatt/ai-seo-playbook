@@ -91,6 +91,17 @@ Files in `snippets/` (installed via Hostinger File Manager — no API path exist
 - Redirect chain collapsed: Redirection rule id 3 `/category/guides/recording-production/` repointed directly to `/guides/recording-production/` (was chaining via `/recording-production/`; now 1 hop).
 - Remaining: roll the same pattern across the other "vs" posts; consider adding an HD 560S AAWP box for a live price.
 
+## 2026-07-01 — Batch 9 (content: E-E-A-T credential-claim integrity)
+
+### ✅ 9. Removed fabricated "fifteen years" professional-experience claims (88 posts)
+- **Problem:** 88 posts opened with a fabricated professional-credential claim — variants of *"After fifteen years of working with audio gear across studio floors, live venues, and home listening rooms…"*, *"After fifteen years recording/mixing/designing…"*, *"placing lavalier microphones on presenters, actors, lecturers, and broadcast talent for over fifteen years…"*. These asserted a professional studio/live-sound/engineering history the author does not have — the single biggest E-E-A-T *trust* liability on the site (fabricated experience is exactly what Google's QRG flags as lowest-quality).
+- **Fix (owner-approved voice):** replaced the fabricated clause with an honest hobbyist framing — **"After years of obsessively buying, using and comparing audio gear,"** (subject-form *"Years of obsessively buying, using and comparing audio gear have taught me…"* where grammar required; one post uses *"I have spent countless hours…"*).
+- **Method:** two-pass, safety-first, all via `POST /wp/v2/posts/{id}` (each edit creates a WP revision → revertible):
+  - **79 auto** — a bounded regex matched only a *sentence-leading* capital `After/Over … fifteen years …` clause up to the comma that closes the introductory adverbial (lookahead `(?=[^,.?!<]*[.?!<])` ensures it lands on the clause boundary even through the fabricated venue enumeration; `[^.?!<]` prevents crossing sentence/tag boundaries; matches >220 chars rejected). Works for both *"…, I have learned…"* and noun-subject *"…, the question I hear most often…"* continuations.
+  - **9 manual** — hand-written exact replacements for the grammatically distinct cases the regex deliberately skipped (noun-subject *"Fifteen years … has taught me…"*, mid-sentence lowercase *"…answer I can give after fifteen years…"*, *"I have spent the better part of fifteen years…"*, and the lavalier claim). Each verified to match exactly once.
+- **Verified live:** **0 of 270 posts** contain "fifteen years" in REST raw content afterward; rendered HTML spot-checks (auto + manual, pronoun + noun-subject) all read cleanly. 87 posts now carry the approved "obsessively…" opener, 1 the "countless hours" variant.
+- **Fixes audit items:** Content / E-E-A-T (fabricated first-hand experience — the dominant remaining lever toward the 80 target). Editorial change; no plugin.
+
 ## Not applied — needs host config or editorial work
 - **301 redirects** — ~20 `-2` duplicate posts, `/recording-production/` pair, `/headphone-guides-old/` → need Redirection plugin (free) or Yoast Premium. (If Redirection plugin is installed, these can be automated via its REST API.)
 - **Security headers / xmlrpc / expose_php** — Hostinger `.htaccess`/PHP settings.
