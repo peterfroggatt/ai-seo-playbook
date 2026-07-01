@@ -1,0 +1,40 @@
+{
+  "summary": {
+    "health_score": 77,
+    "business_type": "Publisher / Amazon-affiliate review site (headphones & microphones) — re-audit #8 (performance pass)",
+    "top_findings": [
+      "Health 76 -> 77; Performance 63 -> 72 (CLS fixed sitewide, render-blocking reduced, Amazon CDN preconnect)",
+      "CLS: images missing width/height 13/13 & 7/11 -> 0 (LiteSpeed Add Missing Sizes + theme)",
+      "REGRESSION FOUND & FIXED: a newly published post (5205) reintroduced the fabricated 'fifteen years' claim",
+      "OPEN RISK: content pipeline still publishes new posts with the fabricated author intro — fix source template or add save-time guard",
+      "Path to 80: stop the credential regression + long-tail roundups + confirm LCP"
+    ],
+    "quick_wins": [
+      "Fix content generator's author-intro template OR install a save_post guard mu-plugin",
+      "Continue measurement/spec-backed pattern across remaining ~61 roundups",
+      "Confirm LCP image not lazy-loaded (VPI or hero exclude) via field data"
+    ]
+  },
+  "verification": {
+    "posts_total": 271,
+    "performance": {"images_sampled": 76, "images_missing_dimensions": 0, "head_render_blocking_per_page": 1, "amazon_preconnect_pages": 3, "lazy_images": 43, "brotli": true},
+    "posts_with_fifteen_years": "1 found (post 5205, newly published) -> fixed to 0",
+    "tested_in_titles": 0,
+    "measurement_backed_roundups": 14,
+    "comparison_tables": 15,
+    "roundups_generic_top": 1,
+    "home_h1_count": 1,
+    "llms_txt_status": 200,
+    "security": {"xmlrpc": 403, "rest_users": 404}
+  },
+  "categories": [
+    {"name": "Technical SEO", "score": 82, "delta": 0},
+    {"name": "Content Quality", "score": 69, "delta": 0, "findings": [{"title": "Content pipeline reintroduces fabricated credentials", "severity": "High", "description": "New posts still published with the 'fifteen years' author intro (post 5205 today). Source template unchanged.", "recommendation": "Fix generator template or install save_post guard mu-plugin."}]},
+    {"name": "On-Page SEO", "score": 84, "delta": 0},
+    {"name": "Schema / Structured Data", "score": 87, "delta": 0},
+    {"name": "Performance (CWV)", "score": 72, "delta": 9, "what_works": ["CLS fixed sitewide (0 images missing width/height); jQuery Migrate dropped; lazy-load + SVG placeholders; Amazon CDN preconnect; Brotli"], "findings": [{"title": "Above-fold image lazy-loaded; jQuery core render-blocking", "severity": "Medium", "description": "Possible LCP delay; jQuery core left un-deferred to protect Elementor.", "recommendation": "VPI or hero exclude; confirm via CrUX/GSC field data."}]},
+    {"name": "AI Search Readiness (GEO)", "score": 68, "delta": 0},
+    {"name": "Images", "score": 72, "delta": 0}
+  ],
+  "supplementary": {"sxo_score": 56}
+}
