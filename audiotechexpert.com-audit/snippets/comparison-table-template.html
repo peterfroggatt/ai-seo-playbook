@@ -1,0 +1,127 @@
+<!--
+  AUDIO TECH EXPERT — COMPARISON TABLE TEMPLATE
+  =============================================
+  HOW TO USE
+  1. In the "vs" post, add a **Custom HTML block** (Gutenberg: /html) — or an Elementor
+     HTML widget — near the TOP of the article (right after the intro).
+  2. Paste ONE of the templates below (headphones OR microphones).
+  3. Replace every [PLACEHOLDER]. Use REAL specs only (your editorial rule) — leave a
+     cell as "—" if a feature doesn't apply rather than inventing a value.
+  4. Put a one-sentence "Quick answer" ABOVE the table (see note at the bottom) — that
+     sentence is what AI Overviews / featured snippets quote.
+
+  WHY THIS FORMAT
+  - It's a genuine <table> with <caption> and <th scope> → machine-readable for Google
+    & AI (your pages currently have zero tables — this is the SXO/GEO lever).
+  - Affiliate links use rel="nofollow sponsored noopener" (Google link policy + FTC).
+  - Scoped under .ate-cmp so it won't collide with theme styles; mobile-scrolls cleanly.
+  - Duplicate the whole block per post; two style blocks across different pages are fine.
+-->
+
+
+<!-- ============================================================= -->
+<!-- TEMPLATE A — HEADPHONES (2-product "X vs Y")                   -->
+<!-- ============================================================= -->
+<div class="ate-cmp">
+  <style>
+    .ate-cmp{font-family:'Outfit',-apple-system,Segoe UI,sans-serif;color:#1a1a2e;margin:28px 0;}
+    .ate-cmp__scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:14px;box-shadow:0 2px 18px rgba(26,26,46,.08);}
+    .ate-cmp table{border-collapse:collapse;width:100%;min-width:520px;background:#fff;}
+    .ate-cmp caption{caption-side:top;text-align:left;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#e94560;padding:0 2px 10px;}
+    .ate-cmp th,.ate-cmp td{padding:14px 16px;border-bottom:1px solid #ececf2;font-size:15px;vertical-align:top;}
+    .ate-cmp thead th{background:#1a1a2e;color:#fff;font-size:16px;font-weight:700;text-align:center;}
+    .ate-cmp thead th:first-child{background:#12121f;}
+    .ate-cmp tbody th{font-weight:600;color:#555;white-space:nowrap;background:#faf9fc;text-align:left;position:sticky;left:0;}
+    .ate-cmp tbody td{text-align:center;}
+    .ate-cmp tr:hover td{background:#fbf7f9;}
+    .ate-cmp__pick{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;background:#e94560;border-radius:20px;padding:3px 10px;margin-top:6px;}
+    .ate-cmp__verdict th{background:#1a1a2e;color:#fff;}
+    .ate-cmp__verdict td{background:#f4f2f8;font-weight:600;}
+    .ate-cmp__cta{display:inline-block;background:#e94560;color:#fff;font-weight:700;text-decoration:none;padding:10px 20px;border-radius:24px;font-size:14px;}
+    .ate-cmp__cta:hover{background:#d33a52;}
+    @media(max-width:600px){.ate-cmp th,.ate-cmp td{padding:11px 12px;font-size:14px;}}
+  </style>
+
+  <div class="ate-cmp__scroll">
+    <table>
+      <caption>[Product A] vs [Product B] — at a glance</caption>
+      <thead>
+        <tr>
+          <th scope="col">Feature</th>
+          <th scope="col">[Product A name]<br><span class="ate-cmp__pick">Our pick</span></th>
+          <th scope="col">[Product B name]</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Price</th><td>[$xxx]</td><td>[$xxx]</td></tr>
+        <tr><th scope="row">Type</th><td>[Over-ear, closed-back]</td><td>[Over-ear, open-back]</td></tr>
+        <tr><th scope="row">Noise cancelling</th><td>[Yes — adaptive ANC]</td><td>[No]</td></tr>
+        <tr><th scope="row">Battery life</th><td>[30 hrs]</td><td>[—]</td></tr>
+        <tr><th scope="row">Weight</th><td>[250 g]</td><td>[290 g]</td></tr>
+        <tr><th scope="row">Drivers</th><td>[40 mm dynamic]</td><td>[45 mm dynamic]</td></tr>
+        <tr><th scope="row">Bluetooth codecs</th><td>[SBC, AAC, LDAC]</td><td>[Wired only]</td></tr>
+        <tr><th scope="row">Connectivity</th><td>[Bluetooth 5.3 + 3.5 mm]</td><td>[3.5 mm / 6.35 mm]</td></tr>
+        <tr><th scope="row">Best for</th><td>[Travel &amp; commuting]</td><td>[Home listening &amp; mixing]</td></tr>
+        <tr class="ate-cmp__verdict"><th scope="row">Verdict</th><td>[One line: why it wins for most people]</td><td>[One line: who it's actually for]</td></tr>
+        <tr>
+          <th scope="row">Check price</th>
+          <td><a class="ate-cmp__cta" href="[AMAZON AFFILIATE LINK A]" rel="nofollow sponsored noopener" target="_blank">View on Amazon</a></td>
+          <td><a class="ate-cmp__cta" href="[AMAZON AFFILIATE LINK B]" rel="nofollow sponsored noopener" target="_blank">View on Amazon</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- ============================================================= -->
+<!-- TEMPLATE B — MICROPHONES (2-product "X vs Y")                  -->
+<!-- Reuses the same .ate-cmp styles above; if used on its own      -->
+<!-- page, keep the <style> block from Template A too.              -->
+<!-- ============================================================= -->
+<div class="ate-cmp">
+  <div class="ate-cmp__scroll">
+    <table>
+      <caption>[Mic A] vs [Mic B] — at a glance</caption>
+      <thead>
+        <tr>
+          <th scope="col">Feature</th>
+          <th scope="col">[Mic A name]<br><span class="ate-cmp__pick">Our pick</span></th>
+          <th scope="col">[Mic B name]</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Price</th><td>[$xxx]</td><td>[$xxx]</td></tr>
+        <tr><th scope="row">Connection</th><td>[USB-C]</td><td>[XLR]</td></tr>
+        <tr><th scope="row">Capsule type</th><td>[Dynamic]</td><td>[Condenser]</td></tr>
+        <tr><th scope="row">Polar pattern</th><td>[Cardioid]</td><td>[Cardioid / multi]</td></tr>
+        <tr><th scope="row">Frequency response</th><td>[50 Hz–16 kHz]</td><td>[20 Hz–20 kHz]</td></tr>
+        <tr><th scope="row">Resolution</th><td>[24-bit / 48 kHz]</td><td>[Depends on interface]</td></tr>
+        <tr><th scope="row">Needs an interface?</th><td>[No — plug &amp; play]</td><td>[Yes — + phantom power]</td></tr>
+        <tr><th scope="row">Onboard controls</th><td>[Gain, mute, monitor]</td><td>[None]</td></tr>
+        <tr><th scope="row">Best for</th><td>[Podcasters &amp; streamers]</td><td>[Home studio / vocals]</td></tr>
+        <tr class="ate-cmp__verdict"><th scope="row">Verdict</th><td>[One line: why it wins for most people]</td><td>[One line: who it's actually for]</td></tr>
+        <tr>
+          <th scope="row">Check price</th>
+          <td><a class="ate-cmp__cta" href="[AMAZON AFFILIATE LINK A]" rel="nofollow sponsored noopener" target="_blank">View on Amazon</a></td>
+          <td><a class="ate-cmp__cta" href="[AMAZON AFFILIATE LINK B]" rel="nofollow sponsored noopener" target="_blank">View on Amazon</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!--
+  QUICK-ANSWER SENTENCE (put this ABOVE the table, as normal post text — NOT inside the table)
+  This 1–2 sentence direct answer is what AI Overviews / featured snippets extract:
+
+     "Quick answer: for most people the [Product A] is the better buy — [one concrete reason].
+      Choose the [Product B] only if you [specific use case]."
+
+  3-PRODUCT COMPARISON: add a third <th scope="col"> in <thead> and a third <td> in every row.
+  Keep the table to <=4 products so it stays readable on mobile.
+
+  ACCURACY: every value should be verifiable from the spec sheet / listing. Use "—" for
+  N/A. Don't guess measurements — a wrong spec in a comparison table erodes trust fast.
+-->
