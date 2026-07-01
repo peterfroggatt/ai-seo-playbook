@@ -140,7 +140,13 @@ Files in `snippets/` (installed via Hostinger File Manager — no API path exist
 
 ### ⚠️ 12b. Finding — a handful of roundups lead with generic, unmeasurable products
 - Sizing scan of all 75 `best-` roundups: **~62 lead with real, brand-name products** (measurement-backable). A small number lead with **unbranded generic Amazon listings** whose "specs" are seller marketing (no independent lab data exists), so they **cannot be honestly measurement-backed**. Confirmed offender: **`best-headphones-under-100-2026`**, whose "Best overall" is *"Hybrid Active Noise Cancelling Headphones (Bluetooth 6.0, 120H)"* (ASIN B0GSD8BWXV) — "Bluetooth 6.0" / "120H" are the seller's claims. Others: some phone-lavalier and sleep-earbud roundups (MAYBESTA, BAILIXIN, T33).
-- **Not auto-changed** — promoting a different product to "Best overall" on a money page is an editorial/revenue decision. Recommendation: promote a real, measured product already in the list (e.g. under-100 → JBL Tune 720BT or Soundcore Q20i) to the top slot, then measurement-back it. Awaiting owner decision.
+- **Owner decision:** promote a real product. Applied to under-100 (12c).
+
+### ✅ 12c. `/best-headphones-under-100-2026/` — generic top pick replaced (live)
+- **Promoted JBL Tune 720BT to "Best overall"** (was the generic "Hybrid ANC, Bluetooth 6.0, 120H"). New blurb is spec-backed and honest: ~76 h rated battery corroborated by reviewers, Bluetooth 5.3, JBL Pure Bass tuning, and an explicit "no ANC" caveat.
+- **Demoted the generic to "Best battery life"** with its claims honestly reframed: *"the manufacturer claims up to 120 hours… these are unbranded seller specs with no independent lab verification, so treat them as claims rather than measured results."* No longer presented as the site's #1 recommendation, and no dubious spec asserted as fact.
+- Reordered the top comparison box to put the JBL first. **Verified live:** H2 order now leads with JBL; generic no longer at #1.
+- Note: two other slots on this page (home/office, sports) are also generic but already hedge with "claimed" — left as-is.
 
 ## Not applied — needs host config or editorial work
 - **301 redirects** — ~20 `-2` duplicate posts, `/recording-production/` pair, `/headphone-guides-old/` → need Redirection plugin (free) or Yoast Premium. (If Redirection plugin is installed, these can be automated via its REST API.)
