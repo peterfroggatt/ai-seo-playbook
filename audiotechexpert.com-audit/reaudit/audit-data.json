@@ -1,13 +1,13 @@
 {
   "summary": {
-    "health_score": 70,
-    "business_type": "Publisher / Amazon-affiliate review site (headphones & microphones) — re-audit #2 (post-performance)",
+    "health_score": 71,
+    "business_type": "Publisher / Amazon-affiliate review site (headphones & microphones) \u2014 re-audit #3 (site-wide images)",
     "top_findings": [
-      "Health 51 -> 66 -> 70 across the engagement; this round's +4 is caching + homepage images",
-      "Performance 38 -> 60: LiteSpeed caching (TTFB ~0.1s) + homepage LCP now self-hosted WebP",
-      "Images 36 -> 58: homepage 0 Unsplash + WebP, but category pages still hotlink Unsplash (12 on /headphones/)",
-      "Content/E-E-A-T still 54 — now the #1 remaining lever (first-hand testing evidence, author photo)",
-      "Render-blocking jQuery/fonts + missing image dimensions (CLS) still open on Performance"
+      "Health 51 -> 66 -> 70 -> 71; this round = site-wide image self-hosting (Images 58->72, Performance 60->63)",
+      "All landing + category pages now 0 Unsplash (content + Yoast OG/schema), serving WebP; no third-party image dependency",
+      "Performance still capped by render-blocking jQuery/fonts + missing image width/height (CLS)",
+      "Content/E-E-A-T still 54 \u2014 the #1 remaining lever (first-hand testing evidence, author photo)",
+      "Comparison spec tables still to add on 'vs' posts"
     ],
     "quick_wins": [
       "Repeat self-host + WebP on category-page images (still hotlink Unsplash)",
@@ -18,36 +18,168 @@
     ]
   },
   "categories": [
-    {"name": "Technical SEO", "score": 82, "what_works": ["Index bloat cleared (674->356 URLs), duplicates redirected, full security header set, hardening"], "findings": [
-      {"title": "Homepage two H1 + author archive indexed", "severity": "Medium", "description": "Unchanged from re-audit #1.", "recommendation": "Single H1; noindex/enrich author archive."},
-      {"title": "Render-blocking JS/CSS (CWV lab)", "severity": "Medium", "description": "jQuery in head + 4 Google-Fonts CSS still render-blocking.", "recommendation": "Defer jQuery, self-host fonts, critical CSS (Elementor-sensitive)."}
-    ]},
-    {"name": "Content Quality", "score": 54, "what_works": ["FTC disclosure, transparent methodology, readable; thin/dupe pages removed"], "findings": [
-      {"title": "No first-hand testing evidence; no author photo", "severity": "Critical", "description": "Unchanged — #1 remaining ranking lever for an affiliate review site.", "recommendation": "Add hands-on evidence + author photo to top roundups; reconcile credentials."}
-    ]},
-    {"name": "On-Page SEO", "score": 82, "what_works": ["Brand titles fixed, duplicate/legacy pages consolidated, good meta descriptions"], "findings": [
-      {"title": "Multiple H1 on templates; some thin category titles / alt", "severity": "Low", "description": "Unchanged.", "recommendation": "One H1 per template; descriptive titles; alt text."}
-    ]},
-    {"name": "Schema / Structured Data", "score": 86, "what_works": ["WebSite.name, Organization, Person enriched, ItemList+Product+Offer with live prices"], "findings": [
-      {"title": "Minor residual schema", "severity": "Low", "description": "Article.keywords string-in-array; one missing dateModified.", "recommendation": "Array keywords; ensure dateModified."}
-    ]},
-    {"name": "Performance (CWV)", "score": 60, "what_works": ["LiteSpeed page cache (TTFB ~0.1s); homepage LCP now self-hosted WebP; geotargeting preserved via cache vary"], "findings": [
-      {"title": "Render-blocking jQuery + Google Fonts", "severity": "High", "description": "jQuery in <head> (2 refs) + 4 Google-Fonts CSS still block render.", "recommendation": "Defer jQuery, self-host/dedupe fonts, preconnect."},
-      {"title": "Images lack width/height (CLS)", "severity": "Medium", "description": "13 homepage images without dimensions.", "recommendation": "Add explicit width/height (and on category images once self-hosted)."}
-    ]},
-    {"name": "AI Search Readiness (GEO)", "score": 56, "what_works": ["Brand nameable (WebSite.name + Organization); product structured data; all AI crawlers allowed"], "findings": [
-      {"title": "No comparison tables; no llms.txt", "severity": "High", "description": "0 <table> on vs/best pages; /llms.txt 404.", "recommendation": "Add spec tables to vs posts; publish llms.txt; Quick-Answer blocks."}
-    ]},
-    {"name": "Images", "score": 58, "what_works": ["Homepage fully self-hosted + WebP; schema primary image on-domain; dead 404 hero removed"], "findings": [
-      {"title": "Category pages still hotlink Unsplash", "severity": "High", "description": "12 images.unsplash.com refs on /headphones/; repeats across 58 category archives.", "recommendation": "Self-host + WebP category images (same process as homepage)."},
-      {"title": "Missing dimensions; some AI-generated post heroes", "severity": "Medium", "description": "Width/height gaps; review heroes include AI imagery.", "recommendation": "Add dimensions; label AI images (IPTC) or replace with originals."}
-    ]}
+    {
+      "name": "Technical SEO",
+      "score": 82,
+      "what_works": [
+        "Index bloat cleared (674->356 URLs), duplicates redirected, full security header set, hardening"
+      ],
+      "findings": [
+        {
+          "title": "Homepage two H1 + author archive indexed",
+          "severity": "Medium",
+          "description": "Unchanged from re-audit #1.",
+          "recommendation": "Single H1; noindex/enrich author archive."
+        },
+        {
+          "title": "Render-blocking JS/CSS (CWV lab)",
+          "severity": "Medium",
+          "description": "jQuery in head + 4 Google-Fonts CSS still render-blocking.",
+          "recommendation": "Defer jQuery, self-host fonts, critical CSS (Elementor-sensitive)."
+        }
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "score": 54,
+      "what_works": [
+        "FTC disclosure, transparent methodology, readable; thin/dupe pages removed"
+      ],
+      "findings": [
+        {
+          "title": "No first-hand testing evidence; no author photo",
+          "severity": "Critical",
+          "description": "Unchanged \u2014 #1 remaining ranking lever for an affiliate review site.",
+          "recommendation": "Add hands-on evidence + author photo to top roundups; reconcile credentials."
+        }
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "score": 82,
+      "what_works": [
+        "Brand titles fixed, duplicate/legacy pages consolidated, good meta descriptions"
+      ],
+      "findings": [
+        {
+          "title": "Multiple H1 on templates; some thin category titles / alt",
+          "severity": "Low",
+          "description": "Unchanged.",
+          "recommendation": "One H1 per template; descriptive titles; alt text."
+        }
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "score": 86,
+      "what_works": [
+        "WebSite.name, Organization, Person enriched, ItemList+Product+Offer with live prices"
+      ],
+      "findings": [
+        {
+          "title": "Minor residual schema",
+          "severity": "Low",
+          "description": "Article.keywords string-in-array; one missing dateModified.",
+          "recommendation": "Array keywords; ensure dateModified."
+        }
+      ]
+    },
+    {
+      "name": "Performance (CWV)",
+      "score": 63,
+      "what_works": [
+        "LiteSpeed page cache (TTFB ~0.1s); homepage LCP now self-hosted WebP; geotargeting preserved via cache vary"
+      ],
+      "findings": [
+        {
+          "title": "Render-blocking jQuery + Google Fonts",
+          "severity": "High",
+          "description": "jQuery in <head> (2 refs) + 4 Google-Fonts CSS still block render.",
+          "recommendation": "Defer jQuery, self-host/dedupe fonts, preconnect."
+        },
+        {
+          "title": "Images lack width/height (CLS)",
+          "severity": "Medium",
+          "description": "13 homepage images without dimensions.",
+          "recommendation": "Add explicit width/height (and on category images once self-hosted)."
+        }
+      ]
+    },
+    {
+      "name": "AI Search Readiness (GEO)",
+      "score": 56,
+      "what_works": [
+        "Brand nameable (WebSite.name + Organization); product structured data; all AI crawlers allowed"
+      ],
+      "findings": [
+        {
+          "title": "No comparison tables; no llms.txt",
+          "severity": "High",
+          "description": "0 <table> on vs/best pages; /llms.txt 404.",
+          "recommendation": "Add spec tables to vs posts; publish llms.txt; Quick-Answer blocks."
+        }
+      ]
+    },
+    {
+      "name": "Images",
+      "score": 72,
+      "what_works": [
+        "All landing + category pages self-hosted WebP; Yoast OG/schema images on-domain; no third-party dependency"
+      ],
+      "findings": [
+        {
+          "title": "Missing image width/height (CLS)",
+          "severity": "Medium",
+          "description": "13 homepage images (and others) lack explicit dimensions.",
+          "recommendation": "Add width/height attributes."
+        },
+        {
+          "title": "Some AI-generated review heroes",
+          "severity": "Low",
+          "description": "A few post heroes appear AI-generated.",
+          "recommendation": "Label via IPTC or replace with original photos."
+        }
+      ]
+    }
   ],
-  "action_plan": {"phases": [
-    {"name": "Phase 1: Done (this engagement)", "timeframe": "Complete", "items": ["Site title/schema, tag bloat, duplicates+redirects, security, Organization/Person/ItemList schema, LiteSpeed caching, homepage images WebP — applied & verified."]},
-    {"name": "Phase 2: Finish Performance/Images", "timeframe": "Week 1", "items": ["Self-host + WebP category-page images.", "Add image width/height (CLS).", "Carefully defer jQuery / self-host fonts (Elementor-sensitive)."]},
-    {"name": "Phase 3: Editorial E-E-A-T", "timeframe": "Weeks 2-4", "items": ["First-hand testing evidence + author photo on top roundups.", "Spec comparison tables on 'vs' posts."]},
-    {"name": "Phase 4: Cleanup & Measure", "timeframe": "Ongoing", "items": ["Single homepage H1; llms.txt; author archive; 3 year-slug duplicates; 42 empty categories.", "Track GSC Pages report over 2-4 weeks."]}
-  ]},
-  "artifacts": {"findings_dir": "../findings/", "screenshots_dir": "../screenshots/"}
+  "action_plan": {
+    "phases": [
+      {
+        "name": "Phase 1: Done (this engagement)",
+        "timeframe": "Complete",
+        "items": [
+          "Site title/schema, tag bloat, duplicates+redirects, security, Organization/Person/ItemList schema, LiteSpeed caching, homepage images WebP \u2014 applied & verified."
+        ]
+      },
+      {
+        "name": "Phase 2: Finish Performance/Images",
+        "timeframe": "Week 1",
+        "items": [
+          "Self-host + WebP category-page images.",
+          "Add image width/height (CLS).",
+          "Carefully defer jQuery / self-host fonts (Elementor-sensitive)."
+        ]
+      },
+      {
+        "name": "Phase 3: Editorial E-E-A-T",
+        "timeframe": "Weeks 2-4",
+        "items": [
+          "First-hand testing evidence + author photo on top roundups.",
+          "Spec comparison tables on 'vs' posts."
+        ]
+      },
+      {
+        "name": "Phase 4: Cleanup & Measure",
+        "timeframe": "Ongoing",
+        "items": [
+          "Single homepage H1; llms.txt; author archive; 3 year-slug duplicates; 42 empty categories.",
+          "Track GSC Pages report over 2-4 weeks."
+        ]
+      }
+    ]
+  },
+  "artifacts": {
+    "findings_dir": "../findings/",
+    "screenshots_dir": "../screenshots/"
+  }
 }
