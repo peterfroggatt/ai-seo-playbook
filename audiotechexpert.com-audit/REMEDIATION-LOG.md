@@ -71,7 +71,12 @@ Files in `snippets/` (installed via Hostinger File Manager — no API path exist
 - LiteSpeed Image Optimization → WebP replacement ON (serves WebP with original fallback; verified `content-type: image/webp` on self-hosted images).
 - Homepage: all 12 hotlinked `images.unsplash.com` images (incl. the CSS hero, which was a dead 404) replaced with self-hosted Media Library copies — **verified 0 Unsplash references remain; 16 self-hosted images all 200 + WebP; schema primaryImageOfPage now on-domain**.
 - Removed the broken `.ate-hero::before` background (was requesting a since-deleted Unsplash photo → 404 on every load).
-- **Remaining perf items:** explicit width/height on images (CLS); render-blocking jQuery/fonts/CSS (Elementor-sensitive — do last); category-page ImageObject may still hotlink Unsplash (check).
+- **Remaining perf items:** explicit width/height on images (CLS); render-blocking jQuery/fonts/CSS (Elementor-sensitive — do last).
+
+### ✅ 7. Category/landing images self-hosted site-wide (verified)
+- Installed `audiotechexpert-unsplash-rewrite.php` (v1.1.1) — rewrites `images.unsplash.com/photo-*` → self-hosted uploads in rendered content AND Yoast og:image / Twitter image / schema ImageObject. Uploaded the 10 remaining category images (5 reused from homepage batch).
+- **Verified:** 16 pages (landing pages + `/category/` archives) → **0 Unsplash references** (content + `<head>` OG/schema); replacements serving WebP.
+- **Incident (resolved):** the first upload left a duplicate copy of the mu-plugin in `mu-plugins/` (browser `(1)` suffix), causing a "Cannot redeclare function" fatal → site-wide HTTP 500. Fixed by deleting the duplicate; plugin hardened with a double-load `define()` guard (v1.1.1) so a stray duplicate can no longer fatal the site. Lesson: keep exactly one copy of any mu-plugin.
 
 ## Not applied — needs host config or editorial work
 - **301 redirects** — ~20 `-2` duplicate posts, `/recording-production/` pair, `/headphone-guides-old/` → need Redirection plugin (free) or Yoast Premium. (If Redirection plugin is installed, these can be automated via its REST API.)
