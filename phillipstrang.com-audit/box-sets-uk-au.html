@@ -1,0 +1,508 @@
+<style>
+/* American/FBI box-set tab — dark/gold to match the hub */
+.boxset-tab--us{background:#111;color:#f5f5f5;padding:28px 16px;max-width:1200px;margin:0 auto}
+.boxset-tab__intro{text-align:center;color:#ccc;font-size:1.05rem;max-width:680px;margin:0 auto 26px}
+.boxset-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+.boxset-card{position:relative;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:10px;padding:16px;text-align:center}
+.boxset-badge{position:absolute;top:10px;left:10px;background:#d4af37;color:#111;font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:4px}
+.boxset-badge--new{background:#2d6a4f;color:#fff}
+.boxset-card__cover img{max-width:100%;height:auto;border-radius:6px;box-shadow:0 8px 22px rgba(0,0,0,.5)}
+.boxset-card__series{color:#d4af37;font-size:.8rem;letter-spacing:.03em;margin:12px 0 2px;text-transform:uppercase}
+.boxset-card__title{font-size:1.05rem;margin:0 0 4px;color:#fff;line-height:1.25}
+.boxset-card__books{color:#aaa;font-size:.85rem;margin:0 0 14px}
+.boxset-card__cta{display:block;background:#d4af37;color:#111;font-weight:700;padding:10px;border-radius:6px;text-decoration:none}
+.boxset-card__cta:hover{background:#e6c25a}
+.boxset-card__buy{display:inline-block;margin-top:8px;color:#bbb;font-size:.85rem;text-decoration:underline}
+.boxset-tab--uk,.boxset-tab--au{background:#111;color:#f5f5f5;padding:28px 16px;max-width:1200px;margin:0 auto}
+</style>
+<!-- BOX SETS — British & Australian tabs. Same KU-first pattern as the US tab:
+     UK/AU readers also read heavily on Kindle Unlimited (units are negligible everywhere).
+     Grouped by series, series ordered by June-2026 KENP; within a series, in reading order.
+     IMPORTANT: /dp/ links point at amazon.COM. For these non-US tabs, REPLACE each href with the
+     box set's geni.us UNIVERSAL link so a UK/AU reader lands in their local Kindle store & KU.
+     Swap cover src for your 3D render. Badges are reader-facing & must be true. -->
+
+<!-- reuse the .boxset-* CSS from box-sets-us-fbi.html -->
+
+<div class="boxset-tab boxset-tab--uk" id="tab-british">
+  <p class="boxset-tab__intro">British crime — <strong>DI Sarah Lynch, DI Tremayne, DCI Isaac Cook &amp; DI Freya Tulloch</strong>. Binge each complete series <strong>free on Kindle Unlimited</strong>.</p>
+  <div class="boxset-grid">
+    <article class="boxset-card">
+      <span class="boxset-badge">Complete Series</span>
+      <a class="boxset-card__cover" href="https://www.amazon.com/dp/B0GBSNH9SY" rel="sponsored noopener" aria-label="The Complete DI Sarah Lynch Scottish Highland Mysteries — Complete · Books 1–6 box set cover">
+        <img src="/wp-content/uploads/REPLACE-3D-B0GBSNH9SY.webp" alt="The Complete DI Sarah Lynch Scottish Highland Mysteries — Complete · Books 1–6 box set cover" width="300" height="400" loading="lazy">
+      </a>
+      <p class="boxset-card__series">DI Sarah Lynch · Scottish Highlands</p>
+      <h3 class="boxset-card__title">The Complete DI Sarah Lynch Scottish Highland Mysteries</h3>
+      <p class="boxset-card__books">Complete · Books 1–6</p>
+      <a class="boxset-card__cta" href="https://www.amazon.com/dp/B0GBSNH9SY" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-card__buy" href="https://www.amazon.com/dp/B0GBSNH9SY" rel="sponsored noopener">or buy on Amazon</a>
+    </article>
+    <article class="boxset-card">
+      <span class="boxset-badge">Box Set</span>
+      <a class="boxset-card__cover" href="https://www.amazon.com/dp/B0GKJ356J3" rel="sponsored noopener" aria-label="DI Sarah Lynch Scottish Highland Mysteries — Books 7–12 box set cover">
+        <img src="/wp-content/uploads/REPLACE-3D-B0GKJ356J3.webp" alt="DI Sarah Lynch Scottish Highland Mysteries — Books 7–12 box set cover" width="300" height="400" loading="lazy">
+      </a>
+      <p class="boxset-card__series">DI Sarah Lynch · Scottish Highlands</p>
+      <h3 class="boxset-card__title">DI Sarah Lynch Scottish Highland Mysteries</h3>
+      <p class="boxset-card__books">Books 7–12</p>
+      <a class="boxset-card__cta" href="https://www.amazon.com/dp/B0GKJ356J3" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-card__buy" href="https://www.amazon.com/dp/B0GKJ356J3" rel="sponsored noopener">or buy on Amazon</a>
+    </article>
+    <article class="boxset-card">
+      <span class="boxset-badge boxset-badge--new">NEW</span>
+      <a class="boxset-card__cover" href="https://www.amazon.com/dp/B0GTD74CS1" rel="sponsored noopener" aria-label="DI Sarah Lynch Scottish Highland Mysteries — Books 13–18 box set cover">
+        <img src="/wp-content/uploads/REPLACE-3D-B0GTD74CS1.webp" alt="DI Sarah Lynch Scottish Highland Mysteries — Books 13–18 box set cover" width="300" height="400" loading="lazy">
+      </a>
+      <p class="boxset-card__series">DI Sarah Lynch · Scottish Highlands</p>
+      <h3 class="boxset-card__title">DI Sarah Lynch Scottish Highland Mysteries</h3>
+      <p class="boxset-card__books">Books 13–18</p>
+      <a class="boxset-card__cta" href="https://www.amazon.com/dp/B0GTD74CS1" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-card__buy" href="https://www.amazon.com/dp/B0GTD74CS1" rel="sponsored noopener">or buy on Amazon</a>
+    </article>
+    <article class="boxset-card">
+      <span class="boxset-badge">Complete Series</span>
+      <a class="boxset-card__cover" href="https://www.amazon.com/dp/B0G4T16TCJ" rel="sponsored noopener" aria-label="The Complete DI Tremayne Series — Complete · Books 1–10 box set cover">
+        <img src="/wp-content/uploads/REPLACE-3D-B0G4T16TCJ.webp" alt="The Complete DI Tremayne Series — Complete · Books 1–10 box set cover" width="300" height="400" loading="lazy">
+      </a>
+      <p class="boxset-card__series">DI Keith Tremayne · Salisbury</p>
+      <h3 class="boxset-card__title">The Complete DI Tremayne Series</h3>
+      <p class="boxset-card__books">Complete · Books 1–10</p>
+      <a class="boxset-card__cta" href="https://www.amazon.com/dp/B0G4T16TCJ" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-card__buy" href="https://www.amazon.com/dp/B0G4T16TCJ" rel="sponsored noopener">or buy on Amazon</a>
+    </article>
+    <article class="boxset-card">
+      <span class="boxset-badge">Box Set</span>
+      <a class="boxset-card__cover" href="https://www.amazon.com/dp/B07GSK5SLR" rel="sponsored noopener" aria-label="The DI Tremayne Series — Books 1–6 box set cover">
+        <img src="/wp-content/uploads/REPLACE-3D-B07GSK5SLR.webp" alt="The DI Tremayne Series — Books 1–6 box set cover" width="300" height="400" loading="lazy">
+      </a>
+      <p class="boxset-card__series">DI Keith Tremayne · Salisbury</p>
+      <h3 class="boxset-card__title">The DI Tremayne Series</h3>
+      <p class="boxset-card__books">Books 1–6</p>
+      <a class="boxset-card__cta" href="https://www.amazon.com/dp/B07GSK5SLR" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-card__buy" href="https://www.amazon.com/dp/B07GSK5SLR" rel="sponsored noopener">or buy on Amazon</a>
+    </article>
+    <article class="boxset-card">
+      <span class="boxset-badge">Box Set</span>
+      <a class="boxset-card__cover" href="https://www.amazon.com/dp/B0771FX1NJ" rel="sponsored noopener" aria-label="The DCI Isaac Cook Thriller Series — Books 1–6 box set cover">
+        <img src="/wp-content/uploads/REPLACE-3D-B0771FX1NJ.webp" alt="The DCI Isaac Cook Thriller Series — Books 1–6 box set cover" width="300" height="400" loading="lazy">
+      </a>
+      <p class="boxset-card__series">DCI Isaac Cook · London</p>
+      <h3 class="boxset-card__title">The DCI Isaac Cook Thriller Series</h3>
+      <p class="boxset-card__books">Books 1–6</p>
+      <a class="boxset-card__cta" href="https://www.amazon.com/dp/B0771FX1NJ" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-card__buy" href="https://www.amazon.com/dp/B0771FX1NJ" rel="sponsored noopener">or buy on Amazon</a>
+    </article>
+    <article class="boxset-card">
+      <span class="boxset-badge">Box Set</span>
+      <a class="boxset-card__cover" href="https://www.amazon.com/dp/B086ZBQHG9" rel="sponsored noopener" aria-label="The DCI Isaac Cook Thriller Series — Books 7–12 box set cover">
+        <img src="/wp-content/uploads/REPLACE-3D-B086ZBQHG9.webp" alt="The DCI Isaac Cook Thriller Series — Books 7–12 box set cover" width="300" height="400" loading="lazy">
+      </a>
+      <p class="boxset-card__series">DCI Isaac Cook · London</p>
+      <h3 class="boxset-card__title">The DCI Isaac Cook Thriller Series</h3>
+      <p class="boxset-card__books">Books 7–12</p>
+      <a class="boxset-card__cta" href="https://www.amazon.com/dp/B086ZBQHG9" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-card__buy" href="https://www.amazon.com/dp/B086ZBQHG9" rel="sponsored noopener">or buy on Amazon</a>
+    </article>
+    <article class="boxset-card">
+      <span class="boxset-badge">Box Set</span>
+      <a class="boxset-card__cover" href="https://www.amazon.com/dp/B0DHV6G4VQ" rel="sponsored noopener" aria-label="The DCI Isaac Cook Thriller Series — Books 13–18 box set cover">
+        <img src="/wp-content/uploads/REPLACE-3D-B0DHV6G4VQ.webp" alt="The DCI Isaac Cook Thriller Series — Books 13–18 box set cover" width="300" height="400" loading="lazy">
+      </a>
+      <p class="boxset-card__series">DCI Isaac Cook · London</p>
+      <h3 class="boxset-card__title">The DCI Isaac Cook Thriller Series</h3>
+      <p class="boxset-card__books">Books 13–18</p>
+      <a class="boxset-card__cta" href="https://www.amazon.com/dp/B0DHV6G4VQ" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-card__buy" href="https://www.amazon.com/dp/B0DHV6G4VQ" rel="sponsored noopener">or buy on Amazon</a>
+    </article>
+    <article class="boxset-card">
+      <span class="boxset-badge">Complete Series</span>
+      <a class="boxset-card__cover" href="https://www.amazon.com/dp/B0GY49N18B" rel="sponsored noopener" aria-label="The Complete Freya Tulloch Orkney Mysteries — Complete · Books 1–6 box set cover">
+        <img src="/wp-content/uploads/REPLACE-3D-B0GY49N18B.webp" alt="The Complete Freya Tulloch Orkney Mysteries — Complete · Books 1–6 box set cover" width="300" height="400" loading="lazy">
+      </a>
+      <p class="boxset-card__series">DI Freya Tulloch · Orkney Islands</p>
+      <h3 class="boxset-card__title">The Complete Freya Tulloch Orkney Mysteries</h3>
+      <p class="boxset-card__books">Complete · Books 1–6</p>
+      <a class="boxset-card__cta" href="https://www.amazon.com/dp/B0GY49N18B" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-card__buy" href="https://www.amazon.com/dp/B0GY49N18B" rel="sponsored noopener">or buy on Amazon</a>
+    </article>
+    <article class="boxset-card">
+      <span class="boxset-badge boxset-badge--new">NEW</span>
+      <a class="boxset-card__cover" href="https://www.amazon.com/dp/B0H449SZVN" rel="sponsored noopener" aria-label="The Freya Tulloch Orkney Mysteries — Books 7–12 box set cover">
+        <img src="/wp-content/uploads/REPLACE-3D-B0H449SZVN.webp" alt="The Freya Tulloch Orkney Mysteries — Books 7–12 box set cover" width="300" height="400" loading="lazy">
+      </a>
+      <p class="boxset-card__series">DI Freya Tulloch · Orkney Islands</p>
+      <h3 class="boxset-card__title">The Freya Tulloch Orkney Mysteries</h3>
+      <p class="boxset-card__books">Books 7–12</p>
+      <a class="boxset-card__cta" href="https://www.amazon.com/dp/B0H449SZVN" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-card__buy" href="https://www.amazon.com/dp/B0H449SZVN" rel="sponsored noopener">or buy on Amazon</a>
+    </article>
+  </div>
+</div>
+
+<div class="boxset-tab boxset-tab--au" id="tab-australian">
+  <p class="boxset-tab__intro">Australian crime — <strong>outback thrillers &amp; coastal mysteries</strong> across five series. Binge the complete series <strong>free on Kindle Unlimited</strong>.</p>
+  <div class="boxset-grid">
+    <article class="boxset-card">
+      <span class="boxset-badge">Complete Series</span>
+      <a class="boxset-card__cover" href="https://www.amazon.com/dp/B0FN6NMBKW" rel="sponsored noopener" aria-label="The Sarah Reeves Australian Outback Series — Complete · Books 1–6 box set cover">
+        <img src="/wp-content/uploads/REPLACE-3D-B0FN6NMBKW.webp" alt="The Sarah Reeves Australian Outback Series — Complete · Books 1–6 box set cover" width="300" height="400" loading="lazy">
+      </a>
+      <p class="boxset-card__series">Sarah Reeves · Australian Outback</p>
+      <h3 class="boxset-card__title">The Sarah Reeves Australian Outback Series</h3>
+      <p class="boxset-card__books">Complete · Books 1–6</p>
+      <a class="boxset-card__cta" href="https://www.amazon.com/dp/B0FN6NMBKW" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-card__buy" href="https://www.amazon.com/dp/B0FN6NMBKW" rel="sponsored noopener">or buy on Amazon</a>
+    </article>
+    <article class="boxset-card">
+      <span class="boxset-badge">Complete Series</span>
+      <a class="boxset-card__cover" href="https://www.amazon.com/dp/B0FN73FXBX" rel="sponsored noopener" aria-label="The Complete Jodi Brennan Series — Complete · Books 1–6 box set cover">
+        <img src="/wp-content/uploads/REPLACE-3D-B0FN73FXBX.webp" alt="The Complete Jodi Brennan Series — Complete · Books 1–6 box set cover" width="300" height="400" loading="lazy">
+      </a>
+      <p class="boxset-card__series">Jodi Brennan · Australian Coast</p>
+      <h3 class="boxset-card__title">The Complete Jodi Brennan Series</h3>
+      <p class="boxset-card__books">Complete · Books 1–6</p>
+      <a class="boxset-card__cta" href="https://www.amazon.com/dp/B0FN73FXBX" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-card__buy" href="https://www.amazon.com/dp/B0FN73FXBX" rel="sponsored noopener">or buy on Amazon</a>
+    </article>
+    <article class="boxset-card">
+      <span class="boxset-badge">Box Set</span>
+      <a class="boxset-card__cover" href="https://www.amazon.com/dp/B0FHVYSV99" rel="sponsored noopener" aria-label="The Maya Thorne Australian Outback Series — Books 1–6 box set cover">
+        <img src="/wp-content/uploads/REPLACE-3D-B0FHVYSV99.webp" alt="The Maya Thorne Australian Outback Series — Books 1–6 box set cover" width="300" height="400" loading="lazy">
+      </a>
+      <p class="boxset-card__series">Maya Thorne · Australian Outback</p>
+      <h3 class="boxset-card__title">The Maya Thorne Australian Outback Series</h3>
+      <p class="boxset-card__books">Books 1–6</p>
+      <a class="boxset-card__cta" href="https://www.amazon.com/dp/B0FHVYSV99" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-card__buy" href="https://www.amazon.com/dp/B0FHVYSV99" rel="sponsored noopener">or buy on Amazon</a>
+    </article>
+    <article class="boxset-card">
+      <span class="boxset-badge">Box Set</span>
+      <a class="boxset-card__cover" href="https://www.amazon.com/dp/B0FVCD9CKV" rel="sponsored noopener" aria-label="The Maya Thorne Australian Outback Series — Books 7–12 box set cover">
+        <img src="/wp-content/uploads/REPLACE-3D-B0FVCD9CKV.webp" alt="The Maya Thorne Australian Outback Series — Books 7–12 box set cover" width="300" height="400" loading="lazy">
+      </a>
+      <p class="boxset-card__series">Maya Thorne · Australian Outback</p>
+      <h3 class="boxset-card__title">The Maya Thorne Australian Outback Series</h3>
+      <p class="boxset-card__books">Books 7–12</p>
+      <a class="boxset-card__cta" href="https://www.amazon.com/dp/B0FVCD9CKV" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-card__buy" href="https://www.amazon.com/dp/B0FVCD9CKV" rel="sponsored noopener">or buy on Amazon</a>
+    </article>
+    <article class="boxset-card">
+      <span class="boxset-badge boxset-badge--new">NEW</span>
+      <a class="boxset-card__cover" href="https://www.amazon.com/dp/B0GDWJHZC5" rel="sponsored noopener" aria-label="The Maya Thorne Australian Outback Series — Books 13–18 box set cover">
+        <img src="/wp-content/uploads/REPLACE-3D-B0GDWJHZC5.webp" alt="The Maya Thorne Australian Outback Series — Books 13–18 box set cover" width="300" height="400" loading="lazy">
+      </a>
+      <p class="boxset-card__series">Maya Thorne · Australian Outback</p>
+      <h3 class="boxset-card__title">The Maya Thorne Australian Outback Series</h3>
+      <p class="boxset-card__books">Books 13–18</p>
+      <a class="boxset-card__cta" href="https://www.amazon.com/dp/B0GDWJHZC5" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-card__buy" href="https://www.amazon.com/dp/B0GDWJHZC5" rel="sponsored noopener">or buy on Amazon</a>
+    </article>
+    <article class="boxset-card">
+      <span class="boxset-badge">Complete Series</span>
+      <a class="boxset-card__cover" href="https://www.amazon.com/dp/B0GNDDK6C5" rel="sponsored noopener" aria-label="The Natalie Campbell Series — Complete · Books 1–6 box set cover">
+        <img src="/wp-content/uploads/REPLACE-3D-B0GNDDK6C5.webp" alt="The Natalie Campbell Series — Complete · Books 1–6 box set cover" width="300" height="400" loading="lazy">
+      </a>
+      <p class="boxset-card__series">Sgt Natalie Campbell · Sydney</p>
+      <h3 class="boxset-card__title">The Natalie Campbell Series</h3>
+      <p class="boxset-card__books">Complete · Books 1–6</p>
+      <a class="boxset-card__cta" href="https://www.amazon.com/dp/B0GNDDK6C5" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-card__buy" href="https://www.amazon.com/dp/B0GNDDK6C5" rel="sponsored noopener">or buy on Amazon</a>
+    </article>
+    <article class="boxset-card">
+      <span class="boxset-badge">Complete Series</span>
+      <a class="boxset-card__cover" href="https://www.amazon.com/dp/B0G5TYNW32" rel="sponsored noopener" aria-label="Kate Hayes Mysteries — Complete · Books 1–6 box set cover">
+        <img src="/wp-content/uploads/REPLACE-3D-B0G5TYNW32.webp" alt="Kate Hayes Mysteries — Complete · Books 1–6 box set cover" width="300" height="400" loading="lazy">
+      </a>
+      <p class="boxset-card__series">Kate Hayes · Australian Outback</p>
+      <h3 class="boxset-card__title">Kate Hayes Mysteries</h3>
+      <p class="boxset-card__books">Complete · Books 1–6</p>
+      <a class="boxset-card__cta" href="https://www.amazon.com/dp/B0G5TYNW32" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-card__buy" href="https://www.amazon.com/dp/B0G5TYNW32" rel="sponsored noopener">or buy on Amazon</a>
+    </article>
+    <article class="boxset-card">
+      <span class="boxset-badge boxset-badge--new">NEW</span>
+      <a class="boxset-card__cover" href="https://www.amazon.com/dp/B0FJ22515M" rel="sponsored noopener" aria-label="The Odysseus Kalaris Australian Outback Series — Complete · Books 1–6 box set cover">
+        <img src="/wp-content/uploads/REPLACE-3D-B0FJ22515M.webp" alt="The Odysseus Kalaris Australian Outback Series — Complete · Books 1–6 box set cover" width="300" height="400" loading="lazy">
+      </a>
+      <p class="boxset-card__series">Odysseus Kalaris · Australian Outback</p>
+      <h3 class="boxset-card__title">The Odysseus Kalaris Australian Outback Series</h3>
+      <p class="boxset-card__books">Complete · Books 1–6</p>
+      <a class="boxset-card__cta" href="https://www.amazon.com/dp/B0FJ22515M" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-card__buy" href="https://www.amazon.com/dp/B0FJ22515M" rel="sponsored noopener">or buy on Amazon</a>
+    </article>
+  </div>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Phillip Strang \u2014 British Crime Box Sets",
+  "numberOfItems": 10,
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Book",
+        "name": "The Complete DI Sarah Lynch Scottish Highland Mysteries",
+        "author": {
+          "@type": "Person",
+          "name": "Phillip Strang"
+        },
+        "bookFormat": "https://schema.org/EBook",
+        "url": "https://www.amazon.com/dp/B0GBSNH9SY"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Book",
+        "name": "DI Sarah Lynch Scottish Highland Mysteries",
+        "author": {
+          "@type": "Person",
+          "name": "Phillip Strang"
+        },
+        "bookFormat": "https://schema.org/EBook",
+        "url": "https://www.amazon.com/dp/B0GKJ356J3"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Book",
+        "name": "DI Sarah Lynch Scottish Highland Mysteries",
+        "author": {
+          "@type": "Person",
+          "name": "Phillip Strang"
+        },
+        "bookFormat": "https://schema.org/EBook",
+        "url": "https://www.amazon.com/dp/B0GTD74CS1"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "Book",
+        "name": "The Complete DI Tremayne Series",
+        "author": {
+          "@type": "Person",
+          "name": "Phillip Strang"
+        },
+        "bookFormat": "https://schema.org/EBook",
+        "url": "https://www.amazon.com/dp/B0G4T16TCJ"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@type": "Book",
+        "name": "The DI Tremayne Series",
+        "author": {
+          "@type": "Person",
+          "name": "Phillip Strang"
+        },
+        "bookFormat": "https://schema.org/EBook",
+        "url": "https://www.amazon.com/dp/B07GSK5SLR"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "item": {
+        "@type": "Book",
+        "name": "The DCI Isaac Cook Thriller Series",
+        "author": {
+          "@type": "Person",
+          "name": "Phillip Strang"
+        },
+        "bookFormat": "https://schema.org/EBook",
+        "url": "https://www.amazon.com/dp/B0771FX1NJ"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "item": {
+        "@type": "Book",
+        "name": "The DCI Isaac Cook Thriller Series",
+        "author": {
+          "@type": "Person",
+          "name": "Phillip Strang"
+        },
+        "bookFormat": "https://schema.org/EBook",
+        "url": "https://www.amazon.com/dp/B086ZBQHG9"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "item": {
+        "@type": "Book",
+        "name": "The DCI Isaac Cook Thriller Series",
+        "author": {
+          "@type": "Person",
+          "name": "Phillip Strang"
+        },
+        "bookFormat": "https://schema.org/EBook",
+        "url": "https://www.amazon.com/dp/B0DHV6G4VQ"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "item": {
+        "@type": "Book",
+        "name": "The Complete Freya Tulloch Orkney Mysteries",
+        "author": {
+          "@type": "Person",
+          "name": "Phillip Strang"
+        },
+        "bookFormat": "https://schema.org/EBook",
+        "url": "https://www.amazon.com/dp/B0GY49N18B"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "item": {
+        "@type": "Book",
+        "name": "The Freya Tulloch Orkney Mysteries",
+        "author": {
+          "@type": "Person",
+          "name": "Phillip Strang"
+        },
+        "bookFormat": "https://schema.org/EBook",
+        "url": "https://www.amazon.com/dp/B0H449SZVN"
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Phillip Strang \u2014 Australian Crime Box Sets",
+  "numberOfItems": 8,
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Book",
+        "name": "The Sarah Reeves Australian Outback Series",
+        "author": {
+          "@type": "Person",
+          "name": "Phillip Strang"
+        },
+        "bookFormat": "https://schema.org/EBook",
+        "url": "https://www.amazon.com/dp/B0FN6NMBKW"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Book",
+        "name": "The Complete Jodi Brennan Series",
+        "author": {
+          "@type": "Person",
+          "name": "Phillip Strang"
+        },
+        "bookFormat": "https://schema.org/EBook",
+        "url": "https://www.amazon.com/dp/B0FN73FXBX"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Book",
+        "name": "The Maya Thorne Australian Outback Series",
+        "author": {
+          "@type": "Person",
+          "name": "Phillip Strang"
+        },
+        "bookFormat": "https://schema.org/EBook",
+        "url": "https://www.amazon.com/dp/B0FHVYSV99"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "Book",
+        "name": "The Maya Thorne Australian Outback Series",
+        "author": {
+          "@type": "Person",
+          "name": "Phillip Strang"
+        },
+        "bookFormat": "https://schema.org/EBook",
+        "url": "https://www.amazon.com/dp/B0FVCD9CKV"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@type": "Book",
+        "name": "The Maya Thorne Australian Outback Series",
+        "author": {
+          "@type": "Person",
+          "name": "Phillip Strang"
+        },
+        "bookFormat": "https://schema.org/EBook",
+        "url": "https://www.amazon.com/dp/B0GDWJHZC5"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "item": {
+        "@type": "Book",
+        "name": "The Natalie Campbell Series",
+        "author": {
+          "@type": "Person",
+          "name": "Phillip Strang"
+        },
+        "bookFormat": "https://schema.org/EBook",
+        "url": "https://www.amazon.com/dp/B0GNDDK6C5"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "item": {
+        "@type": "Book",
+        "name": "Kate Hayes Mysteries",
+        "author": {
+          "@type": "Person",
+          "name": "Phillip Strang"
+        },
+        "bookFormat": "https://schema.org/EBook",
+        "url": "https://www.amazon.com/dp/B0G5TYNW32"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "item": {
+        "@type": "Book",
+        "name": "The Odysseus Kalaris Australian Outback Series",
+        "author": {
+          "@type": "Person",
+          "name": "Phillip Strang"
+        },
+        "bookFormat": "https://schema.org/EBook",
+        "url": "https://www.amazon.com/dp/B0FJ22515M"
+      }
+    }
+  ]
+}
+</script>
