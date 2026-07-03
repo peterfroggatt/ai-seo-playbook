@@ -1,0 +1,599 @@
+<style>
+/* ===== Box-set feature layout (expanded) — dark/gold, matches the hub ===== */
+.boxset-tab--uk,.boxset-tab--us,.boxset-tab--au{background:#111;color:#f5f5f5;padding:28px 16px;max-width:1180px;margin:0 auto}
+.boxset-tab__intro{text-align:center;color:#ccc;font-size:1.05rem;max-width:720px;margin:0 auto 30px}
+.boxset-feature{position:relative;display:grid;grid-template-columns:260px 1fr;gap:28px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:26px;margin:0 auto 28px;max-width:1120px}
+.boxset-feature__badge{position:absolute;top:14px;left:14px;background:#d4af37;color:#111;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:4px;z-index:2}
+.boxset-feature__badge--new{background:#2d6a4f;color:#fff}
+.boxset-feature__cover img{width:100%;height:auto;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,.55)}
+.boxset-feature__cta{display:block;background:#d4af37;color:#111;font-weight:700;text-align:center;padding:11px;border-radius:6px;text-decoration:none;margin-top:16px}
+.boxset-feature__cta:hover{background:#e6c25a}
+.boxset-feature__buy{display:block;text-align:center;color:#bbb;font-size:.85rem;text-decoration:underline;margin-top:8px}
+.boxset-feature__label{color:#d4af37;font-size:.8rem;letter-spacing:.05em;text-transform:uppercase;margin:0 0 4px}
+.boxset-feature__title{font-size:1.5rem;line-height:1.2;margin:0 0 8px;color:#fff}
+.boxset-feature__fans{color:#d4af37;font-style:italic;font-size:.95rem;margin:0 0 16px}
+.boxset-feature__body p{margin:0 0 12px;color:#dcdcdc;line-height:1.6}
+.boxset-feature__body h4{color:#d4af37;text-transform:uppercase;letter-spacing:.04em;font-size:.82rem;margin:18px 0 6px}
+.boxset-books{list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:6px 0 4px}
+.boxset-books li{background:#232323;border:1px solid #333;color:#eee;font-size:.85rem;padding:5px 11px;border-radius:20px}
+.boxset-perks{list-style:none;padding:0;margin:14px 0 0}
+.boxset-perks li{position:relative;padding-left:24px;margin:0 0 6px;color:#ccc;font-size:.92rem}
+.boxset-perks li::before{content:"\2713";position:absolute;left:0;color:#2d6a4f;font-weight:700}
+.footer{text-align:center;color:#aaa;font-size:.9rem;border-top:1px solid #2a2a2a;margin:34px auto 0;padding:22px 16px 6px;max-width:1120px}
+.footer a{color:#d4af37;text-decoration:none}
+.footer a:hover{text-decoration:underline}
+.footer p{margin-top:15px;color:#888;font-size:.82rem}
+@media(max-width:640px){.boxset-feature{grid-template-columns:1fr}.boxset-feature__cover{max-width:220px;margin:0 auto}}
+
+/* ===== Box Sets page wrapper ===== */
+.boxsets-page{background:#111;color:#f5f5f5;padding:32px 16px 8px;max-width:1180px;margin:0 auto}
+.boxsets-page h1{text-align:center;color:#d4af37;font-size:2.1rem;margin:0 0 6px}
+.boxsets-page__intro{text-align:center;color:#ccc;font-size:1.05rem;max-width:720px;margin:0 auto 28px}
+.region-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1120px;margin:0 auto 34px}
+.region-card{display:flex;flex-direction:column;align-items:center;gap:10px;background:#1a1a1a;border:2px solid #2a2a2a;border-radius:12px;padding:16px;cursor:pointer;text-decoration:none;transition:border-color .2s,transform .2s}
+.region-card:hover{transform:translateY(-3px)}
+.region-card.is-active{border-color:#d4af37}
+.region-card img{width:96px;height:144px;object-fit:contain;border-radius:5px;box-shadow:0 6px 16px rgba(0,0,0,.5)}
+.region-card__name{color:#fff;font-size:1.15rem;font-weight:700}
+.region-card__meta{color:#d4af37;font-size:.82rem;text-transform:uppercase;letter-spacing:.03em;text-align:center}
+.region-card.is-active .region-card__name{color:#d4af37}
+.region-panel[hidden]{display:none}
+@media(max-width:640px){.region-tabs{grid-template-columns:1fr}.region-card{flex-direction:row;justify-content:flex-start}.region-card__meta{text-align:left}}
+</style>
+
+<div class="boxsets-page">
+  <h1>Phillip Strang Box Sets</h1>
+  <p class="boxsets-page__intro">Complete-series box sets across British, American &amp; Australian crime — binge each series <strong>free on Kindle Unlimited</strong>. Choose a region to browse.</p>
+
+  <div class="region-tabs" role="tablist">
+    <a class="region-card is-active" role="tab" href="#american" data-target="american">
+      <img src="https://m.media-amazon.com/images/I/81ygw8468KL._SL1500_.jpg" alt="American FBI thriller box sets">
+      <span class="region-card__name">American</span>
+      <span class="region-card__meta">FBI thrillers · 4 sets</span>
+    </a>
+    <a class="region-card" role="tab" href="#british" data-target="british">
+      <img src="https://m.media-amazon.com/images/I/71aWBzi2DBL._SL1500_.jpg" alt="British crime box sets">
+      <span class="region-card__name">British</span>
+      <span class="region-card__meta">London to the Highlands · 10 sets</span>
+    </a>
+    <a class="region-card" role="tab" href="#australian" data-target="australian">
+      <img src="/wp-content/uploads/REPLACE-region-australian.webp" alt="Australian outback crime box sets">
+      <span class="region-card__name">Australian</span>
+      <span class="region-card__meta">Outback &amp; coast · 8 sets</span>
+    </a>
+  </div>
+
+  <!-- ============ REGION PANELS (one wrapper each; JS toggles [hidden]) ============ -->
+  <section class="region-panel" id="panel-american" data-region="american">
+<div class="boxset-tab boxset-tab--us" id="tab-american">
+  <p class="boxset-tab__intro">FBI &amp; American thrillers — <strong>complete-series box sets</strong>. Binge the whole series <strong>free on Kindle Unlimited</strong>.</p>
+
+  <!-- 1 · Alex Harlan Complete 1–6 -->
+  <article class="boxset-feature">
+    <span class="boxset-feature__badge">Complete Series</span>
+    <div class="boxset-feature__cover">
+      <img src="https://m.media-amazon.com/images/I/81ygw8468KL._SL1500_.jpg" alt="The Complete Alex Harlan FBI Thriller Series, Books 1–6 box set cover" width="300" height="450" loading="lazy">
+      <a class="boxset-feature__cta" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book1" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-feature__buy" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book1" rel="sponsored noopener">or buy on Amazon</a>
+    </div>
+    <div class="boxset-feature__body">
+      <p class="boxset-feature__label">Alex Harlan · FBI · Books 1–6</p>
+      <h3 class="boxset-feature__title">The Complete Alex Harlan FBI Thriller Series</h3>
+      <p class="boxset-feature__fans">Perfect for fans of CJ Box, Brad Thor, and Kyle Mills</p>
+      <p><strong>THE COMPLETE ALEX HARLAN FBI THRILLER SERIES — ALL SIX BOOKS</strong></p>
+      <p>From the Appalachian mountains to international kill zones. From a mother's murder to a global conspiracy. Six books. One relentless pursuit of justice.</p>
+      <p>FBI profiler Alex Harlan returns to his hometown after a case goes catastrophically wrong, only to discover his mother's death thirty years ago was murder—and the organization responsible has been operating with impunity ever since. What begins as a local investigation becomes an international manhunt spanning three continents as Alex uncovers the Trust Council, a seven-member criminal empire pursuing total control of global financial systems.</p>
+      <h4>The Coventry Ridge Trilogy (Books 1–3)</h4>
+      <p>From buried secrets in the Appalachian mountains to federal task forces and fortified compounds, Alex dismantles the Ridge Line Trust's regional operations—only to discover they're just one piece of a much larger conspiracy.</p>
+      <ul class="boxset-books"><li>Ridge Lines</li><li>Hidden Cargo</li><li>Killing Ghosts</li></ul>
+      <h4>The Trust Council Trilogy (Books 4–6)</h4>
+      <p>The hunt goes global. From Jakarta's criminal underworld during a catastrophic storm to Europe's banking centers and Seattle's tech campuses, Alex pursues the Trust Council's leadership—and confronts the man who killed his mother in the caves where it all began.</p>
+      <ul class="boxset-books"><li>Jakarta Rain</li><li>Ascension Protocol</li><li>Ghost Council</li></ul>
+      <ul class="boxset-perks">
+        <li>Over 1,800 pages of thriller action</li>
+        <li>6 complete novels — two interconnected trilogies</li>
+        <li>Small-town secrets to global conspiracy — full story arc</li>
+        <li>FBI procedural meets international espionage</li>
+        <li>Personal stakes and professional duty collide</li>
+        <li>Perfect for binge-reading</li>
+      </ul>
+      <p>The complete journey from Coventry Ridge to the world and back again. Every book. Every secret. Every confrontation. One unstoppable series.</p>
+    </div>
+  </article>
+
+  <!-- 2 · Reid Harper Complete 1–3 -->
+  <article class="boxset-feature">
+    <span class="boxset-feature__badge">Complete Trilogy</span>
+    <div class="boxset-feature__cover">
+      <img src="https://m.media-amazon.com/images/I/91misklk+EL._SL1500_.jpg" alt="The Reid Harper FBI Thriller Series, Books 1–3 box set cover" width="300" height="450" loading="lazy">
+      <a class="boxset-feature__cta" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book2" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-feature__buy" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book2" rel="sponsored noopener">or buy on Amazon</a>
+    </div>
+    <div class="boxset-feature__body">
+      <p class="boxset-feature__label">Reid Harper · FBI International · Books 1–3</p>
+      <h3 class="boxset-feature__title">The Reid Harper FBI Thriller Series</h3>
+      <p class="boxset-feature__fans">For fans of Criminal Minds, Mindhunter &amp; Thomas Harris</p>
+      <p><strong>One FBI profiler. Three European cities. Three impossible cases.</strong></p>
+      <p>FBI profiler Reid Harper has seen the darkness that lives inside the human mind. But when his Amsterdam investigation ends in catastrophic failure—six women murdered, only one saved—the guilt nearly destroys him.</p>
+      <p>Now, three complete thrillers follow Reid from his darkest moment to his ultimate redemption across the streets of Europe's most dangerous cities.</p>
+      <h4>The Amsterdam Killer</h4>
+      <p><em>Six dead. One alive. The case that broke him.</em></p>
+      <p>A serial killer is hunting women in Amsterdam's narrow canal-side streets. Reid Harper arrives too late to stop the bloodshed. Six victims dead. One woman saved—but at devastating cost. The case that should have made Reid's career instead shatters him completely. This is the story of how a brilliant profiler learned that saving one life sometimes means losing yourself.</p>
+      <h4>The Prague Hunter</h4>
+      <p><em>Three women dead. One pattern emerging. Time is running out.</em></p>
+      <p>Haunted by Amsterdam, Reid takes a case in Prague he can't refuse. A serial killer is targeting brunettes in their twenties with terrifying precision. Three women are already dead. Victim four has been chosen. Reid has one chance to save her—and prove he can still do this job without destroying himself in the process.</p>
+      <h4>The Berlin Captives</h4>
+      <p><em>Three women vanished. Eight weeks missing. No ransom. No bodies.</em></p>
+      <p>In his first assignment as International Liaison, Reid faces his biggest test: three German women disappeared over two months, held alive by an organized predator in a hidden location. Every day that passes makes survival less likely. Can Reid find them before it's too late—while maintaining the hard-won balance between obsessive dedication and sustainable work?</p>
+      <p>Three cities. Three killers. One profiler's journey from breakdown to redemption.</p>
+      <p>This complete trilogy delivers pulse-pounding international thrillers with deep psychological insight, complex serial killer cases, and a protagonist fighting his own demons while hunting monsters.</p>
+    </div>
+  </article>
+
+  <!-- 3 · Jordan Cross Complete 1–3 -->
+  <article class="boxset-feature">
+    <span class="boxset-feature__badge">Complete Trilogy</span>
+    <div class="boxset-feature__cover">
+      <img src="https://m.media-amazon.com/images/I/913xXCO0fLL._SL1500_.jpg" alt="The Detective Jordan Cross Thriller Series, Books 1–3 box set cover" width="300" height="450" loading="lazy">
+      <a class="boxset-feature__cta" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book3" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-feature__buy" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book3" rel="sponsored noopener">or buy on Amazon</a>
+    </div>
+    <div class="boxset-feature__body">
+      <p class="boxset-feature__label">Jordan Cross · Detroit · Books 1–3</p>
+      <h3 class="boxset-feature__title">The Detective Jordan Cross Thriller Series</h3>
+      <p class="boxset-feature__fans">For fans of Tana French, Michael Connelly &amp; Mare of Easttown</p>
+      <p><strong>DETECTIVE JORDAN CROSS DOESN'T SOLVE COLD CASES. SHE EXPOSES THE CONSPIRACIES THAT CREATED THEM.</strong></p>
+      <p>In the ruins of Detroit, where abandoned buildings outnumber people and institutional corruption runs fifty years deep, one detective refuses to let the forgotten stay buried.</p>
+      <p>Jordan Cross works the cases nobody wants—decades-old murders in a basement cold case unit where files gather dust and victims' families have stopped hoping for justice. She's cynical, damaged, relentless. A divorced cop who chain-smokes through sixteen-hour days because the work is all she has.</p>
+      <p>Then she finds the pattern.</p>
+      <p>Three murdered teenagers in 1989. Eight union organizers dead between 1972 and 1979. Five autoworkers ruled suicides during the 2008 financial crisis. All dismissed. All covered up. All connected to a fifty-year conspiracy of corporate murder and police corruption that reaches from factory floors to federal courthouses.</p>
+      <p>Including the "suicide" of her own father.</p>
+      <p>Fighting institutional rot destroys the people who fight it. Jordan exposes deputy chiefs, convicts executives, proves her father was murdered. She delivers justice to families who waited decades for the truth. But justice has a price. And Jordan pays it with everything she has.</p>
+      <p><strong>THE COMPLETE JORDAN CROSS SERIES.</strong> Three full-length thrillers. Fifty years of corruption. One detective who won't stop until the truth destroys her.</p>
+      <ul class="boxset-books"><li>The Forgotten Girls</li><li>The Union Man</li><li>The Reckoning</li></ul>
+    </div>
+  </article>
+
+  <!-- 4 · Alex Harlan Complete 7–12 -->
+  <article class="boxset-feature">
+    <span class="boxset-feature__badge boxset-feature__badge--new">NEW</span>
+    <div class="boxset-feature__cover">
+      <img src="https://m.media-amazon.com/images/I/71sqeT+rwML._SL1500_.jpg" alt="The Complete Alex Harlan FBI Thriller Series, Books 7–12 box set cover" width="300" height="450" loading="lazy">
+      <a class="boxset-feature__cta" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book4" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-feature__buy" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book4" rel="sponsored noopener">or buy on Amazon</a>
+    </div>
+    <div class="boxset-feature__body">
+      <p class="boxset-feature__label">Alex Harlan · FBI · Books 7–12</p>
+      <h3 class="boxset-feature__title">The Alex Harlan FBI Thrillers — The Institutional Arc</h3>
+      <p class="boxset-feature__fans">Perfect for fans of Michael Connelly, Robert Dugoni, and John Sandford</p>
+      <p><strong>THE ALEX HARLAN FBI THRILLERS: THE INSTITUTIONAL ARC — BOOKS 7 TO 12</strong></p>
+      <p>From a courtroom to a graveside. From a stranger's stolen life to his own father's signature. Six books. One truth that refuses to stay buried.</p>
+      <p>The conspiracy is broken, but the rot it leaves behind runs deeper than any single empire. FBI profiler Alex Harlan learns that the most dangerous crimes aren't the ones committed in the dark — they're the ones written down, signed, filed, and believed: the fault line under a courtroom, the forged authority over a vulnerable life, the certificate that turns a murder into a quiet, natural death. As the cases pull him closer to home, Alex uncovers a truth that has been waiting thirty years in the paperwork of his own family — and a patient man who has been waiting just as long for a Harlan to come looking.</p>
+      <h4>The Captured System (Books 7–9)</h4>
+      <p>From a compromised federal courthouse to a guardianship racket preying on the helpless to a cold case nobody wanted reopened, Alex learns that a signature can do what a bullet never could — and that the institutions meant to protect people can be quietly turned against them.</p>
+      <ul class="boxset-books"><li>Fault Line</li><li>The Angel of Caldera</li><li>Cold Comfort</li></ul>
+      <h4>The Harlan Reckoning (Books 10–12)</h4>
+      <p>The paper trail leads home. From a dead man with no such name, to a stolen power of attorney, to a thirty-year-old death certificate signed in his own father's hand, Alex must prove what a single page spent decades denying — and decide what he owes a father who buried the truth, and a child who was owed a name.</p>
+      <ul class="boxset-books"><li>No Such Person</li><li>Power of Attorney</li><li>Ground Truth</li></ul>
+      <ul class="boxset-perks">
+        <li>Six complete novels — two interconnected arcs</li>
+        <li>From captured institutions to one family's buried secret — a full story arc</li>
+        <li>FBI profiling meets forensic document detection</li>
+        <li>Slow-burn suspense and a patience-versus-patience endgame</li>
+        <li>Personal reckoning and professional duty collide</li>
+        <li>Perfect for binge-reading</li>
+      </ul>
+      <p>Every signature. Every silence. Every reckoning. The truth was on paper all along.</p>
+    </div>
+  </article>
+  </div>
+  </section>
+
+  <section class="region-panel" id="panel-british" data-region="british" hidden>
+<div class="boxset-tab boxset-tab--uk" id="tab-british">
+  <p class="boxset-tab__intro">British crime — <strong>DI Sarah Lynch, DI Tremayne, DCI Isaac Cook &amp; DI Freya Tulloch</strong>. Binge each complete series <strong>free on Kindle Unlimited</strong>.</p>
+
+  <!-- 1 · Sarah Lynch Complete 1–6 -->
+  <article class="boxset-feature">
+    <span class="boxset-feature__badge">Complete Series</span>
+    <div class="boxset-feature__cover">
+      <img src="https://m.media-amazon.com/images/I/71aWBzi2DBL._SL1500_.jpg" alt="The Complete DI Sarah Lynch Scottish Highland Mysteries, Books 1–6 box set cover" width="300" height="450" loading="lazy">
+      <a class="boxset-feature__cta" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book5" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-feature__buy" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book5" rel="sponsored noopener">or buy on Amazon</a>
+    </div>
+    <div class="boxset-feature__body">
+      <p class="boxset-feature__label">DI Sarah Lynch · Scottish Highlands · Books 1–6</p>
+      <h3 class="boxset-feature__title">The Complete DI Sarah Lynch Scottish Highland Mysteries</h3>
+      <p class="boxset-feature__fans">For fans of Ann Cleeves, Val McDermid &amp; Peter May</p>
+      <p>Exiled from Glasgow for exposing corruption, DI Sarah Lynch was sent to Fort William as punishment. The remote Scottish Highlands were meant to end her career.</p>
+      <p>Instead, they became her purpose.</p>
+      <p>From dark lochs to frozen peaks, from burning moorland to ancient forests, DI Sarah Lynch investigates murders that the powerful want buried. Each case transforms her—from bitter outsider to Highland protector, from exile to home.</p>
+      <p>This complete six-book series includes over 180,000 words of atmospheric British crime fiction:</p>
+      <h4>The Dark Loch</h4>
+      <p>A body in the water exposes illegal poaching and murder on a Highland estate. Sarah's first case proves the Highlands are anything but peaceful.</p>
+      <h4>The Burning Moor</h4>
+      <p>A wildfire on Rannoch Moor reveals six bodies buried over two decades. Some secrets burn for years before the truth surfaces.</p>
+      <h4>The Silent Glen</h4>
+      <p>Witness protection fails when a protected witness is executed in Glen Nevis. Organized crime has come to the Highlands, and nowhere is safe.</p>
+      <h4>The Frozen Peaks</h4>
+      <p>A sabotaged rope on Ben Nevis kills a geologist who knew too much. Corporate conspiracy reaches the highest peaks.</p>
+      <h4>The Raven's Cry</h4>
+      <p>A wildlife officer is murdered in ancient Caledonian forest. The ravens witnessed everything—but who will listen to nature's testimony?</p>
+      <h4>The Last Cairn</h4>
+      <p>Sarah's corrupt former superior is on the run, and the final confrontation will test everything she's become in the Highlands.</p>
+      <ul class="boxset-perks">
+        <li>Atmospheric Scottish settings</li>
+        <li>Complex female detectives</li>
+        <li>Small-town secrets and conspiracies</li>
+        <li>Character-driven mysteries</li>
+        <li>Series that build to satisfying conclusions</li>
+      </ul>
+      <p>Binge the complete series today and follow Sarah's journey from exile to justice in the Scottish Highlands.</p>
+    </div>
+  </article>
+
+  <!-- 2 · Sarah Lynch 7–12 -->
+  <article class="boxset-feature">
+    <span class="boxset-feature__badge">Box Set</span>
+    <div class="boxset-feature__cover">
+      <img src="https://m.media-amazon.com/images/I/71m492Ty7sL._SL1500_.jpg" alt="DI Sarah Lynch Scottish Highland Mysteries, Books 7–12 box set cover" width="300" height="450" loading="lazy">
+      <a class="boxset-feature__cta" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book6" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-feature__buy" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book6" rel="sponsored noopener">or buy on Amazon</a>
+    </div>
+    <div class="boxset-feature__body">
+      <p class="boxset-feature__label">DI Sarah Lynch · Scottish Highlands · Books 7–12</p>
+      <h3 class="boxset-feature__title">DI Sarah Lynch Scottish Highland Mysteries</h3>
+      <p class="boxset-feature__fans">For fans of Ann Cleeves, Peter May &amp; Val McDermid</p>
+      <p><strong>Six dark Highland mysteries. One relentless detective.</strong></p>
+      <p>Sarah Lynch has become Fort William's most skilled investigator, solving impossible crimes across the unforgiving Highland landscape. This collection brings together six standalone mysteries that showcase her methodical brilliance, from locked-room puzzles to environmental murders, family betrayals to ritual killings.</p>
+      <h4>The Whisky Grave (Book 7)</h4>
+      <p>A master distiller found dead inside a sealed whisky cask. Family secrets fermenting for generations. Sarah must navigate century-old feuds and modern greed to expose a killer hiding behind tradition.</p>
+      <h4>The Forester's Fall (Book 8)</h4>
+      <p>A conservation specialist killed by sabotaged climbing equipment. When Sarah investigates competing claims to ancient Highland forests, she discovers environmental crimes aren't victimless—and betrayal comes from those you trust most.</p>
+      <h4>The Frozen Descent (Book 9)</h4>
+      <p>A ski instructor dies in a chairlift "accident" during night operations. Sarah recognizes the pattern from previous workplace murders. Behind Nevis Range's slopes lies systematic theft, and someone's willing to kill to keep it hidden.</p>
+      <h4>The Ferry Crossing (Book 10)</h4>
+      <p>A tourist vanishes from a five-minute ferry crossing and washes up dead weeks later. Sarah uncovers drug operations masked by Highland tourism, and a desperate teenager who made one fatal decision.</p>
+      <h4>The Shepherd's Stone (Book 11)</h4>
+      <p>A crofter found dead at ancient standing stones, positioned like ritual sacrifice. Sarah cuts through superstition and staged occult scenes to reveal that old land disputes can still turn deadly.</p>
+      <h4>The Winter Lodge (Book 12)</h4>
+      <p>A locked-room mystery during a mountain blizzard. Sarah faces her most impossible case: a ski instructor dead inside a sealed shelter, the door locked from within. Solving how he died is easier than understanding why.</p>
+      <p>Each investigation takes Sarah deeper into Highland culture—whisky distilleries and ancient forests, ski resorts and isolated crofts, ferry crossings and mountain refuges. Each case reveals how the landscape shapes the crimes committed within it.</p>
+      <p>These standalone mysteries can be read in any order, but together they showcase Sarah Lynch at the height of her investigative powers.</p>
+      <p><strong>SIX COMPLETE NOVELS. NO CLIFFHANGERS. BINGE-WORTHY HIGHLAND NOIR.</strong> Over 270,000 words of dark, atmospheric Scottish crime fiction.</p>
+    </div>
+  </article>
+
+  <!-- 3 · Sarah Lynch 13–18 -->
+  <article class="boxset-feature">
+    <span class="boxset-feature__badge boxset-feature__badge--new">NEW</span>
+    <div class="boxset-feature__cover">
+      <img src="https://m.media-amazon.com/images/I/71lq703HZqL._SL1500_.jpg" alt="DI Sarah Lynch Scottish Highland Mysteries, Books 13–18 box set cover" width="300" height="450" loading="lazy">
+      <a class="boxset-feature__cta" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book7" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-feature__buy" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book7" rel="sponsored noopener">or buy on Amazon</a>
+    </div>
+    <div class="boxset-feature__body">
+      <p class="boxset-feature__label">DI Sarah Lynch · Scottish Highlands · Books 13–18</p>
+      <h3 class="boxset-feature__title">DI Sarah Lynch Scottish Highland Mysteries</h3>
+      <p class="boxset-feature__fans">For fans of Ann Cleeves, Peter May &amp; Val McDermid</p>
+      <p><strong>SIX DARK HIGHLAND MYSTERIES. ONE RELENTLESS DETECTIVE.</strong></p>
+      <p>Sarah Lynch has become the Highlands' most formidable investigator, solving crimes others dismiss as accidents or misfortune. This collection brings together six standalone mysteries that showcase her methodical brilliance—from hunting-estate sabotage to industrial murder, from drownings that aren't accidents to falls that were pushed.</p>
+      <h4>The Stalker's Path (Book 13)</h4>
+      <p>A rifle explodes on a Highland hillside, killing a wealthy American during a guided stalk. Sarah arrests the ghillie with motive and opportunity—then discovers the sabotaged weapon was never meant for the victim. The wrong man is dead. The real target is still alive. And the killer remains on the estate.</p>
+      <h4>The Quiet House (Book 14)</h4>
+      <p>A doctor drowns in two feet of water at a Loch Eil holiday cottage. Five friends, all lying. Sarah builds her case against the obvious suspect—until a twenty-year-old secret surfaces. In the Highlands, where trust runs deep and silence runs deeper, the quiet ones are always the most dangerous.</p>
+      <h4>The Narrow Ridge (Book 15)</h4>
+      <p>An experienced mountaineer falls from Aonach Eagach's exposed ridge. His partner vanishes. When toxicology reveals a drug the partner couldn't access but the victim's wife works with daily, Sarah tracks two suspects in parallel. One was there. One was a hundred miles away. The evidence seesaws between them.</p>
+      <h4>The Sea Lock (Book 16)</h4>
+      <p>A canal worker drowns when the Corpach sea lock floods with him inside. The safety systems were overridden from within. The call-in was faked. Sarah uncovers a secret buried for twenty-three years—a boy who drowned in the same water, and a woman who waited with absolute patience for truth to arrive.</p>
+      <h4>The Farm (Book 17)</h4>
+      <p>A salmon farm manager was found face down in Loch Creran. Wet walkways, working alone—it looks like an industrial accident until the pathologist finds bruising. Eleven staff, a closed site, no obvious motive. Some arrangements are never spoken aloud. Some debts are collected quietly. Until the night they're not.</p>
+      <h4>The Smelter (Book 18)</h4>
+      <p>A building surveyor dies inside the Ice Factor—a Victorian smelter turned climbing venue. Nine metres below the inspection level, railings intact, alarm system showing no breach. He'd found a gap in the archives, a disappeared name, a death record that had been corrected. The scene that shows nothing is the most dangerous scene of all.</p>
+      <p>Each case proves that in the Highlands, the landscape doesn't just witness murder—it enables it.</p>
+      <p><strong>SIX COMPLETE NOVELS. NO CLIFFHANGERS. METHODICAL HIGHLAND NOIR.</strong> Over 270,000 words of dark, atmospheric Scottish crime fiction.</p>
+    </div>
+  </article>
+
+  <!-- 4 · Tremayne Complete 1–10 -->
+  <article class="boxset-feature">
+    <span class="boxset-feature__badge">Complete Series</span>
+    <div class="boxset-feature__cover">
+      <img src="https://m.media-amazon.com/images/I/91qUSx8l0iL._SL1500_.jpg" alt="The Complete DI Tremayne Series, Books 1–10 box set cover" width="300" height="450" loading="lazy">
+      <a class="boxset-feature__cta" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book8" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-feature__buy" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book8" rel="sponsored noopener">or buy on Amazon</a>
+    </div>
+    <div class="boxset-feature__body">
+      <p class="boxset-feature__label">DI Keith Tremayne · Salisbury · Books 1–10</p>
+      <h3 class="boxset-feature__title">The Complete DI Tremayne Series</h3>
+      <p class="boxset-feature__fans">Perfect for fans of Peter James, Ann Cleeves, and Faith Martin</p>
+      <p><strong>THE COMPLETE SERIES. TEN MURDERS. ONE UNFORGETTABLE DETECTIVE. SALISBURY'S DARKEST SECRETS.</strong></p>
+      <p>Detective Inspector Keith Tremayne is ageing, cynical, and refusing to retire. In the shadow of Salisbury Cathedral and ancient monuments, he investigates murders where history, ritual, and revenge collide. Alongside Sergeant Clare Yarwood, Tremayne confronts crimes that test not just his detective skills, but his failing health and determination to see justice done—no matter the cost.</p>
+      <h4>Death Unholy (Book 1)</h4>
+      <p>A man reduced to ash in a chair. Spontaneous combustion or murder? The answer lies in paganism's darkest rituals still practiced in Salisbury.</p>
+      <h4>Death and the Assassin's Blade (Book 2)</h4>
+      <p>Julius Caesar performed among Roman ruins. Real daggers replace props mid-scene. Murder committed in front of two police officers who saw nothing until it was too late.</p>
+      <h4>Death and the Lucky Man (Book 3)</h4>
+      <p>Sixty-eight million pounds in lottery winnings. Now he's dead. The question isn't who wanted him dead—it's who didn't.</p>
+      <h4>Death at Coombe Farm (Book 4)</h4>
+      <p>A man trampled by a horse on Salisbury Plain. Disputed inheritance. Warring family. Was it the horse that killed Claude Selwood—or the relative who inherits everything?</p>
+      <h4>Death by a Dead Man's Hand (Book 5)</h4>
+      <p>Ethan Mitchell served eighteen years for murdering his brother Martin. One month before release, he receives Martin's letter: "Time will not save you." At their church meeting, someone shoots Ethan dead. The dead don't write letters—so who's killing the living?</p>
+      <h4>Death in the Village (Book 6)</h4>
+      <p>A venomous woman hangs dead in her garage. Nobody mourns. She won't be the last. When someone outside the group is killed, Tremayne realizes they have a killer who's starting to enjoy it.</p>
+      <h4>Burial Mound (Book 7)</h4>
+      <p>An archaeological dig near Stonehenge uncovers human remains—far too recent for Bronze Age research. The victim: the mayor's brother. Every thread leads back to Salisbury's upright mayor. But is Tremayne right, or is he about to bury an innocent man's reputation?</p>
+      <h4>The Body in the Ditch (Book 8)</h4>
+      <p>A young woman found dead near a commune preaching love and kindness. An elderly village woman murdered. Two victims with no apparent connection. But Tremayne knows nothing in this investigation is coincidental—the farm and village are bound by old sins and new crimes.</p>
+      <h4>The Horse's Mouth (Book 9)</h4>
+      <p>A day at the races. A dead horse, then a murdered owner's daughter. Tremayne was there when they found the body—making him the perfect alibi for one suspect. Was he deliberately placed in the wrong place at the right time? As jealousy, greed, and forbidden love spiral through the case, Tremayne's deteriorating health becomes as dangerous as the killer.</p>
+      <h4>Montfield's Madness (Book 10)</h4>
+      <p>The homeless man with the shopping trolley was a genius—and someone killed him for his revolutionary weapons technology. Intelligence agencies, foreign operatives, and corporations want Montfield's secrets. They want Tremayne and Yarwood to stay away. But Tremayne doesn't back down—even when it puts their lives on the line.</p>
+      <ul class="boxset-perks">
+        <li>Ten complete novels — the entire DI Tremayne series</li>
+        <li>Over 3,000 pages of British crime fiction</li>
+        <li>Salisbury setting — from Stonehenge to ancient burial mounds</li>
+        <li>Character evolution — watch Tremayne battle time, health, and crime</li>
+        <li>Standalone mysteries with continuing character arcs</li>
+        <li>From pagan rituals to weapons technology — every case unique</li>
+      </ul>
+      <p>From spontaneous combustion to international espionage, DI Keith Tremayne proves that age and cynicism are no match for determination. The complete journey of Salisbury's most unforgettable detective.</p>
+    </div>
+  </article>
+
+  <!-- 5 · Tremayne 1–6 -->
+  <article class="boxset-feature">
+    <span class="boxset-feature__badge">Box Set</span>
+    <div class="boxset-feature__cover">
+      <img src="https://m.media-amazon.com/images/I/91jmbJaBCEL._SL1500_.jpg" alt="The DI Tremayne Series, Books 1–6 box set cover" width="300" height="450" loading="lazy">
+      <a class="boxset-feature__cta" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book9" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-feature__buy" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book9" rel="sponsored noopener">or buy on Amazon</a>
+    </div>
+    <div class="boxset-feature__body">
+      <p class="boxset-feature__label">DI Keith Tremayne · Salisbury · Books 1–6</p>
+      <h3 class="boxset-feature__title">The DI Tremayne Series</h3>
+      <p class="boxset-feature__fans">Perfect for fans of Peter James, Ann Cleeves, and Faith Martin</p>
+      <p><strong>SIX MURDERS. ONE UNFORGETTABLE DETECTIVE. SALISBURY'S ANCIENT SECRETS TURN DEADLY.</strong></p>
+      <p>Detective Inspector Keith Tremayne is ageing, cynical, and refusing to retire. In the shadow of Salisbury's cathedral and ancient monuments, he investigates murders where history, ritual, and revenge collide. Alongside young Sergeant Clare Yarwood, Tremayne confronts the darkest crimes hidden beneath this market town's genteel surface.</p>
+      <h4>Death Unholy (Book 1)</h4>
+      <p>A man reduced to legs and greasy ash in a chair. Spontaneous combustion or murder? The answer lies in paganism's darkest rituals, and someone in Salisbury still practises them.</p>
+      <h4>Death and the Assassin's Blade (Book 2)</h4>
+      <p>A performance of Julius Caesar among Roman ruins. The assassination scene unfolds as rehearsed—until the actor collapses with real daggers in his chest. Murder committed in front of two police officers who saw nothing suspicious until it was too late.</p>
+      <h4>Death and the Lucky Man (Book 3)</h4>
+      <p>Sixty-eight million pounds in lottery winnings. Now he's dead in a pool of blood. The question isn't who wanted him dead—it's who didn't.</p>
+      <h4>Death at Coombe Farm (Book 4)</h4>
+      <p>A warring family, a disputed inheritance, a man trampled to death by a horse on Salisbury Plain. Was it the horse that killed Claude Selwood, or the relative who stood to inherit everything?</p>
+      <h4>Death by a Dead Man's Hand (Book 5)</h4>
+      <p>Ethan Mitchell served eighteen years for murdering his brother, Martin. One month before release, he receives a letter in Martin's handwriting: "Time will not save you." At their church meeting, someone shoots Ethan dead. The dead don't write letters—so who's killing the living?</p>
+      <h4>Death in the Village (Book 6)</h4>
+      <p>A woman with a venomous tongue hangs dead in her garage. Nobody mourns her. She won't be the last to die. When someone outside the original group is killed, Tremayne realises they have a killer who's starting to enjoy it.</p>
+      <ul class="boxset-perks">
+        <li>Six complete novels</li>
+        <li>Over 1,800 pages of British crime fiction</li>
+        <li>Salisbury setting — ancient history meets modern murder</li>
+        <li>Unforgettable characters — cynical Tremayne, determined Yarwood</li>
+        <li>Perfect for binge-reading — standalone mysteries with continuing character arcs</li>
+      </ul>
+      <p>From spontaneous combustion to dead men's letters, DI Keith Tremayne proves that in Salisbury's shadow, the past is never truly buried.</p>
+    </div>
+  </article>
+
+  <!-- 6 · Cook 1–6 -->
+  <article class="boxset-feature">
+    <span class="boxset-feature__badge">Box Set</span>
+    <div class="boxset-feature__cover">
+      <img src="https://m.media-amazon.com/images/I/81hGr4SbDNL._SL1500_.jpg" alt="The DCI Isaac Cook Thriller Series, Books 1–6 box set cover" width="300" height="450" loading="lazy">
+      <a class="boxset-feature__cta" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book10" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-feature__buy" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book10" rel="sponsored noopener">or buy on Amazon</a>
+    </div>
+    <div class="boxset-feature__body">
+      <p class="boxset-feature__label">DCI Isaac Cook · London · Books 1–6</p>
+      <h3 class="boxset-feature__title">The DCI Isaac Cook Thriller Series</h3>
+      <p class="boxset-feature__fans">Perfect for fans of Peter James, Ian Rankin, and Lynda La Plante</p>
+      <p>Detective Chief Inspector Isaac Cook should have been made a superintendent by now. Tall, urbane, and one of London's finest detectives, he's been held back by office politics—not his results. Alongside DI Larry Hill and veteran Sergeant Wendy Gladstone, Cook investigates the murders that others can't solve.</p>
+      <h4>Murder is a Tricky Business (Book 1)</h4>
+      <p>A soap opera actress has vanished, and everyone assumes she's been murdered. But it's not the first time she's gone missing. Why has DCI Cook been pulled from serious crimes to search for her?</p>
+      <h4>Murder House (Book 2)</h4>
+      <p>A corpse in the fireplace of an old house—it's been there for thirty years. The main suspects are elderly, dying, or already dead. The family believes dirty laundry shouldn't be aired in public, even if it means a murderer walks free.</p>
+      <h4>Murder is Only a Number (Book 3)</h4>
+      <p>Before she left, she carved a number in blood on his chest: the number 2. But if this is her first murder, why start at two? The woman prowls London, killing men who have wronged her—or have they?</p>
+      <h4>Murder in Little Venice (Book 4)</h4>
+      <p>A dismembered corpse floats in a London canal. Isaac Cook is baffled—is it gang-related or something more? Whatever the reason, it's clearly a warning, and it won't be the last body.</p>
+      <h4>Murder is the Only Option (Book 5)</h4>
+      <p>A man thought long dead returns to exact revenge on those who destroyed his life. His only concern is protecting his wife and daughter. He will stop at nothing, and the bodies are piling up.</p>
+      <h4>Murder in Notting Hill (Book 6)</h4>
+      <p>Two women murdered within an hour of each other, miles apart, with nothing in common. One is young, wealthy, the daughter of a famous man; the other is poor, hardworking, and unknown. What connects them?</p>
+      <p><strong>Six mysteries. One relentless detective. London's darkest secrets.</strong></p>
+    </div>
+  </article>
+
+  <!-- 7 · Cook 7–12 -->
+  <article class="boxset-feature">
+    <span class="boxset-feature__badge">Box Set</span>
+    <div class="boxset-feature__cover">
+      <img src="https://m.media-amazon.com/images/I/81uouqkYWGL._SL1500_.jpg" alt="The DCI Isaac Cook Thriller Series, Books 7–12 box set cover" width="300" height="450" loading="lazy">
+      <a class="boxset-feature__cta" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book11" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-feature__buy" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book11" rel="sponsored noopener">or buy on Amazon</a>
+    </div>
+    <div class="boxset-feature__body">
+      <p class="boxset-feature__label">DCI Isaac Cook · London · Books 7–12</p>
+      <h3 class="boxset-feature__title">The DCI Isaac Cook Thriller Series</h3>
+      <p class="boxset-feature__fans">Perfect for fans of Peter James, Ian Rankin, and Lynda La Plante</p>
+      <p>The cases are getting darker. DCI Isaac Cook has seen it all in his years with London's Homicide division, but the murders keep evolving—more calculated, more personal, more deadly. With his team at Challis Street, Cook digs into the city's shadows to find killers who think they're untouchable.</p>
+      <h4>Murder in Room 346 (Book 7)</h4>
+      <p>On the bed lie the naked bodies of James Holden, a moral campaigner who preached the sanctity of marriage, and a woman who once killed her husband. Both were shot in the head. What were they doing in that downmarket hotel?</p>
+      <h4>Murder of a Silent Man (Book 8)</h4>
+      <p>For years, the shabby-dressed recluse shuffled to the off-licence every Thursday at seven. Nobody knew he had a property empire. Now he's dead in his front garden, and his disinherited family is suddenly very interested.</p>
+      <h4>Murder has no Guilt (Book 9)</h4>
+      <p>Eight dead in a mass shooting: a Romanian gangster, a Russian oligarch claiming to be legitimate, and two women. No one knows who the target was. A gang war is brewing, and Cook needs answers before the bodies multiply.</p>
+      <h4>Murder in Hyde Park (Book 10)</h4>
+      <p>An early-morning jogger was murdered in the heart of London. No identification, only a waterlogged phone. As the investigation unfolds, the dead man's life reveals nothing but deception. Is the killer someone who loved him, or someone with vengeance on their mind?</p>
+      <h4>Six Years Too Late (Book 11)</h4>
+      <p>Marcus Matthews disappeared six years ago, leaving behind his wife and children—and Hamish McIntyre, his gangster father-in-law, who values family above everything. Now, two boys exploring an abandoned house find Marcus's body. Why was he in that room, and why did he share wine with his killer?</p>
+      <h4>Grave Passion (Book 12)</h4>
+      <p>Two young lovers take a shortcut through a cemetery and witness a murder. No struggle, just a knife to the heart—all the hallmarks of an assassination. Who is the woman standing beside the grave at night, and why was she killed?</p>
+      <p><strong>Six investigations. One determined detective. Murder never takes a day off.</strong></p>
+    </div>
+  </article>
+
+  <!-- 8 · Cook 13–18 -->
+  <article class="boxset-feature">
+    <span class="boxset-feature__badge">Box Set</span>
+    <div class="boxset-feature__cover">
+      <img src="https://m.media-amazon.com/images/I/81xUd2jRy+L._SL1500_.jpg" alt="The DCI Isaac Cook Thriller Series, Books 13–18 box set cover" width="300" height="450" loading="lazy">
+      <a class="boxset-feature__cta" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book12" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-feature__buy" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book12" rel="sponsored noopener">or buy on Amazon</a>
+    </div>
+    <div class="boxset-feature__body">
+      <p class="boxset-feature__label">DCI Isaac Cook · London · Books 13–18</p>
+      <h3 class="boxset-feature__title">The DCI Isaac Cook Thriller Series</h3>
+      <p class="boxset-feature__fans">Perfect for fans of Peter James, Ian Rankin, and Lynda La Plante</p>
+      <p>The stakes have never been higher. DCI Isaac Cook's career has been defined by solving London's most complex murders, but now the cases are escalating beyond anything he's faced before. From gang wars to political conspiracies to terrorism, Cook must navigate a world where the line between justice and survival grows dangerously thin.</p>
+      <h4>The Slaying of Joe Foster (Book 13)</h4>
+      <p>No one challenged gangster Joe Foster in life—not if they valued theirs. Now he's dead, and his criminal empire is up for grabs. The Foster family is fighting for control while rival gangs carve up the territory. A war on London's streets is coming, and nobody wants it—except those who stand to profit.</p>
+      <h4>The Hero's Fall (Book 14)</h4>
+      <p>Angus Simmons had it made: a successful TV show, a beautiful girlfriend, admiration for his mountaineering exploits. Then he fell while climbing a London skyscraper. Initially it seemed he'd lost his grip—until they found the bullet. Who shoots a man while he's scaling a building?</p>
+      <h4>The Vicar's Confession (Book 15)</h4>
+      <p>Reverend Charles Hepworth, friend to the downtrodden, walks into the police station and places a blood-soaked knife on Cook's desk. "I killed the man," he says calmly. The victim, Andreas Maybury, was not a man to mourn—but why would a self-professed pacifist commit murder? Then Hepworth is killed in his prison cell, and everyone's ducking for cover.</p>
+      <h4>Guilty until Proven Innocent (Book 16)</h4>
+      <p>Two years ago, Gary Harders confessed to murder and accepted his sentence. Justice appeared served. Now his conviction is being overturned, but Harders won't say why he's challenging his confession or speak of alleged police coercion. What changed, and why the ominous silence?</p>
+      <h4>Devil House (Book 17)</h4>
+      <p>A naked man spreadeagled on a bare floor in suburban London. Sergeant Wendy Gladstone thought she'd seen it all, but pagan symbols and human sacrifice are a first. Cook takes one look at the body and walks outside: "It's a murder, that's all we need to know." But this killing has dark roots that go deeper than anyone imagined.</p>
+      <h4>Murder without Reason (Book 18)</h4>
+      <p>The Islamic State brings terror to England, and they're winning. Cook is promoted to Counter Terrorism Command at Scotland Yard—his greatest challenge yet. Not only must he find the perpetrators, but he's being forced to consider actions contrary to his mandate as a police officer. When the Prime Minister's Deputy, Anne Argento, offers a criminal solution to save the country, Cook faces an impossible choice: follow the law or save England?</p>
+      <p><strong>Six explosive cases. One detective pushed to his limits. Some investigations change everything.</strong></p>
+    </div>
+  </article>
+
+  <!-- 9 · Freya Tulloch Complete 1–6 -->
+  <article class="boxset-feature">
+    <span class="boxset-feature__badge">Complete Series</span>
+    <div class="boxset-feature__cover">
+      <img src="https://m.media-amazon.com/images/I/81140rYjmUL._SL1500_.jpg" alt="The Complete Freya Tulloch Orkney Mysteries, Books 1–6 box set cover" width="300" height="450" loading="lazy">
+      <a class="boxset-feature__cta" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book13" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-feature__buy" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book13" rel="sponsored noopener">or buy on Amazon</a>
+    </div>
+    <div class="boxset-feature__body">
+      <p class="boxset-feature__label">DI Freya Tulloch · Orkney Islands · Books 1–6</p>
+      <h3 class="boxset-feature__title">The Complete Freya Tulloch Orkney Mysteries</h3>
+      <p class="boxset-feature__fans">Quiet, dark, and exact — patient Orkney island noir</p>
+      <p>Detective Inspector Freya Tulloch has lived in Stromness all her life. She knows the families, the land disputes, the old grievances, and the things that are never said out loud. She also knows that on these islands, every death has a history, and most of the histories are older than the people involved.</p>
+      <p>The Freya Tulloch Orkney Mysteries are quiet, exact, and steeped in the weight of a small island community living alongside something very old that will not stay buried. From a woman walking out of the sea at Birsay to a body sitting upright against a five-thousand-year-old standing stone, the cases take Freya across Orkney's islands, into its archives, and back through a century of family histories that other people would rather she leave alone.</p>
+      <p>Six full-length novels. Over a quarter of a million words. The complete first arc of the series.</p>
+      <h4>The Selkie's Shore (Book 1)</h4>
+      <p>A diver is found on a Hoy beach in his working clothes, above the tide line. The tide didn't put him there.</p>
+      <h4>The Scapa Diver (Book 2)</h4>
+      <p>The diver found the truth. He was careful about it. He was not careful enough.</p>
+      <h4>The St Magnus Festival (Book 3)</h4>
+      <p>A cache of Norse-era liturgical manuscripts, missing since 1693, has been in the hands of the same Orcadian family for three centuries. One of them is finally ready to talk. The others are not.</p>
+      <h4>The Churchill Barriers (Book 4)</h4>
+      <p>A death on a causeway built by prisoners of war. The barriers have held back the sea for eighty years. They have not held back what was already on the islands.</p>
+      <h4>The Hoy Ferry (Book 5)</h4>
+      <p>A woman died on the early sailing, and Hoy is Billy Flett's place, his people, his history. For the first time in the investigation, Freya follows.</p>
+      <h4>The Ring of Brodgar (Book 6)</h4>
+      <p>On the morning of the winter solstice, Dr Anna Voss is found sitting upright against one of the standing stones, facing east. The frost around her is unbroken. Her footprints lead in from the road, and do not lead out.</p>
+      <p>Quiet, dark, and exact. Patient police work in a place where the cold and the stone outlast every case that comes to them.</p>
+    </div>
+  </article>
+
+  <!-- 10 · Freya Tulloch 7–12 -->
+  <article class="boxset-feature">
+    <span class="boxset-feature__badge boxset-feature__badge--new">NEW</span>
+    <div class="boxset-feature__cover">
+      <img src="https://m.media-amazon.com/images/I/814V8Q1ZxnL._SL1500_.jpg" alt="The Freya Tulloch Orkney Mysteries, Books 7–12 box set cover" width="300" height="450" loading="lazy">
+      <a class="boxset-feature__cta" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book14" rel="sponsored noopener">Read free on Kindle Unlimited</a>
+      <a class="boxset-feature__buy" href="https://amazon-redirector.phillipstrang.workers.dev/boxset/book14" rel="sponsored noopener">or buy on Amazon</a>
+    </div>
+    <div class="boxset-feature__body">
+      <p class="boxset-feature__label">DI Freya Tulloch · Orkney Islands · Books 7–12</p>
+      <h3 class="boxset-feature__title">The Freya Tulloch Orkney Mysteries</h3>
+      <p class="boxset-feature__fans">Quiet, dark, and exact — patient Orkney island noir</p>
+      <p>Detective Inspector Freya Tulloch has lived in Stromness all her life. She knows the families, the land disputes, the old grievances, and the things that are never said out loud. She also knows that on these islands, every death has a history, and most of the histories are older than the people involved.</p>
+      <p>The Freya Tulloch Orkney Mysteries are quiet, exact, and steeped in the weight of a small island community living alongside something very old that will not stay buried. From a Canadian woman found at the foot of the cliffs below an Iron Age broch to an old sculptor laid out in his own bothy beside a record carved in stone, the cases take Freya across Orkney's islands, into its archives, and back through a century of family histories that other people would rather she leave alone.</p>
+      <p>Six full-length novels. Over a quarter of a million words. The second arc of the series.</p>
+      <h4>The Lighthouse Keeper's Log (Book 7)</h4>
+      <p>Two boats went out one night. Only one came back. A retired keeper spent twenty years putting that night back into the record — and someone made certain he never finished.</p>
+      <h4>The Midhowe Letter (Book 8)</h4>
+      <p>Eighty-eight years after Tormod Craigie walked into the sea, his great-niece flies from Manitoba to ask why the family never spoke his name. She is found at the foot of the cliffs below the Midhowe broch. The letter she carried home is gone.</p>
+      <h4>The Sanday Inheritance (Book 9)</h4>
+      <p>An old woman dies in her bed. Twelve days later, her carer is dead on the same kitchen floor. Every line of inquiry holds together. Every line is wrong.</p>
+      <h4>The Stronsay Vote (Book 10)</h4>
+      <p>Stronsay votes on Tuesday, and Edith Stout — the one voice no one could quite predict — will not be at the meeting. Three accounts of her last evening fit together neatly. Not one of them is the truth.</p>
+      <h4>The Funeral at Birsay (Book 11)</h4>
+      <p>A quiet parish. A thirty-year silence. The most respected man in the district has the most to lose — and the funeral at Birsay was never the ending. It was the beginning.</p>
+      <h4>The Salt Stone Paradox (Book 12)</h4>
+      <p>An old sculptor is found dead in his bothy, laid out with the care only a friend would take. He left a hidden record carved into eight stone miniatures. The eighth is missing — and a child has carried the only other copy home.</p>
+      <p>Quiet, dark, and exact. Patient police work in a place where the cold, the sea, and the stone outlast every case that comes to them.</p>
+    </div>
+  </article>
+  </div>
+  </section>
+
+  <section class="region-panel" id="panel-australian" data-region="australian" hidden>
+    <div class="boxset-tab boxset-tab--au" id="tab-australian">
+      <p style="text-align:center;color:#aaa;padding:48px 16px">Australian box sets — coming soon.</p>
+    </div>
+  </section>
+
+  <div class="footer">
+    <a href="https://phillipstrang.com/phillip-strang-books/">← Phillip Strang Books</a> &nbsp;·&nbsp; <a href="https://phillipstrang.com/reading-guides/">Reading Guides →</a>
+    <p style="margin-top: 15px;">This page contains affiliate links. When you buy through these links, we earn a small commission at no extra cost to you.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var cards=document.querySelectorAll('.region-card');
+  function show(region){
+    document.querySelectorAll('.region-panel').forEach(function(p){
+      p.hidden = (p.getAttribute('data-region')!==region);
+    });
+    cards.forEach(function(c){ c.classList.toggle('is-active', c.getAttribute('data-target')===region); });
+  }
+  cards.forEach(function(c){
+    c.addEventListener('click',function(e){
+      e.preventDefault();
+      var r=c.getAttribute('data-target');
+      show(r); history.replaceState(null,'','#'+r);
+    });
+  });
+  var h=location.hash.replace('#','');
+  if(['american','british','australian'].indexOf(h)>-1) show(h);
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Phillip Strang — FBI & American Thriller Box Sets",
+  "itemListOrder": "https://schema.org/ItemListOrderDescending",
+  "numberOfItems": 4,
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"item":{"@type":"Book","name":"The Complete Alex Harlan FBI Thriller Series (Books 1–6)","author":{"@type":"Person","name":"Phillip Strang"},"bookFormat":"https://schema.org/EBook","image":"https://m.media-amazon.com/images/I/81ygw8468KL._SL1500_.jpg","url":"https://amazon-redirector.phillipstrang.workers.dev/boxset/book1"}},
+    {"@type":"ListItem","position":2,"item":{"@type":"Book","name":"The Reid Harper FBI Thriller Series (Books 1–3)","author":{"@type":"Person","name":"Phillip Strang"},"bookFormat":"https://schema.org/EBook","image":"https://m.media-amazon.com/images/I/91misklk+EL._SL1500_.jpg","url":"https://amazon-redirector.phillipstrang.workers.dev/boxset/book2"}},
+    {"@type":"ListItem","position":3,"item":{"@type":"Book","name":"The Detective Jordan Cross Thriller Series (Books 1–3)","author":{"@type":"Person","name":"Phillip Strang"},"bookFormat":"https://schema.org/EBook","image":"https://m.media-amazon.com/images/I/913xXCO0fLL._SL1500_.jpg","url":"https://amazon-redirector.phillipstrang.workers.dev/boxset/book3"}},
+    {"@type":"ListItem","position":4,"item":{"@type":"Book","name":"The Alex Harlan FBI Thrillers — The Institutional Arc (Books 7–12)","author":{"@type":"Person","name":"Phillip Strang"},"bookFormat":"https://schema.org/EBook","image":"https://m.media-amazon.com/images/I/71sqeT+rwML._SL1500_.jpg","url":"https://amazon-redirector.phillipstrang.workers.dev/boxset/book4"}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Phillip Strang — British Crime Box Sets",
+  "numberOfItems": 10,
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"item":{"@type":"Book","name":"The Complete DI Sarah Lynch Scottish Highland Mysteries: Books 1-6","author":{"@type":"Person","name":"Phillip Strang"},"bookFormat":"https://schema.org/EBook","image":"https://m.media-amazon.com/images/I/71aWBzi2DBL._SL1500_.jpg","url":"https://amazon-redirector.phillipstrang.workers.dev/boxset/book5"}},
+    {"@type":"ListItem","position":2,"item":{"@type":"Book","name":"DI Sarah Lynch Scottish Highland Mysteries: Books 7-12","author":{"@type":"Person","name":"Phillip Strang"},"bookFormat":"https://schema.org/EBook","image":"https://m.media-amazon.com/images/I/71m492Ty7sL._SL1500_.jpg","url":"https://amazon-redirector.phillipstrang.workers.dev/boxset/book6"}},
+    {"@type":"ListItem","position":3,"item":{"@type":"Book","name":"DI Sarah Lynch Scottish Highland Mysteries: Books 13-18","author":{"@type":"Person","name":"Phillip Strang"},"bookFormat":"https://schema.org/EBook","image":"https://m.media-amazon.com/images/I/71lq703HZqL._SL1500_.jpg","url":"https://amazon-redirector.phillipstrang.workers.dev/boxset/book7"}},
+    {"@type":"ListItem","position":4,"item":{"@type":"Book","name":"The Complete DI Tremayne Series: Books 1-10","author":{"@type":"Person","name":"Phillip Strang"},"bookFormat":"https://schema.org/EBook","image":"https://m.media-amazon.com/images/I/91qUSx8l0iL._SL1500_.jpg","url":"https://amazon-redirector.phillipstrang.workers.dev/boxset/book8"}},
+    {"@type":"ListItem","position":5,"item":{"@type":"Book","name":"The DI Tremayne Series: Books 1-6","author":{"@type":"Person","name":"Phillip Strang"},"bookFormat":"https://schema.org/EBook","image":"https://m.media-amazon.com/images/I/91jmbJaBCEL._SL1500_.jpg","url":"https://amazon-redirector.phillipstrang.workers.dev/boxset/book9"}},
+    {"@type":"ListItem","position":6,"item":{"@type":"Book","name":"The DCI Isaac Cook Thriller Series: Books 1-6","author":{"@type":"Person","name":"Phillip Strang"},"bookFormat":"https://schema.org/EBook","image":"https://m.media-amazon.com/images/I/81hGr4SbDNL._SL1500_.jpg","url":"https://amazon-redirector.phillipstrang.workers.dev/boxset/book10"}},
+    {"@type":"ListItem","position":7,"item":{"@type":"Book","name":"The DCI Isaac Cook Thriller Series: Books 7-12","author":{"@type":"Person","name":"Phillip Strang"},"bookFormat":"https://schema.org/EBook","image":"https://m.media-amazon.com/images/I/81uouqkYWGL._SL1500_.jpg","url":"https://amazon-redirector.phillipstrang.workers.dev/boxset/book11"}},
+    {"@type":"ListItem","position":8,"item":{"@type":"Book","name":"The DCI Isaac Cook Thriller Series: Books 13-18","author":{"@type":"Person","name":"Phillip Strang"},"bookFormat":"https://schema.org/EBook","image":"https://m.media-amazon.com/images/I/81xUd2jRy+L._SL1500_.jpg","url":"https://amazon-redirector.phillipstrang.workers.dev/boxset/book12"}},
+    {"@type":"ListItem","position":9,"item":{"@type":"Book","name":"The Complete Freya Tulloch Orkney Mysteries: Books 1-6","author":{"@type":"Person","name":"Phillip Strang"},"bookFormat":"https://schema.org/EBook","image":"https://m.media-amazon.com/images/I/81140rYjmUL._SL1500_.jpg","url":"https://amazon-redirector.phillipstrang.workers.dev/boxset/book13"}},
+    {"@type":"ListItem","position":10,"item":{"@type":"Book","name":"The Freya Tulloch Orkney Mysteries: Books 7-12","author":{"@type":"Person","name":"Phillip Strang"},"bookFormat":"https://schema.org/EBook","image":"https://m.media-amazon.com/images/I/814V8Q1ZxnL._SL1500_.jpg","url":"https://amazon-redirector.phillipstrang.workers.dev/boxset/book14"}}
+  ]
+}
+</script>
