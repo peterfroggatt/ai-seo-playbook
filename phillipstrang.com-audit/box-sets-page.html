@@ -38,12 +38,22 @@
 .region-card__meta{color:#d4af37;font-size:.82rem;text-transform:uppercase;letter-spacing:.03em;text-align:center}
 .region-card.is-active .region-card__name{color:#d4af37}
 .region-panel[hidden]{display:none}
-@media(max-width:640px){.region-tabs{grid-template-columns:1fr}.region-card{flex-direction:row;justify-content:flex-start}.region-card__meta{text-align:left}}
+.stats-bar{display:flex;justify-content:center;gap:50px;flex-wrap:wrap;background:#1a1a1a;border-radius:10px;padding:22px;margin:0 auto 30px;max-width:1120px}
+.stat-item{text-align:center}
+.stat-number{font-size:2rem;font-weight:700;color:#d4af37;line-height:1.1}
+.stat-label{color:#aaa;font-size:.9rem;margin-top:4px}
+@media(max-width:640px){.region-tabs{grid-template-columns:1fr}.region-card{flex-direction:row;justify-content:flex-start}.region-card__meta{text-align:left}.stats-bar{gap:28px}}
 </style>
 
 <div class="boxsets-page">
   <h1>Phillip Strang Box Sets</h1>
   <p class="boxsets-page__intro">Complete-series box sets across British, American &amp; Australian crime — binge each series <strong>free on Kindle Unlimited</strong>. Choose a region to browse.</p>
+
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-number">200+</div><div class="stat-label">Books Published</div></div>
+    <div class="stat-item"><div class="stat-number">600K+</div><div class="stat-label">Copies Sold</div></div>
+    <div class="stat-item"><div class="stat-number">82M+</div><div class="stat-label">Kindle Pages Read</div></div>
+  </div>
 
   <div class="region-tabs" role="tablist">
     <a class="region-card is-active" role="tab" href="#american" data-target="american">
