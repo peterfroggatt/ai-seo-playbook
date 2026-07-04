@@ -1,42 +1,45 @@
 <?php
 /**
  * Phillip Strang — automatic Book schema (JSON-LD) for every book page.
+ * ELEMENTOR-SAFE VERSION.
+ *
+ * WHY THIS VERSION
+ *   The book pages are built with Elementor, which stores content in its own
+ *   "_elementor_data" field, NOT in WordPress's post_content. So reading the
+ *   post text finds nothing. Instead this reads the FINAL RENDERED HTML (the
+ *   same output the schema validator sees) and pulls the cover + buy link from
+ *   there — guaranteed to exist because they're on the visible page.
  *
  * WHAT IT DOES
- *   Outputs one schema.org/Book block in the <head> of each individual book
- *   page, built entirely from data already on the post:
- *     - name          <- post title (the " - Phillip Strang" suffix is stripped)
- *     - url / @id      <- permalink
- *     - image         <- featured image (the cover)
+ *   Injects one schema.org/Book block into the <head> of each leaf book page:
+ *     - name          <- og:title (the " - Phillip Strang" suffix is stripped)
+ *     - image         <- og:image (the cover)
  *     - datePublished <- the post's own published date
  *     - isPartOf       <- the parent series page (title + URL)
- *     - ReadAction     <- the single-book geni.us buy link found in the content
- *   No price, ISBN, or rating is invented, so it validates cleanly and cannot
- *   trigger a review-snippet policy issue. It links into Yoast's existing
- *   entity graph via {"@id": ".../#organization"} instead of duplicating it.
+ *     - ReadAction     <- the geni.us buy link found on the page
+ *   No price, ISBN, or rating is invented, so it validates clean. It references
+ *   Yoast's existing entity via {"@id": ".../#organization"}.
  *
- * WHERE IT FIRES (all three must be true — this targets leaf book pages only)
- *   1. The page has a featured image (the cover).
- *   2. The content contains a geni.us link (the book's universal buy link).
- *   3. The page has NO child pages (series/landing pages have children — skipped).
+ * WHERE IT FIRES (leaf book pages only)
+ *   - It's a Page (not the front page) with NO child pages.
+ *   - The rendered page contains a geni.us link (the book's buy link).
+ *   - The rendered page has an og:image (the cover).
+ *   Series/landing pages have children, so they're skipped.
  *
- * HOW TO INSTALL
- *   Plugins -> Code Snippets -> Add New -> paste EVERYTHING BELOW the opening
- *   <?php line (Code Snippets supplies its own opening tag), "Run everywhere",
- *   Save & Activate. (Or drop the function into the child theme's functions.php,
- *   keeping the <?php tag.)
+ * INSTALL
+ *   Plugins -> Code Snippets -> Add New -> paste everything BELOW the opening
+ *   <?php line -> "Run everywhere" -> Save & Activate.
  *
  * VERIFY
- *   Open any book page -> View Source -> confirm the <script type="application/
- *   ld+json"> Book block is present, then run the URL through
- *   https://validator.schema.org/ and Google's Rich Results Test.
+ *   Book page -> View Source -> find <script type="application/ld+json"> with
+ *   "@type":"Book", then run the URL through https://validator.schema.org/.
  */
 
-add_action( 'wp_head', 'ps_output_book_schema', 20 );
+add_action( 'template_redirect', 'ps_book_schema_start_buffer' );
 
-function ps_output_book_schema() {
+function ps_book_schema_start_buffer() {
 
-	if ( ! is_page() || is_front_page() ) {
+	if ( is_admin() || is_feed() || is_front_page() || ! is_page() ) {
 		return;
 	}
 
@@ -45,45 +48,77 @@ function ps_output_book_schema() {
 		return;
 	}
 
-	// --- Gate 1: must have a single-book geni.us buy link in the content ------
-	// Ignore the generic ".../stores/..." author-storefront Amazon link.
-	if ( ! preg_match( '#https?://geni\.us/[A-Za-z0-9._~/-]+#', $post->post_content, $m ) ) {
-		return;
-	}
-	$buy_link = $m[0];
-
-	// --- Gate 2: must have a cover (featured image) --------------------------
-	$image = get_the_post_thumbnail_url( $post, 'full' );
-	if ( ! $image ) {
-		return;
-	}
-
-	// --- Gate 3: leaf pages only (series/landing pages have children) --------
-	$has_children = get_children( array(
+	// Leaf pages only — series/landing pages have children and are skipped.
+	$children = get_children( array(
 		'post_parent' => $post->ID,
 		'post_type'   => 'page',
 		'numberposts' => 1,
 		'post_status' => 'publish',
 	) );
-	if ( ! empty( $has_children ) ) {
+	if ( ! empty( $children ) ) {
 		return;
 	}
 
-	// --- Build the Book node -------------------------------------------------
-	$url   = get_permalink( $post );
-	$title = trim( preg_replace( '/\s*[-–|]\s*Phillip Strang\s*$/iu', '', get_the_title( $post ) ) );
+	// Capture the reliable server-side facts now; the rest comes from the HTML.
+	$GLOBALS['ps_book_ctx'] = array(
+		'url'  => get_permalink( $post ),
+		'date' => get_the_date( 'Y-m-d', $post ),
+	);
+	if ( $post->post_parent ) {
+		$parent = get_post( $post->post_parent );
+		if ( $parent instanceof WP_Post ) {
+			$GLOBALS['ps_book_ctx']['series'] = array(
+				'name' => get_the_title( $parent ),
+				'url'  => get_permalink( $parent ),
+			);
+		}
+	}
+
+	ob_start( 'ps_book_schema_inject' );
+}
+
+function ps_book_schema_inject( $html ) {
+
+	if ( empty( $GLOBALS['ps_book_ctx'] ) || ! is_string( $html ) || stripos( $html, '</head>' ) === false ) {
+		return $html;
+	}
+	$ctx = $GLOBALS['ps_book_ctx'];
+
+	// Buy link — the book's geni.us universal link (first match on the page).
+	if ( ! preg_match( '#https?://geni\.us/[A-Za-z0-9._~/-]+#', $html, $mBuy ) ) {
+		return $html; // not a book page
+	}
+	$buy_link = $mBuy[0];
+
+	// Cover — from og:image (handles content="..." in either attribute order).
+	if ( ! preg_match( '#<meta[^>]+property=["\']og:image["\'][^>]*content=["\']([^"\']+)["\']#i', $html, $mImg )
+	  && ! preg_match( '#<meta[^>]+content=["\']([^"\']+)["\'][^>]*property=["\']og:image["\']#i', $html, $mImg ) ) {
+		return $html;
+	}
+	$image = $mImg[1];
+
+	// Title — prefer og:title, fall back to <title>. Strip the author suffix.
+	$title = '';
+	if ( preg_match( '#<meta[^>]+property=["\']og:title["\'][^>]*content=["\']([^"\']+)["\']#i', $html, $mT )
+	  || preg_match( '#<title>(.*?)</title>#is', $html, $mT ) ) {
+		$title = $mT[1];
+	}
+	$title = trim( preg_replace( '/\s*[-–|]\s*Phillip Strang\s*$/iu', '', html_entity_decode( $title, ENT_QUOTES ) ) );
+	if ( '' === $title ) {
+		return $html;
+	}
 
 	$book = array(
 		'@context'   => 'https://schema.org',
 		'@type'      => 'Book',
-		'@id'        => $url . '#book',
+		'@id'        => $ctx['url'] . '#book',
 		'name'       => $title,
-		'url'        => $url,
+		'url'        => $ctx['url'],
 		'image'      => $image,
 		'inLanguage' => 'en-US',
 		'genre'      => array( 'Crime fiction', 'Mystery', 'Thriller' ),
 		'bookFormat' => 'https://schema.org/EBook',
-		'datePublished' => get_the_date( 'Y-m-d', $post ),
+		'datePublished' => $ctx['date'],
 		'author'     => array(
 			'@type' => 'Person',
 			'name'  => 'Phillip Strang',
@@ -92,30 +127,14 @@ function ps_output_book_schema() {
 		'publisher'  => array( '@id' => home_url( '/#organization' ) ),
 	);
 
-	// Description: prefer a hand-written excerpt, else the Yoast meta description.
-	$desc = has_excerpt( $post ) ? get_the_excerpt( $post ) : '';
-	if ( ! $desc ) {
-		$desc = get_post_meta( $post->ID, '_yoast_wpseo_metadesc', true );
-	}
-	$desc = trim( wp_strip_all_tags( (string) $desc ) );
-	if ( $desc ) {
-		$book['description'] = $desc;
+	if ( ! empty( $ctx['series'] ) ) {
+		$book['isPartOf'] = array(
+			'@type' => 'BookSeries',
+			'name'  => $ctx['series']['name'],
+			'url'   => $ctx['series']['url'],
+		);
 	}
 
-	// Series: taken straight from the parent page (name + URL). Auto-covers
-	// every series — Cook, Tremayne, Campbell, Reid Harper, etc. — with no map.
-	if ( $post->post_parent ) {
-		$parent = get_post( $post->post_parent );
-		if ( $parent instanceof WP_Post ) {
-			$book['isPartOf'] = array(
-				'@type' => 'BookSeries',
-				'name'  => get_the_title( $parent ),
-				'url'   => get_permalink( $parent ),
-			);
-		}
-	}
-
-	// Buy action — Google Book-Actions pattern (no price/ISBN required).
 	$book['potentialAction'] = array(
 		'@type'  => 'ReadAction',
 		'target' => array(
@@ -133,7 +152,13 @@ function ps_output_book_schema() {
 		),
 	);
 
-	echo "\n<script type=\"application/ld+json\">\n";
-	echo wp_json_encode( $book, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT );
-	echo "\n</script>\n";
+	$json = wp_json_encode( $book, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT );
+	if ( false === $json ) {
+		return $html;
+	}
+
+	$script = "\n<script type=\"application/ld+json\">\n" . $json . "\n</script>\n";
+	$pos    = stripos( $html, '</head>' );
+
+	return substr( $html, 0, $pos ) . $script . substr( $html, $pos );
 }
