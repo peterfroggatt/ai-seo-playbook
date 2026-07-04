@@ -1,0 +1,75 @@
+/* =========================================================================
+   Phillip Strang — 3-across card grid for the guide listing pages
+   Applies to: Crime Fiction Writing (12934), Author Guides (12820),
+   Fiction Lists (12902), Reading Guides (9474), Blog (3265)
+   Paste into: Appearance → Customize → Additional CSS  →  Publish
+   ========================================================================= */
+
+/* --- turn the post list into a 3-column grid --- */
+.page-id-12934 .uc_post_list.uc-items-wrapper,
+.page-id-12820 .uc_post_list.uc-items-wrapper,
+.page-id-12902 .uc_post_list.uc-items-wrapper,
+.page-id-9474  .uc_post_list.uc-items-wrapper,
+.page-id-3265  .uc_post_list.uc-items-wrapper {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px !important;
+    align-items: stretch;
+}
+
+/* --- style each item as a card --- */
+.page-id-12934 .uc_post_list_box,
+.page-id-12820 .uc_post_list_box,
+.page-id-12902 .uc_post_list_box,
+.page-id-9474  .uc_post_list_box,
+.page-id-3265  .uc_post_list_box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0 !important;
+    padding: 22px 24px !important;
+    background: #ffffff;
+    border: 1px solid #e7e7e7;
+    border-top: 3px solid #c8a951;      /* gold accent to match the site */
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+.page-id-12934 .uc_post_list_box:hover,
+.page-id-12820 .uc_post_list_box:hover,
+.page-id-12902 .uc_post_list_box:hover,
+.page-id-9474  .uc_post_list_box:hover,
+.page-id-3265  .uc_post_list_box:hover {
+    box-shadow: 0 8px 22px rgba(0,0,0,0.10);
+    transform: translateY(-3px);
+}
+
+/* --- hide the image (no images wanted) --- */
+.page-id-12934 .uc_post_list_image,
+.page-id-12820 .uc_post_list_image,
+.page-id-12902 .uc_post_list_image,
+.page-id-9474  .uc_post_list_image,
+.page-id-3265  .uc_post_list_image { display: none !important; }
+
+/* --- tidy the title / excerpt inside the card --- */
+.page-id-12934 .uc_post_list_title,
+.page-id-12820 .uc_post_list_title,
+.page-id-12902 .uc_post_list_title,
+.page-id-9474  .uc_post_list_title,
+.page-id-3265  .uc_post_list_title { font-size: 1.15em !important; line-height: 1.3; margin-bottom: 8px; }
+
+/* --- responsive: 2 across on tablet, 1 on phone --- */
+@media (max-width: 900px) {
+    .page-id-12934 .uc_post_list.uc-items-wrapper,
+    .page-id-12820 .uc_post_list.uc-items-wrapper,
+    .page-id-12902 .uc_post_list.uc-items-wrapper,
+    .page-id-9474  .uc_post_list.uc-items-wrapper,
+    .page-id-3265  .uc_post_list.uc-items-wrapper { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 600px) {
+    .page-id-12934 .uc_post_list.uc-items-wrapper,
+    .page-id-12820 .uc_post_list.uc-items-wrapper,
+    .page-id-12902 .uc_post_list.uc-items-wrapper,
+    .page-id-9474  .uc_post_list.uc-items-wrapper,
+    .page-id-3265  .uc_post_list.uc-items-wrapper { grid-template-columns: 1fr !important; }
+}
