@@ -32,6 +32,12 @@ function ps_affiliate_disclosure( $content ) {
 		return $content;
 	}
 
+	// --- BLOG CATEGORY ONLY (remove this block later to go site-wide) ---------
+	if ( ! has_category( 'blog-post', get_the_ID() ) ) {
+		return $content;
+	}
+	// --------------------------------------------------------------------------
+
 	// Only on posts that actually carry an affiliate link.
 	if ( ! preg_match( '#geni\.us|amazon\.[a-z.]+|amzn\.to|amazon-redirector\.phillipstrang\.workers\.dev#i', $content ) ) {
 		return $content;
