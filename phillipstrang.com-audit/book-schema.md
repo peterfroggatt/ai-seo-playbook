@@ -8,6 +8,14 @@ with the Yoast output already on the page.
 Best inserted via the page's SEO/custom-HTML field, or with a small WordPress
 function that injects it on the `cook`/`tremayne`/etc. book templates.
 
+> **Recommended: use the snippet, not per-page pastes.**
+> `book-schema-snippet.php` in this folder generates this exact Book block on
+> **every** book page automatically, pulling the title, cover, published date,
+> series, and geni.us buy link straight from each post. Install it once (Code
+> Snippets plugin) and all ~144 book pages are covered — no manual entry, and
+> new books get schema the moment they're published. The templates below are
+> for reference or one-off manual insertion.
+
 ---
 
 ## 1. Concrete example — *Murder House* (real data, paste as-is)
@@ -17,9 +25,9 @@ function that injects it on the `cook`/`tremayne`/etc. book templates.
 {
   "@context": "https://schema.org",
   "@type": "Book",
-  "@id": "https://phillipstrang.com/cook/murder-house-phillip-strang/#book",
+  "@id": "https://phillipstrang.com/dci-isaac-cook-series/murder-house-phillip-strang/#book",
   "name": "Murder House",
-  "url": "https://phillipstrang.com/cook/murder-house-phillip-strang/",
+  "url": "https://phillipstrang.com/dci-isaac-cook-series/murder-house-phillip-strang/",
   "image": "https://phillipstrang.com/wp-content/uploads/2017/03/Flatten-3D-Book-MURDER-HOUSE-v2.jpg",
   "description": "A body hidden in a fireplace for thirty years. Elderly suspects guarding family secrets. DCI Isaac Cook must solve a decades-old murder before the truth is lost forever.",
   "inLanguage": "en-US",
