@@ -13,16 +13,15 @@
  *   - Runs on single blog posts only.
  *   - Only adds the notice when the post actually contains an affiliate link
  *     (geni.us, amazon.*, amzn.to, or your Cloudflare redirector).
- *   - Inserts it at the TOP of the post (before the links) - the placement the
- *     FTC wants ("clear and conspicuous"). Won't double-add if already present.
+ *   - Inserts it at the BOTTOM of the post content. Won't double-add if present.
  *
  * INSTALL
  *   Code Snippets -> Add New -> paste everything below the <?php line ->
  *   "Run everywhere" -> Save & Activate -> LiteSpeed -> Purge All.
  *
- * MOVE TO BOTTOM instead? change the final line
- *   from:  return $notice . $content;
- *   to:    return $content . $notice;
+ * MOVE TO TOP instead? change the final line
+ *   from:  return $content . $notice;
+ *   to:    return $notice . $content;
  */
 
 add_filter( 'the_content', 'ps_affiliate_disclosure', 8 );
@@ -47,5 +46,5 @@ function ps_affiliate_disclosure( $content ) {
 		. 'As an Amazon Associate, Phillip Strang earns from qualifying purchases. This page contains affiliate links &mdash; buying through them costs you nothing extra.'
 		. '</p>';
 
-	return $notice . $content;
+	return $content . $notice;
 }
