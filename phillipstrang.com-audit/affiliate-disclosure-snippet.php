@@ -24,7 +24,9 @@
  *   to:    return $notice . $content;
  */
 
-add_filter( 'the_content', 'ps_affiliate_disclosure', 8 );
+// Priority 20 = run AFTER page builders (Elementor injects content at 9), so
+// $content contains the rendered article + affiliate links when we check.
+add_filter( 'the_content', 'ps_affiliate_disclosure', 20 );
 
 function ps_affiliate_disclosure( $content ) {
 
