@@ -34,8 +34,9 @@ function ps_affiliate_disclosure( $content ) {
 		return $content;
 	}
 
-	// --- BLOG CATEGORY ONLY (remove this block later to go site-wide) ---------
-	if ( ! has_category( 'blog-post', get_the_ID() ) ) {
+	// --- LIMIT TO THESE CATEGORIES (remove this block to go fully site-wide) --
+	// Add or remove category slugs here as you widen coverage.
+	if ( ! has_category( array( 'blog-post', 'crime-fiction-writing' ), get_the_ID() ) ) {
 		return $content;
 	}
 	// --------------------------------------------------------------------------
