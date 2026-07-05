@@ -10,10 +10,11 @@
  *   remember it per post.
  *
  * WHAT IT DOES
- *   - Runs on single blog posts only.
- *   - Only adds the notice when the post actually contains an affiliate link
+ *   - Runs on single posts AND pages (covers the ~14 reading-guide Pages and
+ *     the book Pages, not just Posts).
+ *   - Only adds the notice when the content actually contains an affiliate link
  *     (geni.us, amazon.*, amzn.to, or your Cloudflare redirector).
- *   - Inserts it at the BOTTOM of the post content. Won't double-add if present.
+ *   - Inserts it at the BOTTOM of the content. Won't double-add if present.
  *
  * INSTALL
  *   Code Snippets -> Add New -> paste everything below the <?php line ->
@@ -30,7 +31,8 @@ add_filter( 'the_content', 'ps_affiliate_disclosure', 20 );
 
 function ps_affiliate_disclosure( $content ) {
 
-	if ( is_admin() || ! is_singular( 'post' ) || ! in_the_loop() || ! is_main_query() ) {
+	// Posts AND pages, but never the admin, feeds, or the front page.
+	if ( is_admin() || is_feed() || is_front_page() || ! is_singular() || ! in_the_loop() || ! is_main_query() ) {
 		return $content;
 	}
 
