@@ -34,12 +34,8 @@ function ps_affiliate_disclosure( $content ) {
 		return $content;
 	}
 
-	// --- LIMIT TO THESE CATEGORIES (remove this block to go fully site-wide) --
-	// Add or remove category slugs here as you widen coverage.
-	if ( ! has_category( array( 'blog-post', 'crime-fiction-writing' ), get_the_ID() ) ) {
-		return $content;
-	}
-	// --------------------------------------------------------------------------
+	// Site-wide: runs on every post; the affiliate-link check below means the
+	// notice only appears where there's actually a link to disclose.
 
 	// Only on posts that actually carry an affiliate link.
 	if ( ! preg_match( '#geni\.us|amazon\.[a-z.]+|amzn\.to|amazon-redirector\.phillipstrang\.workers\.dev#i', $content ) ) {
