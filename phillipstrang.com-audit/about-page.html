@@ -8,8 +8,8 @@
       nothing inside a WordPress page and the browser throws them away.
     - Set the page TITLE and META DESCRIPTION in the Yoast box, not here:
         Title:  About Phillip Strang | Crime Fiction Author
-        Meta:   Phillip Strang is a prolific crime fiction author with 18 series
-                and 175 novels across British, Australian and American detective
+        Meta:   Phillip Strang is a prolific crime fiction author with 19 series
+                and 144 novels across British, Australian and American detective
                 fiction and international thrillers. Meet the author.
 
   WHAT CHANGED vs your version
@@ -18,19 +18,24 @@
     3. CTA /series/my-books/ -> /phillip-strang-books/  (was a 404)
     4. All series links given trailing slashes (kills the extra 301 redirect hop)
     5. Author photo http:// -> https://     (fixes mixed-content warning)
-    6. "16 series" -> "18 series" in prose, CTA and schema (matches your cards)
+    6. Series count -> 19 and novel count -> 144 in prose, CTA and schema
     7. Schema enriched: author image + description fixed + placeholders for
        Goodreads / BookBub sameAs (fill these in - see TODO in the JSON-LD)
     8. audiotechexpert.com link set rel="nofollow" (kept the mention)
-    9. Novel count set to 175 (per author); Jack Penrose 1 -> 3 books
+    9. Reconciled to catalogue sheet: 144 novels / 19 series. Sarah Lynch 13->18,
+       Alex Harlan 6->12, Jack Penrose 1->3, and added DI Freya Tulloch (12, Orkney)
    10. Added a "Box Sets" section linking the live box-set hub + British/American
 
-  NOTE ON THE MATH
-    - Novel count is 175 (author-confirmed total). The visible per-series cards
-      currently sum to ~123, so the total legitimately exceeds them (box sets and
-      some titles aren't broken out card-by-card). If you'd rather the cards tie
-      out to 175, send updated per-series counts and I'll adjust the cards.
-    - Box sets bundle novels already counted, so they are NOT added to the 175.
+  NOTE ON THE MATH (reconciled to your 11-17-2025 catalogue spreadsheet)
+    - 144 individual novels across 19 series. The cards now sum EXACTLY to 144.
+    - Fixes from the sheet: Sarah Lynch 13 -> 18, Alex Harlan 6 -> 12, and a whole
+      missing series added: DI Freya Tulloch (12 Orkney novels).
+    - Box sets: 32 in the catalogue (some not published on the site). Box sets
+      bundle novels already counted, so they are NOT added to the 144.
+    - Your "175" = 144 novels + ~32 box sets counted as titles (176 ~= 175). If you
+      prefer the headline to read "175", change it to "175 titles" (not "175
+      novels"), or tell me and I'll switch it back - but 144 novels is the number
+      that ties out to the visible cards and is the more defensible claim.
 
   STILL NEEDS YOUR INPUT
     - sameAs: add your Goodreads + BookBub URLs where marked TODO.
@@ -76,12 +81,12 @@
     <img src="https://phillipstrang.com/wp-content/uploads/2026/03/f-phillip-image-2500-2500-crop-1-3.jpg" alt="Phillip Strang — Crime Fiction Author" width="300" height="380">
     <div class="ps-author-hero-text">
       <h1>Phillip Strang</h1>
-      <p class="ps-tagline">Crime Fiction Author · 18 Series · 175 Novels</p>
-      <p>Phillip Strang is one of the most prolific crime fiction authors writing today. With 18 series spanning Britain, Australia, and America, Strang has built one of the most varied and extensive catalogues in the genre.</p>
+      <p class="ps-tagline">Crime Fiction Author · 19 Series · 144 Novels</p>
+      <p>Phillip Strang is one of the most prolific crime fiction authors writing today. With 19 series spanning Britain, Australia, and America, Strang has built one of the most varied and extensive catalogues in the genre.</p>
       <p>Born in England in the late 1940s and long based in Sydney, Australia, Strang brings a genuinely international perspective to crime fiction. His detectives range from London homicide investigators to outback trackers, from FBI agents to Scottish Highland detectives — each series grounded in a distinct location and atmosphere.</p>
       <div class="ps-stat-bar">
-        <div class="ps-stat"><strong>18</strong><span>Series</span></div>
-        <div class="ps-stat"><strong>175</strong><span>Novels</span></div>
+        <div class="ps-stat"><strong>19</strong><span>Series</span></div>
+        <div class="ps-stat"><strong>144</strong><span>Novels</span></div>
         <div class="ps-stat"><strong>3</strong><span>Continents</span></div>
         <div class="ps-stat"><strong>1</strong><span>Author</span></div>
       </div>
@@ -98,8 +103,13 @@
       </div>
       <div class="ps-series-card">
         <h4><a href="/lynch/">DI Sarah Lynch</a></h4>
-        <p class="ps-meta">13 books &middot; Scottish Highlands</p>
+        <p class="ps-meta">18 books &middot; Scottish Highlands</p>
         <p class="ps-meta">A detective working the remote and unforgiving landscape of the Scottish Highlands, where secrets run as deep as the lochs.</p>
+      </div>
+      <div class="ps-series-card">
+        <h4><a href="/freya-tulloch-mysteries/">DI Freya Tulloch</a></h4>
+        <p class="ps-meta">12 books &middot; Orkney Islands</p>
+        <p class="ps-meta">Island noir steeped in Norse heritage, where Freya Tulloch investigates murder across the wind-battered Orkney Islands.</p>
       </div>
       <div class="ps-series-card">
         <h4><a href="/tremayne/">DI Keith Tremayne</a></h4>
@@ -163,7 +173,7 @@
     <div class="ps-series-grid">
       <div class="ps-series-card">
         <h4><a href="/harlan/">Alex Harlan</a></h4>
-        <p class="ps-meta">6 books &middot; FBI</p>
+        <p class="ps-meta">12 books &middot; FBI</p>
         <p class="ps-meta">An FBI thriller series following Special Agent Alex Harlan through high-stakes federal investigations across America.</p>
       </div>
       <div class="ps-series-card">
@@ -200,7 +210,7 @@
   </div>
   <div class="ps-series-group">
     <h3>Box Sets</h3>
-    <p style="margin:-4px 0 16px 0; color:#444;">Prefer to binge a whole series at once? Collected box-set editions bundle each series into a single volume — the best-value way to start reading.</p>
+    <p style="margin:-4px 0 16px 0; color:#444;">Prefer to binge a whole series at once? More than 30 collected box-set editions bundle the series into value volumes — the best-value way to start reading.</p>
     <div class="ps-series-grid">
       <div class="ps-series-card">
         <h4><a href="/box-sets-page/">All Box Sets</a></h4>
@@ -224,13 +234,13 @@
     <p>Phillip Strang was born in England in the late 1940s. From an early age he was a voracious reader, a habit that would eventually lead to a writing career spanning decades and continents.</p>
     <p>After graduating with a degree in electronics engineering, Strang left England in his early twenties and moved to Sydney, Australia — a move that became permanent. Australia became his home, and the Australian landscape, particularly the vast and unforgiving outback, became one of the defining backdrops of his fiction.</p>
     <p>Strang's life was never confined to one place. The years between his arrival in Australia and his emergence as a novelist were marked by extensive travel and residence in some of the world's most turbulent regions — places that would later inform the authenticity of his thriller writing, particularly the Steve Case terrorism series.</p>
-    <p>Today Phillip Strang is one of the most prolific crime fiction authors in the English language. His 18 series and 175 novels span three continents and encompass every major strand of the crime fiction genre — from cosy-adjacent British detective fiction to outback mysteries, from FBI procedurals to international terrorism thrillers. Each series is distinct in voice, location, and character, reflecting Strang's genuine breadth of experience and his lifelong engagement with storytelling.</p>
+    <p>Today Phillip Strang is one of the most prolific crime fiction authors in the English language. His 19 series and 144 novels span three continents and encompass every major strand of the crime fiction genre — from cosy-adjacent British detective fiction to outback mysteries, from FBI procedurals to international terrorism thrillers. Each series is distinct in voice, location, and character, reflecting Strang's genuine breadth of experience and his lifelong engagement with storytelling.</p>
     <p>All of Phillip Strang's books are available exclusively on Amazon Kindle and in paperback.</p>
     <p>When not writing crime fiction, Phillip Strang covers audio technology and equipment reviews at <a href="https://audiotechexpert.com" rel="nofollow" style="color:#c8a951;">audiotechexpert.com</a>.</p>
   </div>
   <div class="ps-cta">
     <h3>Start Reading</h3>
-    <p>With 18 series and 175 novels, there's a Phillip Strang series for every crime fiction reader. Browse the complete catalogue and find your next favourite detective.</p>
+    <p>With 19 series and 144 novels, there's a Phillip Strang series for every crime fiction reader. Browse the complete catalogue and find your next favourite detective.</p>
     <a href="/phillip-strang-books/">Browse All Series &rarr;</a>
   </div>
   <script type="application/ld+json">
@@ -240,7 +250,7 @@
     "@id": "https://phillipstrang.com/#phillip-strang",
     "name": "Phillip Strang",
     "jobTitle": "Crime Fiction Author",
-    "description": "Phillip Strang is a prolific crime fiction author with 18 series and 175 novels spanning British, Australian and American detective fiction and international thrillers.",
+    "description": "Phillip Strang is a prolific crime fiction author with 19 series and 144 novels spanning British, Australian and American detective fiction and international thrillers.",
     "url": "https://phillipstrang.com/about/",
     "image": "https://phillipstrang.com/wp-content/uploads/2026/03/f-phillip-image-2500-2500-crop-1-3.jpg",
     "sameAs": [
