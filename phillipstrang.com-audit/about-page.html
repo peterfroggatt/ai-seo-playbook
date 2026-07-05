@@ -9,9 +9,8 @@
     - Set the page TITLE and META DESCRIPTION in the Yoast box, not here:
         Title:  About Phillip Strang | Crime Fiction Author
         Meta:   Phillip Strang is a prolific crime fiction author with 18 series
-                and 140+ novels across British, Australian and American detective
+                and 175 novels across British, Australian and American detective
                 fiction and international thrillers. Meet the author.
-      (Adjust "140+" to your real novel count - see note below.)
 
   WHAT CHANGED vs your version
     1. /cook  -> /dci-isaac-cook-series/   (was 301-ing to the COOKIE POLICY page)
@@ -23,11 +22,17 @@
     7. Schema enriched: author image + description fixed + placeholders for
        Goodreads / BookBub sameAs (fill these in - see TODO in the JSON-LD)
     8. audiotechexpert.com link set rel="nofollow" (kept the mention)
+    9. Novel count set to 175 (per author); Jack Penrose 1 -> 3 books
+   10. Added a "Box Sets" section linking the live box-set hub + British/American
+
+  NOTE ON THE MATH
+    - Novel count is 175 (author-confirmed total). The visible per-series cards
+      currently sum to ~123, so the total legitimately exceeds them (box sets and
+      some titles aren't broken out card-by-card). If you'd rather the cards tie
+      out to 175, send updated per-series counts and I'll adjust the cards.
+    - Box sets bundle novels already counted, so they are NOT added to the 175.
 
   STILL NEEDS YOUR INPUT
-    - NOVEL COUNT: your 18 cards sum to ~119 books; the book-list page has 139.
-      "150+" is likely too high. Set the true number and make it match the Yoast
-      meta, the tagline, the stat bar, the bio paragraph and the CTA.
     - sameAs: add your Goodreads + BookBub URLs where marked TODO.
     - Confirm the Amazon author URL/ASIN in the schema is current.
 -->
@@ -71,12 +76,12 @@
     <img src="https://phillipstrang.com/wp-content/uploads/2026/03/f-phillip-image-2500-2500-crop-1-3.jpg" alt="Phillip Strang — Crime Fiction Author" width="300" height="380">
     <div class="ps-author-hero-text">
       <h1>Phillip Strang</h1>
-      <p class="ps-tagline">Crime Fiction Author · 18 Series · 140+ Novels</p>
+      <p class="ps-tagline">Crime Fiction Author · 18 Series · 175 Novels</p>
       <p>Phillip Strang is one of the most prolific crime fiction authors writing today. With 18 series spanning Britain, Australia, and America, Strang has built one of the most varied and extensive catalogues in the genre.</p>
       <p>Born in England in the late 1940s and long based in Sydney, Australia, Strang brings a genuinely international perspective to crime fiction. His detectives range from London homicide investigators to outback trackers, from FBI agents to Scottish Highland detectives — each series grounded in a distinct location and atmosphere.</p>
       <div class="ps-stat-bar">
         <div class="ps-stat"><strong>18</strong><span>Series</span></div>
-        <div class="ps-stat"><strong>140+</strong><span>Novels</span></div>
+        <div class="ps-stat"><strong>175</strong><span>Novels</span></div>
         <div class="ps-stat"><strong>3</strong><span>Continents</span></div>
         <div class="ps-stat"><strong>1</strong><span>Author</span></div>
       </div>
@@ -108,8 +113,8 @@
       </div>
       <div class="ps-series-card">
         <h4><a href="/penrose/">Jack Penrose</a></h4>
-        <p class="ps-meta">1 book &middot; UK</p>
-        <p class="ps-meta">A new British series from Phillip Strang.</p>
+        <p class="ps-meta">3 books &middot; UK</p>
+        <p class="ps-meta">Phillip Strang's newest British series, following DS Jack Penrose.</p>
       </div>
     </div>
   </div>
@@ -193,18 +198,39 @@
       </div>
     </div>
   </div>
+  <div class="ps-series-group">
+    <h3>Box Sets</h3>
+    <p style="margin:-4px 0 16px 0; color:#444;">Prefer to binge a whole series at once? Collected box-set editions bundle each series into a single volume — the best-value way to start reading.</p>
+    <div class="ps-series-grid">
+      <div class="ps-series-card">
+        <h4><a href="/box-sets-page/">All Box Sets</a></h4>
+        <p class="ps-meta">Every collected edition</p>
+        <p class="ps-meta">Browse the complete range of Phillip Strang box sets across all series and regions.</p>
+      </div>
+      <div class="ps-series-card">
+        <h4><a href="/boxsets-british/">British Box Sets</a></h4>
+        <p class="ps-meta">Cook · Tremayne · Lynch &amp; more</p>
+        <p class="ps-meta">Collected editions of the British detective series, bundled by series at a saving.</p>
+      </div>
+      <div class="ps-series-card">
+        <h4><a href="/box-sets-american/">American Box Sets</a></h4>
+        <p class="ps-meta">Harlan · Harper · Cross</p>
+        <p class="ps-meta">The FBI and US crime series gathered into value box-set editions.</p>
+      </div>
+    </div>
+  </div>
   <div class="ps-bio-section">
     <h2 style="margin-top:0; color:#1a1a1a; font-size:1.4em;">About Phillip Strang</h2>
     <p>Phillip Strang was born in England in the late 1940s. From an early age he was a voracious reader, a habit that would eventually lead to a writing career spanning decades and continents.</p>
     <p>After graduating with a degree in electronics engineering, Strang left England in his early twenties and moved to Sydney, Australia — a move that became permanent. Australia became his home, and the Australian landscape, particularly the vast and unforgiving outback, became one of the defining backdrops of his fiction.</p>
     <p>Strang's life was never confined to one place. The years between his arrival in Australia and his emergence as a novelist were marked by extensive travel and residence in some of the world's most turbulent regions — places that would later inform the authenticity of his thriller writing, particularly the Steve Case terrorism series.</p>
-    <p>Today Phillip Strang is one of the most prolific crime fiction authors in the English language. His 18 series and 140+ novels span three continents and encompass every major strand of the crime fiction genre — from cosy-adjacent British detective fiction to outback mysteries, from FBI procedurals to international terrorism thrillers. Each series is distinct in voice, location, and character, reflecting Strang's genuine breadth of experience and his lifelong engagement with storytelling.</p>
+    <p>Today Phillip Strang is one of the most prolific crime fiction authors in the English language. His 18 series and 175 novels span three continents and encompass every major strand of the crime fiction genre — from cosy-adjacent British detective fiction to outback mysteries, from FBI procedurals to international terrorism thrillers. Each series is distinct in voice, location, and character, reflecting Strang's genuine breadth of experience and his lifelong engagement with storytelling.</p>
     <p>All of Phillip Strang's books are available exclusively on Amazon Kindle and in paperback.</p>
     <p>When not writing crime fiction, Phillip Strang covers audio technology and equipment reviews at <a href="https://audiotechexpert.com" rel="nofollow" style="color:#c8a951;">audiotechexpert.com</a>.</p>
   </div>
   <div class="ps-cta">
     <h3>Start Reading</h3>
-    <p>With 18 series and 140+ novels, there's a Phillip Strang series for every crime fiction reader. Browse the complete catalogue and find your next favourite detective.</p>
+    <p>With 18 series and 175 novels, there's a Phillip Strang series for every crime fiction reader. Browse the complete catalogue and find your next favourite detective.</p>
     <a href="/phillip-strang-books/">Browse All Series &rarr;</a>
   </div>
   <script type="application/ld+json">
@@ -214,7 +240,7 @@
     "@id": "https://phillipstrang.com/#phillip-strang",
     "name": "Phillip Strang",
     "jobTitle": "Crime Fiction Author",
-    "description": "Phillip Strang is a prolific crime fiction author with 18 series and 140+ novels spanning British, Australian and American detective fiction and international thrillers.",
+    "description": "Phillip Strang is a prolific crime fiction author with 18 series and 175 novels spanning British, Australian and American detective fiction and international thrillers.",
     "url": "https://phillipstrang.com/about/",
     "image": "https://phillipstrang.com/wp-content/uploads/2026/03/f-phillip-image-2500-2500-crop-1-3.jpg",
     "sameAs": [
