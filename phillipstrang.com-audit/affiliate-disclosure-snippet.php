@@ -44,12 +44,14 @@ function ps_affiliate_disclosure( $content ) {
 		return $content;
 	}
 
-	// Don't add twice if it's somehow already there.
-	if ( false !== stripos( $content, 'As an Amazon Associate' ) ) {
+	// Don't add if ANY affiliate disclaimer is already on the page (many pages
+	// have a hand-coded one in their footer) - avoids duplicates.
+	if ( preg_match( '/affiliate link|As an Amazon Associate/i', $content ) ) {
 		return $content;
 	}
 
-	$notice = '<p class="ps-affiliate-disclosure" style="font-size:0.82em;line-height:1.5;color:#777;font-style:italic;margin:0 0 22px;padding:10px 14px;background:#faf9f7;border-left:3px solid #c8a951;border-radius:3px;">'
+	// Centred block, constrained to the content width so it never sits far-left.
+	$notice = '<p class="ps-affiliate-disclosure" style="max-width:860px;margin:6px auto 22px;font-size:0.82em;line-height:1.5;color:#777;font-style:italic;padding:10px 14px;background:#faf9f7;border-left:3px solid #c8a951;border-radius:3px;text-align:center;">'
 		. 'As an Amazon Associate, Phillip Strang earns from qualifying purchases. This page contains affiliate links &mdash; buying through them costs you nothing extra.'
 		. '</p>';
 
