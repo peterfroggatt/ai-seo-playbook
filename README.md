@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/peterfroggatt-ai-seo-playbook-badge.png)](https://mseep.ai/app/peterfroggatt-ai-seo-playbook)
+
 ![Claude SEO cover: a Claude Code command palette with /seo audit, schema, geo, content, and backlinks commands over a dark CRT panel](assets/cover.svg)
 
 # Claude SEO: SEO Skill for Claude Code
